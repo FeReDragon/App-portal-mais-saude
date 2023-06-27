@@ -6,6 +6,7 @@ import { MedicationLogComponent } from './medication-log/medication-log.componen
 import { FoodDiaryComponent } from './food-diary/food-diary.component';
 import { ExerciseLogComponent } from './exercise-log/exercise-log.component';
 import { SleepTrackerComponent } from './sleep-tracker/sleep-tracker.component';
+import { PrintableReportsComponent } from './printable-reports/printable-reports.component';
 
 
 
@@ -16,7 +17,8 @@ import { SleepTrackerComponent } from './sleep-tracker/sleep-tracker.component';
     MedicationLogComponent,
     FoodDiaryComponent,
     ExerciseLogComponent,
-    SleepTrackerComponent
+    SleepTrackerComponent,
+    PrintableReportsComponent
   ],
   imports: [
     CommonModule

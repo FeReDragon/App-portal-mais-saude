@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
+import { InputComponent } from './input/input.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
 @NgModule({
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    InputComponent,
+    DropdownComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule
