@@ -1,1 +1,71 @@
-<p>navbar works!</p>
+<header>
+    <nav class="navbar fixed-top bg-info" 
+         [class.navbar-dark]="themeService.isDarkTheme()" 
+         [class.navbar-light]="!themeService.isDarkTheme()">
+      <div class="container-fluid">
+        <button class="navbar-toggler me-4 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+          <button class="btn btn-outline-light" type="submit">Pesquisa</button>
+        </form>
+        <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
+        <button class="btn btn-mode-toggle ms-3" (click)="themeService.toggleTheme()">
+          <i class="fas fa-moon text-dark" *ngIf="!themeService.isDarkTheme()"></i>
+          <i class="fas fa-sun text-warning" *ngIf="themeService.isDarkTheme()"></i>
+      </button> 
+      </div>
+    </nav>
+  </header>
+  
+  
+  
+  <div class="offcanvas offcanvas-start offcanvas-custom-width bg-info" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-light" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#"><i class="fas fa-newspaper"></i> Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#"><i class="fas fa-shopping-cart"></i> Loja</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#"><i class="fas fa-heartbeat"></i> Dados de Saúde</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#"><i class="fas fa-user-circle"></i> Conta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#"><i class="fas fa-envelope"></i> Contato</a>
+        </li>
+      </ul>
+      <br>
+      <form class="my-2">
+        <div class="mb-2">
+          <label for="username" class="form-label text-light">Usuário</label>
+          <input type="text" class="form-control" id="username" placeholder="Nome de usuário">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label text-light">Senha</label>
+          <input type="password" class="form-control" id="password" placeholder="Senha">
+        </div>
+        <button type="submit" class="btn btn-secondary mb-3 bg-secondary">Login</button>
+        <div>
+          <a href="#" class="text-light">Cadastre-se</a>
+        </div>
+        <div>
+          <a href="#" class="text-light">Esqueceu sua senha?</a>
+        </div>
+      </form>
+  
+    </div>
+  </div>
+  
