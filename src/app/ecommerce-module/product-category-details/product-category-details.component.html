@@ -1,1 +1,34 @@
-<p>product-category-details works!</p>
+<div class="container mt-5 pt-3">
+
+    <!-- Cabeçalho da categoria -->
+    <div class="row">
+      <div class="col">
+        <h1 class="display-4">{{ categoryDetails?.name }}</h1> <!-- Assumindo que temos um objeto categoryDetails no componente TS -->
+        <p class="lead">{{ categoryDetails?.description }}</p> <!-- Assumindo que temos um objeto categoryDetails no componente TS -->
+      </div>
+    </div>
+  
+    <!-- Lista de produtos -->
+    <div class="row mt-5">
+      <div class="col">
+        <h2 class="h4">Produtos na categoria {{ categoryDetails?.name }}:</h2>
+      </div>
+    </div>
+  
+    <div class="row mt-3">
+      <!-- Assumindo que temos uma lista de produtos (productList) no componente TS -->
+      <div class="col-md-4 mb-3" *ngFor="let product of productList">
+        <div class="card">
+          <img [src]="product.image" alt="Imagem de {{ product.name }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text"><strong>Preço:</strong> {{ product.price }}</p>
+            <a href="#" class="btn btn-primary">Veja mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  

@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-category-details.component.scss']
 })
 export class ProductCategoryDetailsComponent {
+categoryDetails: any;
+productList: any;
 
 }

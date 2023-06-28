@@ -1,16 +1,18 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Product } from '../ecommerce-module/model/product.model'; // Import the Product model
 
-import { EcommerceService } from './ecommerce.service';
+@Injectable({
+  providedIn: 'root'
+})
+export class EcommerceService {
 
-describe('EcommerceService', () => {
-  let service: EcommerceService;
+  constructor() { }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(EcommerceService);
-  });
+  getProducts(): Observable<Product[]> {
+    // Replace this with actual implementation to fetch products.
+    // This is just a mock implementation returning an empty array.
+    return of([]);
+  }
+}
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});

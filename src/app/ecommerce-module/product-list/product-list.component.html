@@ -1,1 +1,25 @@
-<p>product-list works!</p>
+<div class="container mt-5">
+    <h1 class="mb-4">Nossa Loja</h1>
+  
+    <div class="row">
+      <!-- Iterar através do array de produtos -->
+      <div class="col-md-4 mb-4" *ngFor="let product of products">
+        <div class="card h-100">
+          <!-- Substituir 'imageUrl' pela propriedade correspondente do seu produto -->
+          <img src="{{product.imageUrl}}" class="card-img-top" alt="{{product.name}}">
+          <div class="card-body">
+            <!-- Substituir 'name' e 'description' pelas propriedades correspondentes do seu produto -->
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+          </div>
+          <div class="card-footer">
+            <!-- Substituir 'price' pela propriedade correspondente do seu produto -->
+            <p class="card-text">R$ {{product.price}}</p>
+            <!-- Adicione a rota correta para a página de detalhes do produto -->
+            <a href="/product/{{product.id}}" class="btn btn-primary">Veja Mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
