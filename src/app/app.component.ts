@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LayoutComponent } from '../app/core-module/layout/layout.component';
 import { navbarComponent } from './core-module/navbar/navbar.component';
 import { footerComponent } from './core-module/footer/footer.component';
 
