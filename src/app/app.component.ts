@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { navbarComponent } from './core-module/navbar/navbar.component';
+import { footerComponent } from './core-module/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -8,3 +10,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'App-portal-mais-saude';
 }
+

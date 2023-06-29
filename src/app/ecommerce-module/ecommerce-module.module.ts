@@ -8,6 +8,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductCategoriesComponent } from './product-categories/product-categories.component';
 import { ProductCategoryDetailsComponent } from './product-category-details/product-category-details.component';
 import { EcommerceService } from '../services/ecommerce.service'; // Importação do serviço
+import { Observable } from 'rxjs';
+
 
 @NgModule({
   declarations: [

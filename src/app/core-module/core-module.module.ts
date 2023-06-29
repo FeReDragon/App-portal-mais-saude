@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-
-
+import { footerComponent } from './footer/footer.component';
+import { navbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    FooterComponent,
-    NavbarComponent
+    footerComponent,
+    navbarComponent
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    footerComponent,
+    navbarComponent
   ]
 })
 export class CoreModuleModule { }
+

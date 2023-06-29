@@ -1,28 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './core-module/navbar/navbar.component';
-import { FooterComponent } from './core-module/footer/footer.component';
-
-
-
-
-
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModuleModule } from './core-module/core-module.module';
+import { SharedModuleModule } from './shared-module/shared-module.module';
+import { AuthenticationModuleModule } from './authentication-module/authentication-module.module';
+import { NewsModuleModule } from './news-module/news-module.module';
+import { EcommerceModuleModule } from './ecommerce-module/ecommerce-module.module';
+import { UserHealthDataModuleModule } from './user-health-data-module/user-health-data-module.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
- 
+    SharedModuleModule,
+    AuthenticationModuleModule,
+    NewsModuleModule,
+    EcommerceModuleModule,
+    UserHealthDataModuleModule,
+    CoreModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
