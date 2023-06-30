@@ -7,7 +7,7 @@ templateUrl: './navbar.component.html',
 styleUrls: ['./navbar.component.scss'],
 providers: [ThemeService]
 })
-export class navbarComponent {
+export class NavbarComponent {
 username: string | undefined;
 password: string | undefined;
 isDarkTheme = false;

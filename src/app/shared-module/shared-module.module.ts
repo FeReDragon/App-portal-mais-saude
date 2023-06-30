@@ -4,6 +4,8 @@ import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ModalComponent } from './modal/modal.component';
+import { RouterModule } from '@angular/router';
+
 
 
 
@@ -15,7 +17,8 @@ import { ModalComponent } from './modal/modal.component';
     ModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class SharedModuleModule { }

@@ -7,6 +7,7 @@ import { FoodDiaryComponent } from './food-diary/food-diary.component';
 import { ExerciseLogComponent } from './exercise-log/exercise-log.component';
 import { SleepTrackerComponent } from './sleep-tracker/sleep-tracker.component';
 import { PrintableReportsComponent } from './printable-reports/printable-reports.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { PrintableReportsComponent } from './printable-reports/printable-reports
     PrintableReportsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class UserHealthDataModuleModule { }

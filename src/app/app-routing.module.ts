@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from '../app/core-module/layout/layout.component';
-// Importar os componentes
 import { LoginComponent } from './authentication-module/login/login.component';
 import { RegisterComponent } from './authentication-module/register/register.component';
 import { ForgotPasswordComponent } from './authentication-module/forgot-password/forgot-password.component';
@@ -21,27 +20,26 @@ import { SleepTrackerComponent } from './user-health-data-module/sleep-tracker/s
 import { PrintableReportsComponent } from './user-health-data-module/printable-reports/printable-reports.component';
 
 const routes: Routes = [
-  { path: 'home', component: LayoutComponent, children: [
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'forgot-password', component: ForgotPasswordComponent },
-    { path: 'privacy-settings', component: PrivacySettingsComponent },
-    { path: 'news', component: NewsListComponent },
-    { path: 'news/:id', component: NewsDetailsComponent },
-    { path: 'products', component: ProductListComponent },
-    { path: 'products/:id', component: ProductDetailsComponent },
-    { path: 'cart', component: CartComponent },
-    { path: 'checkout', component: CheckoutComponent },
-    { path: 'vital-signs', component: VitalSignsComponent },
-    { path: 'symptom-monitoring', component: SymptomMonitoringComponent },
-    { path: 'medication-log', component: MedicationLogComponent },
-    { path: 'food-diary', component: FoodDiaryComponent },
-    { path: 'exercise-log', component: ExerciseLogComponent },
-    { path: 'sleep-tracker', component: SleepTrackerComponent },
-    { path: 'printable-reports', component: PrintableReportsComponent },
-  ]}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: LayoutComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'privacy-settings', component: PrivacySettingsComponent },
+  { path: 'news', component: NewsListComponent },
+  { path: 'news/:id', component: NewsDetailsComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: 'products/:id', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'vital-signs', component: VitalSignsComponent },
+  { path: 'symptom-monitoring', component: SymptomMonitoringComponent },
+  { path: 'medication-log', component: MedicationLogComponent },
+  { path: 'food-diary', component: FoodDiaryComponent },
+  { path: 'exercise-log', component: ExerciseLogComponent },
+  { path: 'sleep-tracker', component: SleepTrackerComponent },
+  { path: 'printable-reports', component: PrintableReportsComponent },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

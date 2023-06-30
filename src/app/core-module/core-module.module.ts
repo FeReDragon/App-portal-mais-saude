@@ -1,28 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { footerComponent } from './footer/footer.component';
-import { navbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NewsListComponent } from '../news-module/news-list/news-list.component';
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    footerComponent,
-    navbarComponent,
+    FooterComponent,
+    NavbarComponent,
     LayoutComponent,
     NewsListComponent,
-
   ],
   imports: [
     CommonModule,
-    
+    RouterModule,
   ],
   exports: [
-    footerComponent,
-    navbarComponent,
-    LayoutComponent
+    FooterComponent,
+    NavbarComponent,
+    LayoutComponent,
   ]
 })
 export class CoreModuleModule { }
-

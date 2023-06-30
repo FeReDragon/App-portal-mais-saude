@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { LayoutComponent } from '../app/core-module/layout/layout.component';
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { NewsModuleModule } from '../app/news-module/news-module.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModuleModule } from './core-module/core-module.module';
 import { SharedModuleModule } from './shared-module/shared-module.module';
@@ -22,6 +21,7 @@ import { UserHealthDataModuleModule } from './user-health-data-module/user-healt
     EcommerceModuleModule,
     UserHealthDataModuleModule,
     CoreModuleModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
