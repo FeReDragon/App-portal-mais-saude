@@ -1,1 +1,29 @@
-<p>vital-signs works!</p>
+ <!-- Sinais Vitais -->
+    <h2>Sinais Vitais</h2>
+    <form id="vital-signs-form" class="mb-3">
+      <div class="form-group">
+        <input type="number" id="bloodPressure" placeholder="Pressão arterial" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="number" id="heartRate" placeholder="Frequência cardíaca" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="number" id="bodyTemperature" placeholder="Temperatura corporal" class="form-control">
+      </div>
+      <div class="form-group">
+        <input type="number" id="bloodGlucose" placeholder="Níveis de glicose no sangue" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+    <div class="table-responsive">
+      <table id="vital-signs-table" class="table">
+        <thead>
+          <tr>
+            <th class="break-word small-header">Pressão arterial</th>
+            <th class="break-word small-header">Frequência cardíaca</th>
+            <th class="break-word small-header">Temperatura corporal</th>
+            <th class="break-word small-header">glicose no sangue</th>
+          </tr>
+        </thead>
+      </table>
+    </div>

@@ -18,15 +18,16 @@ import { FoodDiaryComponent } from './user-health-data-module/food-diary/food-di
 import { ExerciseLogComponent } from './user-health-data-module/exercise-log/exercise-log.component';
 import { SleepTrackerComponent } from './user-health-data-module/sleep-tracker/sleep-tracker.component';
 import { PrintableReportsComponent } from './user-health-data-module/printable-reports/printable-reports.component';
+import { HealthDataSummaryComponent } from './user-health-data-module/health-data-summary/health-data-summary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: LayoutComponent },
+  { path: 'homem', component: LayoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'privacy-settings', component: PrivacySettingsComponent },
-  { path: 'news', component: NewsListComponent },
+  { path: 'home', component: NewsListComponent },
   { path: 'news/:id', component: NewsDetailsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'food-diary', component: FoodDiaryComponent },
   { path: 'exercise-log', component: ExerciseLogComponent },
   { path: 'sleep-tracker', component: SleepTrackerComponent },
+  { path: 'monitor-saude', component: HealthDataSummaryComponent },
   { path: 'printable-reports', component: PrintableReportsComponent },
 ];
 

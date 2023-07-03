@@ -29,21 +29,21 @@
     <div class="offcanvas-body">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active text-light" aria-current="page" href="#"><i class="fas fa-home"></i> Home</a>
+          <a class="nav-link text-light" routerLink="/home"><i class="fas fa-home"></i> Home/News</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-light" routerLink="/news">
             <i class="fas fa-newspaper"></i> Notícias
           </a>
-        </li>        
+        </li>         -->
         <li class="nav-item">
           <a class="nav-link text-light" routerLink="/products"><i class="fas fa-shopping-cart"></i> Loja</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#"><i class="fas fa-heartbeat"></i> Dados de Saúde</a>
+          <a class="nav-link text-light" routerLink="/monitor-saude"><i class="fas fa-heartbeat"></i> Dados de Saúde</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" routerLink="/register"><i class="fas fa-user"></i> Login/Registro
+          <a class="nav-link text-light" routerLink="/login"><i class="fas fa-user"></i> Login/Registro
           </a>
         </li>
         <li class="nav-item">
@@ -61,12 +61,15 @@
           <input type="password" class="form-control" id="password" placeholder="Senha">
         </div>
         <button type="submit" class="btn btn-secondary mb-3 bg-secondary">Login</button>
-        <div>
-          <a href="#" class="text-light">Cadastre-se</a>
+        <div class="text-primary">
+          <a class="text-primary" routerLink="/register">Cadastre-se</a>
         </div>
-        <div>
-          <a href="#" class="text-light">Esqueceu sua senha?</a>
+        <div class="text-primary">
+          <a href="#" class="text-primary">Esqueceu sua senha?</a>
         </div>
+        
+        
+        
       </form>
   
     </div>

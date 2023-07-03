@@ -1,1 +1,33 @@
-<p>symptom-monitoring works!</p>
+<!-- Monitoramento de sintomas -->
+<h2>Sintomas</h2>
+<form id="symptoms-form" class="mb-3">
+  <div class="form-group">
+    <input type="text" id="symptom" placeholder="Sintoma" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="number" id="intensity" placeholder="Intensidade" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="number" id="frequency" placeholder="Frequência" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="text" id="duration" placeholder="Duração" class="form-control">
+  </div>
+  <div class="form-group">
+    <textarea id="notes" placeholder="Notas adicionais" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<div class="table-responsive">
+  <table id="symptoms-table" class="table">
+    <thead>
+      <tr>
+        <th class="break-word">Sintoma</th>
+        <th class="break-word">Intensidade</th>
+        <th class="break-word">Frequência</th>
+        <th class="break-word">Duração</th>
+        <th class="break-word">Notas adicionais</th>
+      </tr>
+    </thead>
+  </table>
+</div>

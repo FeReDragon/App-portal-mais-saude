@@ -8,6 +8,7 @@ import { ExerciseLogComponent } from './exercise-log/exercise-log.component';
 import { SleepTrackerComponent } from './sleep-tracker/sleep-tracker.component';
 import { PrintableReportsComponent } from './printable-reports/printable-reports.component';
 import { RouterModule } from '@angular/router';
+import { HealthDataSummaryComponent } from './health-data-summary/health-data-summary.component';
 
 
 
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
     FoodDiaryComponent,
     ExerciseLogComponent,
     SleepTrackerComponent,
-    PrintableReportsComponent
+    PrintableReportsComponent,
+    HealthDataSummaryComponent
   ],
   imports: [
     CommonModule,

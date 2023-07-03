@@ -1,1 +1,26 @@
-<p>food-diary works!</p>
+<!-- Diário alimentar -->
+<h2>Diário Alimentar</h2>
+<form id="food-diary-form" class="mb-3">
+  <div class="form-group">
+    <input type="text" id="meal" placeholder="Refeição" class="form-control">
+  </div>
+  <div class="form-group">
+    <input type="number" id="calories" placeholder="Calorias" class="form-control">
+  </div>
+  <div class="form-group">
+    <textarea id="notes" placeholder="Notas adicionais" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<div class="table-responsive">
+  <table id="food-diary-table" class="table">
+    <thead>
+      <tr>
+        <th class="break-word">Refeição</th>
+        <th class="break-word">Calorias</th>
+        <th class="break-word">Notas adicionais</th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
