@@ -7,6 +7,7 @@ import { PrivacySettingsComponent } from './privacy-settings/privacy-settings.co
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    PrivacySettingsComponent
+    PrivacySettingsComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

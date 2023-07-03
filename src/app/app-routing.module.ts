@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { UserProfileComponent } from '../app/authentication-module/user-profile/user-profile.component'; 
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from '../app/core-module/layout/layout.component';
 import { LoginComponent } from './authentication-module/login/login.component';
@@ -19,6 +20,7 @@ import { ExerciseLogComponent } from './user-health-data-module/exercise-log/exe
 import { SleepTrackerComponent } from './user-health-data-module/sleep-tracker/sleep-tracker.component';
 import { PrintableReportsComponent } from './user-health-data-module/printable-reports/printable-reports.component';
 import { HealthDataSummaryComponent } from './user-health-data-module/health-data-summary/health-data-summary.component';
+import { ProductCategoriesComponent } from './ecommerce-module/product-categories/product-categories.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,11 +29,13 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'privacy-settings', component: PrivacySettingsComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: 'home', component: NewsListComponent },
   { path: 'news/:id', component: NewsDetailsComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'categoria-produtos', component: ProductCategoriesComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'vital-signs', component: VitalSignsComponent },
   { path: 'symptom-monitoring', component: SymptomMonitoringComponent },

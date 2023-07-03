@@ -9,6 +9,7 @@ import { ProductCategoriesComponent } from './product-categories/product-categor
 import { ProductCategoryDetailsComponent } from './product-category-details/product-category-details.component';
 import { EcommerceService } from '../services/ecommerce.service'; // Importação do serviço
 import { Observable } from 'rxjs';
+import { RouterModule } from '@angular/router';  // Adicione esta linha
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { Observable } from 'rxjs';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule, // Adicione esta linha
   ],
   providers: [EcommerceService] // Fornecimento do serviço
 })
