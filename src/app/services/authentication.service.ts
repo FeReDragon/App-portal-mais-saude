@@ -7,20 +7,35 @@ export class AuthenticationService {
 
   constructor() { }
 
-  // Exemplo de método de autenticação
   login(username: string, password: string): boolean {
-    // Implementação da lógica de autenticação aqui
-    // Por exemplo, verificar se as credenciais estão corretas no servidor
-    // e retornar true ou false com base no resultado da autenticação
+    const userDataString = localStorage.getItem('userData');
+    
+    if (!userDataString) {
+      return false;
+    }
 
-    if (username === 'admin' && password === 'admin') {
-      // Credenciais corretas, usuário autenticado
+    const userData = JSON.parse(userDataString);
+
+    if (userData && userData.username === username && userData.password === password) {
       return true;
     } else {
-      // Credenciais incorretas, usuário não autenticado
       return false;
     }
   }
 
+  register(userData: any): boolean {
+    const existingUserString = localStorage.getItem('userData');
+
+    if (existingUserString) {
+      return false;
+    }
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+    return true;
+  }
+
+  logout(): void {
+    localStorage.removeItem('userData');
+  }
 }
 
