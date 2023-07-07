@@ -1,47 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs'; // Importe 'of' do pacote 'rxjs'
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../ecommerce-module/model/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EcommerceService {
-  // ...
+  constructor(private http: HttpClient) {}
 
-  getProductList(): Observable<any[]> {
-    return of([
-      { id: 1, name: 'Produto 1', price: 10 },
-      { id: 2, name: 'Produto 2', price: 20 },
-      { id: 3, name: 'Produto 3', price: 30 },
-      // ...
-    ]);
+  getProductList(): Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:3000/products');
   }
 
-  getProductDetails(productId: number): Observable<any> {
-    return of({
-      id: productId,
-      name: 'Produto ' + productId,
-      price: 20,
-      description: 'Descrição do produto ' + productId,
-      // ...
-    });
-  }
-  addToCart(productId: number): void {
-    // Implementação para adicionar o item com o ID fornecido ao carrinho
+  getProductDetails(productId: number): Observable<Product> {
+    return this.http.get<Product>(`http://localhost:3000/products/${productId}`);
   }
 
-  getCart(): Observable<any[]> {
-    return of([
-      { id: 1, name: 'Produto 1', price: 10, quantity: 2 },
-      { id: 2, name: 'Produto 2', price: 20, quantity: 1 },
-      // ...
-    ]);
+  addToCart(productId: number): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/cart', { productId });
   }
 
-  removeCartItem(productId: number): void {
-    // Implementação para remover o item com o ID fornecido do carrinho
+  checkout(): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/checkout', {});
   }
 
-  checkout(): void {
-    // Implementação para processar o checkout do carrinho
+  getProductsByCategory(categoryName: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`http://localhost:3000/products?categoria=${categoryName}`);
   }
 }
+
+
+
+

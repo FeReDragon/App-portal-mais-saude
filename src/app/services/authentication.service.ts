@@ -8,34 +8,47 @@ export class AuthenticationService {
   constructor() { }
 
   login(username: string, password: string): boolean {
-    const userDataString = localStorage.getItem('userData');
-    
-    if (!userDataString) {
-      return false;
-    }
-
-    const userData = JSON.parse(userDataString);
-
-    if (userData && userData.username === username && userData.password === password) {
+    const users = this.getUsers();
+    const authenticatedUser = users.find(user => user.username === username && user.password === password);
+  
+    if (authenticatedUser) {
+      localStorage.setItem('currentUser', JSON.stringify(authenticatedUser));
       return true;
-    } else {
-      return false;
     }
+  
+    return false;
   }
-
+  
   register(userData: any): boolean {
-    const existingUserString = localStorage.getItem('userData');
-
-    if (existingUserString) {
+    const users = this.getUsers();
+    const existingUser = users.find(user => user.name === userData.name);
+  
+    if (existingUser) {
+      // User already exists
       return false;
     }
-
-    localStorage.setItem('userData', JSON.stringify(userData));
+  
+    users.push(userData);
+    this.saveUsers(users);
+    localStorage.setItem('currentUser', JSON.stringify(userData));
     return true;
   }
-
+  
   logout(): void {
-    localStorage.removeItem('userData');
+    localStorage.removeItem('currentUser');
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('currentUser');
+  }
+
+  private getUsers(): any[] {
+    const usersString = localStorage.getItem('userData');
+    return usersString ? JSON.parse(usersString) : [];
+  }
+
+  private saveUsers(users: any[]): void {
+    localStorage.setItem('userData', JSON.stringify(users));
   }
 }
 
