@@ -1,0 +1,110 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "url": "https://example.com/product1",
+      "nomeProduto": "Produto 1",
+      "preco": 10.99,
+      "descricao": "Descrição do Produto 1",
+      "categoria": 1
+    },
+    {
+      "id": 2,
+      "url": "https://example.com/product2",
+      "nomeProduto": "Produto 2",
+      "preco": 19.99,
+      "descricao": "Descrição do Produto 2",
+      "categoria": 2
+    },
+    {
+      "id": 3,
+      "url": "https://example.com/product3",
+      "nomeProduto": "Produto 3",
+      "preco": 5.99,
+      "descricao": "Descrição do Produto 3",
+      "categoria": 1
+    },
+    {
+      "id": 4,
+      "url": "https://example.com/product4",
+      "nomeProduto": "Produto 4",
+      "preco": 7.99,
+      "descricao": "Descrição do Produto 4",
+      "categoria": 2
+    },
+    {
+      "id": 5,
+      "url": "https://example.com/product5",
+      "nomeProduto": "Produto 5",
+      "preco": 15.99,
+      "descricao": "Descrição do Produto 5",
+      "categoria": 3
+    },
+    {
+      "id": 6,
+      "url": "https://example.com/product6",
+      "nomeProduto": "Produto 6",
+      "preco": 12.99,
+      "descricao": "Descrição do Produto 6",
+      "categoria": 4
+    },
+    {
+      "id": 7,
+      "url": "https://example.com/product7",
+      "nomeProduto": "Produto 7",
+      "preco": 10.49,
+      "descricao": "Descrição do Produto 7",
+      "categoria": 5
+    },
+    {
+      "id": 8,
+      "url": "https://example.com/product8",
+      "nomeProduto": "Produto 8",
+      "preco": 8.99,
+      "descricao": "Descrição do Produto 8",
+      "categoria": 6
+    },
+    {
+      "id": 9,
+      "url": "https://example.com/product9",
+      "nomeProduto": "Produto 9",
+      "preco": 6.99,
+      "descricao": "Descrição do Produto 9",
+      "categoria": 1
+    },
+    {
+      "id": 10,
+      "url": "https://example.com/product10",
+      "nomeProduto": "Produto 10",
+      "preco": 18.99,
+      "descricao": "Descrição do Produto 10",
+      "categoria": 2
+    },
+    {
+      "id": 11,
+      "url": "https://example.com/product11",
+      "nomeProduto": "Produto 11",
+      "preco": 20.99,
+      "descricao": "Descrição do Produto 11",
+      "categoria": 3
+    },
+    {
+      "id": 12,
+      "url": "https://example.com/product12",
+      "nomeProduto": "Produto 12",
+      "preco": 14.99,
+      "descricao": "Descrição do Produto 12",
+      "categoria": 4
+    },
+    {
+      "id": 13,
+      "url": "https://example.com/product13",
+      "nomeProduto": "Produto 13",
+      "preco": 9.99,
+      "descricao": "Descrição do Produto 13",
+      "categoria": 5
+    }
+  ]
+}
+
+  
