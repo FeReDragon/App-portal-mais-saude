@@ -1,26 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 
-
-export function minAgeValidator(minAge: number): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    if (!control.value) {
-      return null;
-    }
-
-    const controlDate = new Date(control.value);
-    const today = new Date();
-
-    const difference = today.getFullYear() - controlDate.getFullYear();
-
-    if (difference < minAge || (difference === minAge && today.getMonth() < controlDate.getMonth()) || (difference === minAge && today.getMonth() === controlDate.getMonth() && today.getDate() < controlDate.getDate())) {
-      return { ageInvalid: true };
-    }
-
-    return null;
-  };
-}
+import { User } from '../../interfaces/IUsuario';
 
 @Component({
   selector: 'app-register',
@@ -28,43 +11,43 @@ export function minAgeValidator(minAge: number): ValidatorFn {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
-  registerForm = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-    birthday: ['', [Validators.required, minAgeValidator(18)]],
-    terms: [false, Validators.requiredTrue]
-  });
+  registerForm!: FormGroup;
+  errorMessage: string = '';
 
   constructor(
-    private fb: FormBuilder,
-    private authService: AuthenticationService
-  ) { }
+    private authService: AuthenticationService,
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      birthday: ['', Validators.required],
+      terms: [false, Validators.requiredTrue]
+    });
   }
 
-  onSubmit(): void {
+  register(): void {
     if (this.registerForm.valid) {
-      const userData = this.registerForm.value;
+      const user: User = {
+        name: this.registerForm.value.username,
+        password: this.registerForm.value.password,
+        email: this.registerForm.value.email,
+        birthday: this.registerForm.value.birthday,
+      };
 
-      // Remove a confirmação de senha do objeto de dados do usuário, pois ela não é necessária para o registro
-      delete userData.confirmPassword;
-
-      // Chame o método de registro do serviço de autenticação
-      const isRegistered = this.authService.register(userData);
-
-      if (isRegistered) {
-        // O registro foi bem-sucedido
-        console.log('Registro bem-sucedido');
+      if (this.authService.register(user)) {
+        this.router.navigate(['/home']);
       } else {
-        // O registro falhou
-        console.log('Registro falhou');
+        this.errorMessage = 'Usuário já existe. Por favor, escolha outro nome de usuário.';
       }
     }
   }
 }
+
+
 
 
