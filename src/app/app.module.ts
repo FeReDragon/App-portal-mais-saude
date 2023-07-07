@@ -8,6 +8,8 @@ import { SharedModuleModule } from './shared-module/shared-module.module';
 import { AuthenticationModuleModule } from './authentication-module/authentication-module.module';
 import { EcommerceModuleModule } from './ecommerce-module/ecommerce-module.module';
 import { UserHealthDataModuleModule } from './user-health-data-module/user-health-data-module.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { UserHealthDataModuleModule } from './user-health-data-module/user-healt
     EcommerceModuleModule,
     UserHealthDataModuleModule,
     CoreModuleModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
