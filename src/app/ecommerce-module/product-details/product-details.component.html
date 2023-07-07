@@ -1,1 +1,14 @@
-<p>product-details works!</p>
+<div class="row" *ngIf="product">
+  <div class="col-md-6">
+    <img [src]="product.url" alt="Product Image">
+  </div>
+  <div class="col-md-6">
+    <h2>{{ product.nomeProduto }}</h2>
+    <p>{{ product.descricao }}</p>
+    <p>Price: {{ product.preco }}</p>
+    <p>Category: {{ product.categoria }}</p>
+    <!-- <button class="btn btn-primary" (click)="addToCart(product.id)">Add to Cart</button> -->
+  </div>
+</div>
+
+  
