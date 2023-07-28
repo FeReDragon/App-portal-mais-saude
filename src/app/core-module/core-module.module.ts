@@ -5,6 +5,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NewsListComponent } from '../news-module/news-list/news-list.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
   ],
   exports: [
     FooterComponent,
