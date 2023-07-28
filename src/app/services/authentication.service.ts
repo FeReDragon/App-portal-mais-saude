@@ -1,37 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs'; // Importe throwError aqui
+import { catchError, map, tap } from 'rxjs/operators'; // Importe o catchError aqui
+import { User } from '../interfaces/IUsuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private apiUrl = 'http://localhost:3000/users';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): boolean {
-    const users = this.getUsers();
-    const authenticatedUser = users.find(user => user.username === username && user.password === password);
-  
-    if (authenticatedUser) {
-      localStorage.setItem('currentUser', JSON.stringify(authenticatedUser));
-      return true;
-    }
-  
-    return false;
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.get<User[]>(this.apiUrl).pipe(
+      map(users => users.find(user => user.name === username && user.password === password) !== undefined),
+      tap((authenticated: boolean) => {
+        if (authenticated) {
+          localStorage.setItem('currentUser', JSON.stringify({ username }));
+        }
+      }),
+      catchError(error => { // Adicione o bloco catchError para tratamento de erros
+        return throwError('Credenciais inválidas. Por favor, tente novamente.');
+      })
+    );
   }
   
-  register(userData: any): boolean {
-    const users = this.getUsers();
-    const existingUser = users.find(user => user.name === userData.name);
-  
-    if (existingUser) {
-      // User already exists
-      return false;
-    }
-  
-    users.push(userData);
-    this.saveUsers(users);
-    localStorage.setItem('currentUser', JSON.stringify(userData));
-    return true;
+  register(userData: any): Observable<boolean> {
+    return this.http.post<any>('http://localhost:3000/users', userData).pipe(
+      map(response => {
+        this.saveUsers([...this.getUsers(), response]);
+        localStorage.setItem('currentUser', JSON.stringify(response));
+        return true;
+      }),
+      catchError(error => {
+        console.error('Erro ao registrar usuário:', error);
+        return throwError('Erro ao registrar usuário. Por favor, tente novamente.');
+      })
+    );
   }
   
   logout(): void {
@@ -51,4 +57,3 @@ export class AuthenticationService {
     localStorage.setItem('userData', JSON.stringify(users));
   }
 }
-
