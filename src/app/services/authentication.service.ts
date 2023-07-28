@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs'; // Importe throwError aqui
-import { catchError, map, tap } from 'rxjs/operators'; // Importe o catchError aqui
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../interfaces/IUsuario';
 
 @Injectable({
@@ -9,28 +9,33 @@ import { User } from '../interfaces/IUsuario';
 })
 export class AuthenticationService {
   private apiUrl = 'http://localhost:3000/users';
+  private currentUser: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const currentUserString = localStorage.getItem('currentUser');
+    this.currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+  }
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.get<User[]>(this.apiUrl).pipe(
       map(users => users.find(user => user.name === username && user.password === password) !== undefined),
       tap((authenticated: boolean) => {
         if (authenticated) {
-          localStorage.setItem('currentUser', JSON.stringify({ username }));
+          this.currentUser = { username };
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
         }
       }),
-      catchError(error => { // Adicione o bloco catchError para tratamento de erros
+      catchError(() => {
         return throwError('Credenciais inválidas. Por favor, tente novamente.');
       })
     );
   }
-  
+
   register(userData: any): Observable<boolean> {
     return this.http.post<any>('http://localhost:3000/users', userData).pipe(
       map(response => {
-        this.saveUsers([...this.getUsers(), response]);
-        localStorage.setItem('currentUser', JSON.stringify(response));
+        this.currentUser = { username: userData.name }; // Assuming the user data has a 'name' property
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
         return true;
       }),
       catchError(error => {
@@ -39,21 +44,17 @@ export class AuthenticationService {
       })
     );
   }
-  
+
   logout(): void {
+    this.currentUser = null;
     localStorage.removeItem('currentUser');
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('currentUser');
+    return !!this.currentUser;
   }
 
-  private getUsers(): any[] {
-    const usersString = localStorage.getItem('userData');
-    return usersString ? JSON.parse(usersString) : [];
-  }
-
-  private saveUsers(users: any[]): void {
-    localStorage.setItem('userData', JSON.stringify(users));
+  getCurrentUser(): any {
+    return this.currentUser;
   }
 }
