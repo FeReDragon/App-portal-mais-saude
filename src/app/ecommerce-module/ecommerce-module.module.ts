@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import { CartComponent } from '../ecommerce-module/cart/cart.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -16,12 +16,14 @@ import { EcommerceService } from '../services/ecommerce.service';
     ProductDetailsComponent,
     CheckoutComponent,
     ProductCategoriesComponent,
-    ProductCategoryDetailsComponent
+    ProductCategoryDetailsComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    
   ],
   exports: [
     ProductDetailsComponent

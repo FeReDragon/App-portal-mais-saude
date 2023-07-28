@@ -24,6 +24,7 @@ import { HealthDataSummaryComponent } from './user-health-data-module/health-dat
 import { ProductCategoriesComponent } from './ecommerce-module/product-categories/product-categories.component';
 import { AuthGuard } from './auth.guard';
 import { ProductCategoryDetailsComponent } from './ecommerce-module/product-category-details/product-category-details.component';
+import { CartComponent } from './ecommerce-module/cart/cart.component';
 
 const routes: Routes = [
   // Rotas públicas
@@ -37,9 +38,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {path: 'product-category/:category',component: ProductCategoryDetailsComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'carrinho', component: CartComponent },
   // { path: 'cart', component: CartComponent},
-
-  // ... Outras rotas restritas
 
   // Rotas restritas
   { path: 'privacy-settings', component: PrivacySettingsComponent, canActivate: [AuthGuard] },
