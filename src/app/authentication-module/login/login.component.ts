@@ -19,19 +19,20 @@ export class LoginComponent {
 
   login(): void {
     this.authService.login(this.username, this.password).subscribe(
-      authenticated => {
+      (authenticated: boolean) => {
         if (authenticated) {
           this.router.navigate(['/home']);
         } else {
           this.errorMessage = 'Credenciais inválidas. Por favor, tente novamente.';
         }
       },
-      error => {
-        this.errorMessage = 'Ocorreu um erro ao realizar o login. Por favor, tente novamente mais tarde.';
+      (error: any) => {
+        this.errorMessage = error;
       }
     );
   }
 }
+
 
 
 
