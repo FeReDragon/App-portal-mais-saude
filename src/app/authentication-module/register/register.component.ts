@@ -33,21 +33,20 @@ export class RegisterComponent implements OnInit {
   register(): void {
     if (this.registerForm.valid) {
       const user: User = {
-        name: this.registerForm.value.username,
+        name: this.registerForm.value.name,
         password: this.registerForm.value.password,
         email: this.registerForm.value.email,
         birthday: this.registerForm.value.birthday,
       };
 
-      if (this.authService.register(user)) {
-        this.router.navigate(['/home']);
-      } else {
-        this.errorMessage = 'Usuário já existe. Por favor, escolha outro nome de usuário.';
-      }
+      this.authService.register(user).subscribe(
+        () => {
+          this.router.navigate(['/home']);
+        },
+        error => {
+          this.errorMessage = error;
+        }
+      );
     }
   }
 }
-
-
-
-

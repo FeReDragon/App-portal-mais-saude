@@ -8,7 +8,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: string = ''; // Adicione a propriedade 'username' aqui
+  username: string = '';
   password: string = '';
   errorMessage: string = '';
 
@@ -18,13 +18,21 @@ export class LoginComponent {
   ) {}
 
   login(): void {
-    if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/home']);
-    } else {
-      this.errorMessage = 'Credenciais inválidas. Por favor, tente novamente.';
-    }
+    this.authService.login(this.username, this.password).subscribe(
+      authenticated => {
+        if (authenticated) {
+          this.router.navigate(['/home']);
+        } else {
+          this.errorMessage = 'Credenciais inválidas. Por favor, tente novamente.';
+        }
+      },
+      error => {
+        this.errorMessage = 'Ocorreu um erro ao realizar o login. Por favor, tente novamente mais tarde.';
+      }
+    );
   }
 }
+
 
 
 
