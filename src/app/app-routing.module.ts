@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {path: 'product-category/:category',component: ProductCategoryDetailsComponent},
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'carrinho', component: CartComponent },
+  
   // { path: 'cart', component: CartComponent},
 
   // Rotas restritas
@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'sleep-tracker', component: SleepTrackerComponent, canActivate: [AuthGuard] },
   { path: 'printable-reports', component: PrintableReportsComponent, canActivate: [AuthGuard] },
   { path: 'monitor-saude', component: HealthDataSummaryComponent, canActivate: [AuthGuard] },
-
+  { path: 'carrinho', component: CartComponent, canActivate: [AuthGuard] },
   // ... Outras rotas restritas
 ];
 
