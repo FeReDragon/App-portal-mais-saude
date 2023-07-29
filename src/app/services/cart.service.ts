@@ -5,12 +5,13 @@ import { Product } from '../ecommerce-module/model/product.model';
 import { tap } from 'rxjs/operators';
 
 export interface CartItem {
+  id: number;
   product: Product;
   quantity: number;
 }
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class CartService {
   private _cartItems = new BehaviorSubject<CartItem[]>([]);
@@ -28,8 +29,6 @@ export class CartService {
   }
   
   addToCart(product: Product) {
-    console.log('Adding product to cart:', product);
-  
     const cartItems = this.getCurrentCartItemsValue();
     const itemIndex = cartItems.findIndex(i => i.product.id === product.id);
   
@@ -53,7 +52,7 @@ export class CartService {
     cartItems[index].quantity = quantity;
   
     // Update the item on the server
-    return this.http.put<CartItem>(`http://localhost:3000/cartItems/${cartItems[index].product.id}`, cartItems[index]).pipe(
+    return this.http.put<CartItem>(`http://localhost:3000/cartItems/${cartItems[index].id}`, cartItems[index]).pipe(
       tap(() => {
         // Update local cart items list
         this._cartItems.next(cartItems);
@@ -67,7 +66,7 @@ export class CartService {
 
     if (index > -1) {
       // Remove item from server
-      this.http.delete(`http://localhost:3000/cartItems/${item.product.id}`).subscribe(() => {
+      this.http.delete(`http://localhost:3000/cartItems/${item.id}`).subscribe(() => {
         // Remove item from local cart items list
         cartItems.splice(index, 1);
         this._cartItems.next(cartItems);
@@ -83,3 +82,4 @@ export class CartService {
     );
   }
 }
+
