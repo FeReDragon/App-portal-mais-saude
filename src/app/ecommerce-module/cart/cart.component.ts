@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService, CartItem } from '../../services/cart.service';
+import { CartItem, CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,14 +7,16 @@ import { CartService, CartItem } from '../../services/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[] = [];
+  items: CartItem[] = [];
+  totalItems = 0;
+  totalPrice = 0;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartService.fetchCartItemsFromServer().subscribe();
-    this.cartService.cartItems.subscribe(items => {
-      this.cartItems = items;
+    this.cartService.cartItems.subscribe((cartItems: CartItem[]) => {
+      this.items = cartItems;
+      this.calculateTotal();
     });
   }
 
@@ -22,16 +24,15 @@ export class CartComponent implements OnInit {
     this.cartService.removeItem(item);
   }
 
-  get totalItems() {
-    return this.cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  }
-
-  get totalPrice() {
-    return this.cartItems.reduce((acc, item) => acc + (item.quantity * item.product.preco), 0);
+  calculateTotal() {
+    this.totalItems = this.items.reduce((total, item) => total + item.quantity, 0);
+    this.totalPrice = this.items.reduce((total, item) => total + (item.product.preco * item.quantity), 0);
   }
 
   checkout() {
     // Implement your checkout logic here
+    // This method will handle the checkout process
+    // For example, you can navigate to a checkout page or show a success message
   }
 }
 
