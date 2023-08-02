@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required], // adiciona isto
       name: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,6 +34,8 @@ export class RegisterComponent implements OnInit {
   register(): void {
     if (this.registerForm.valid) {
       const user: User = {
+        id: null, // adicionando propriedade id
+        username: this.registerForm.value.username,
         name: this.registerForm.value.name,
         password: this.registerForm.value.password,
         email: this.registerForm.value.email,
