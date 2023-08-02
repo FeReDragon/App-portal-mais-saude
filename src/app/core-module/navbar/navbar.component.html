@@ -47,7 +47,7 @@
     <!-- Mensagem de boas-vindas -->
     <div class="footer" *ngIf="authService.isAuthenticated()">
       <div class="text-light mt-3">
-        Bem-vindo, {{ authService.getCurrentUser()?.username }}!
+        Bem-vindo, {{ authService.getCurrentUser()?.name }}
       </div>
       <button class="btn btn-dark mt-3" (click)="logout()">Logout</button>
     </div>
