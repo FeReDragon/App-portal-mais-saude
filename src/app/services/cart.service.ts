@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../ecommerce-module/model/product.model';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Product } from '../ecommerce-module/model/product.model';
 
 export interface CartItem {
   id: number;
   product: Product;
   quantity: number;
+  userId: number;
 }
 
 @Injectable({
@@ -17,7 +18,11 @@ export class CartService {
   private _cartItems = new BehaviorSubject<CartItem[]>([]);
   
   constructor(private http: HttpClient) {
-    this.fetchCartItemsFromServer().subscribe();
+    const currentUserString = localStorage.getItem('currentUser');
+    if (currentUserString) {
+      const currentUser = JSON.parse(currentUserString);
+      this.fetchCartItemsFromServer(currentUser.id).subscribe();
+    }
   }
   
   get cartItems() {
@@ -28,58 +33,51 @@ export class CartService {
     return this._cartItems.getValue();
   }
   
-  addToCart(product: Product) {
+  addToCart(product: Product, userId: number) {
     const cartItems = this.getCurrentCartItemsValue();
     const itemIndex = cartItems.findIndex(i => i.product.id === product.id);
   
     if (itemIndex > -1) {
-      // Increase quantity and update the item on the server
-      this.updateCartQuantity(itemIndex, cartItems[itemIndex].quantity + 1).subscribe();
+      this.updateCartQuantity(itemIndex, cartItems[itemIndex].quantity + 1, userId);
     } else {
-      // Create a new cart item and save to server
       this.http.post<CartItem>('http://localhost:3000/cartItems', {
         product,
-        quantity: 1
+        quantity: 1,
+        userId
       }).subscribe((newItem) => {
-        // Add the new item to local cart items list
         this._cartItems.next([...cartItems, newItem]);
       });
     }
   }
-
-  updateCartQuantity(index: number, quantity: number): Observable<CartItem> {
+  
+  updateCartQuantity(index: number, quantity: number, userId: number): Observable<CartItem> {
     const cartItems = this._cartItems.getValue();
     cartItems[index].quantity = quantity;
   
-    // Update the item on the server
     return this.http.put<CartItem>(`http://localhost:3000/cartItems/${cartItems[index].id}`, cartItems[index]).pipe(
       tap(() => {
-        // Update local cart items list
         this._cartItems.next(cartItems);
       })
     );
   }
-
+  
   removeItem(item: CartItem) {
     const cartItems = this._cartItems.getValue();
     const index = cartItems.findIndex(i => i.product.id === item.product.id);
-
+  
     if (index > -1) {
-      // Remove item from server
       this.http.delete(`http://localhost:3000/cartItems/${item.id}`).subscribe(() => {
-        // Remove item from local cart items list
         cartItems.splice(index, 1);
         this._cartItems.next(cartItems);
       });
     }
   }
-
-  fetchCartItemsFromServer(): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>('http://localhost:3000/cartItems').pipe(
+  
+  fetchCartItemsFromServer(userId: number): Observable<CartItem[]> {
+    return this.http.get<CartItem[]>(`http://localhost:3000/cartItems?userId=${userId}`).pipe(
       tap(response => {
         this._cartItems.next(response);
       })
     );
   }
 }
-

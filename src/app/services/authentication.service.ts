@@ -9,7 +9,7 @@ import { User } from '../interfaces/IUsuario';
 })
 export class AuthenticationService {
   private apiUrl = 'http://localhost:3000/users';
-  private currentUser: any;
+  private currentUser: User | null;
 
   constructor(private http: HttpClient) {
     const currentUserString = localStorage.getItem('currentUser');
@@ -18,11 +18,14 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.get<User[]>(this.apiUrl).pipe(
-      map(users => users.find(user => user.name === username && user.password === password) !== undefined),
-      tap((authenticated: boolean) => {
-        if (authenticated) {
-          this.currentUser = { username };
+      map(users => {
+        const user = users.find(u => u.name === username && u.password === password);
+        if (user !== undefined) {
+          this.currentUser = user;
           localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          return true;
+        } else {
+          return false;
         }
       }),
       catchError(() => {
@@ -31,19 +34,28 @@ export class AuthenticationService {
     );
   }
 
-  register(userData: any): Observable<boolean> {
-    return this.http.post<any>('http://localhost:3000/users', userData).pipe(
-      map(response => {
-        this.currentUser = { username: userData.name }; // Assuming the user data has a 'name' property
-        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-        return true;
-      }),
-      catchError(error => {
-        console.error('Erro ao registrar usuário:', error);
-        return throwError('Erro ao registrar usuário. Por favor, tente novamente.');
-      })
-    );
-  }
+
+register(userData: Omit<User, 'id'>): Observable<boolean> {
+  return this.http.post<User>(this.apiUrl, userData).pipe(
+    map((response: User) => {
+      this.currentUser = {
+        id: response.id,
+        username: response.username,  // adiciona isto
+        name: response.name,
+        password: response.password,
+        birthday: response.birthday,
+        email: response.email
+      };
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      return true;
+    }),
+    catchError(error => {
+      console.error('Erro ao registrar usuário:', error);
+      return throwError('Erro ao registrar usuário. Por favor, tente novamente.');
+    })
+  );
+}
+
 
   logout(): void {
     this.currentUser = null;
@@ -54,7 +66,9 @@ export class AuthenticationService {
     return !!this.currentUser;
   }
 
-  getCurrentUser(): any {
+  getCurrentUser(): User | null {
     return this.currentUser;
   }
 }
+
+export { User };
