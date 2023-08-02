@@ -9,6 +9,7 @@ import { SleepTrackerComponent } from './sleep-tracker/sleep-tracker.component';
 import { PrintableReportsComponent } from './printable-reports/printable-reports.component';
 import { RouterModule } from '@angular/router';
 import { HealthDataSummaryComponent } from './health-data-summary/health-data-summary.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,8 @@ import { HealthDataSummaryComponent } from './health-data-summary/health-data-su
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
   ]
 })
 export class UserHealthDataModuleModule { }
