@@ -21,8 +21,16 @@
         <th class="break-word small-header">Pressão arterial</th>
         <th class="break-word small-header">Frequência cardíaca</th>
         <th class="break-word small-header">Temperatura corporal</th>
-        <th class="break-word small-header">glicose no sangue</th>
+        <th class="break-word small-header">Níveis de glicose no sangue</th>
       </tr>
     </thead>
+    <tbody>
+      <tr *ngFor="let vitalSign of vitalSigns">
+        <td>{{ vitalSign.bloodPressure }}</td>
+        <td>{{ vitalSign.heartRate }}</td>
+        <td>{{ vitalSign.bodyTemperature }}</td>
+        <td>{{ vitalSign.bloodGlucose }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
