@@ -1,4 +1,5 @@
 export interface VitalSigns {
+    userId: number;
     bloodPressure: number;
     heartRate: number;
     bodyTemperature: number;
