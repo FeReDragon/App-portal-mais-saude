@@ -1,25 +1,33 @@
-  <!-- Registro de medicamentos -->
-  <h2>Medicamentos</h2>
-  <form id="medications-form" class="mb-3">
-    <div class="form-group">
-      <input type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control">
-    </div>
-    <div class="form-group">
-      <input type="text" id="dosage" placeholder="Dosagem" class="form-control">
-    </div>
-    <div class="form-group">
-      <input type="text" id="time" placeholder="Horário" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-primary">Registrar</button>
-  </form>
-  <div class="table-responsive">
-    <table id="medications-table" class="table">
-      <thead>
-        <tr>
-          <th class="break-word">Nome do medicamento</th>
-          <th class="break-word">Dosagem</th>
-          <th class="break-word">Horário</th>
-        </tr>
-      </thead>
-    </table>
+<h2>Medicamentos</h2>
+<form (submit)="registerMedication()" id="medications-form" class="mb-3">
+  <div class="form-group">
+    <input [(ngModel)]="medicationName" name="medicationName" type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control">
   </div>
+  <div class="form-group">
+    <input [(ngModel)]="dosage" name="dosage" type="text" id="dosage" placeholder="Dosagem" class="form-control">
+  </div>
+  <div class="form-group">
+    <input [(ngModel)]="time" name="time" type="text" id="time" placeholder="Horário" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<div class="table-responsive">
+  <table id="medications-table" class="table">
+    <thead>
+      <tr>
+        <th class="break-word">Nome do medicamento</th>
+        <th class="break-word">Dosagem</th>
+        <th class="break-word">Horário</th>
+        <th class="break-word">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medication of medications">
+        <td>{{ medication.name }}</td>
+        <td>{{ medication.dose }}</td>
+        <td>{{ medication.frequency }}</td>
+        <td>{{ medication.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

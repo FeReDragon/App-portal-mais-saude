@@ -1,13 +1,13 @@
 <h2>Acompanhamento do Sono</h2>
-<form id="sleep-tracker-form" class="mb-3">
+<form (submit)="registerSleepTrackerEntry()" id="sleep-tracker-form" class="mb-3">
   <div class="form-group">
-    <input type="text" id="hoursSlept" placeholder="Horas dormidas" class="form-control">
+    <input [(ngModel)]="hoursSlept" name="hoursSlept" type="number" id="hoursSlept" placeholder="Horas dormidas" class="form-control">
   </div>
   <div class="form-group">
-    <input type="text" id="sleepQuality" placeholder="Qualidade do sono" class="form-control">
+    <input [(ngModel)]="sleepQuality" name="sleepQuality" type="text" id="sleepQuality" placeholder="Qualidade do sono" class="form-control">
   </div>
   <div class="form-group">
-    <textarea id="sleepEvents" placeholder="Eventos relacionados ao sono" class="form-control"></textarea>
+    <textarea [(ngModel)]="sleepEvents" name="sleepEvents" id="sleepEvents" placeholder="Eventos relacionados ao sono" class="form-control"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
@@ -18,7 +18,16 @@
         <th class="break-word">Horas dormidas</th>
         <th class="break-word">Qualidade do sono</th>
         <th class="break-word">Eventos relacionados ao sono</th>
+        <th class="break-word">Data</th>
       </tr>
     </thead>
+    <tbody>
+      <tr *ngFor="let entry of sleepTrackerEntries">
+        <td>{{ entry.hoursSlept }}</td>
+        <td>{{ entry.sleepQuality }}</td>
+        <td>{{ entry.sleepEvents }}</td>
+        <td>{{ entry.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+      </tr>
+    </tbody>
   </table>
 </div>
