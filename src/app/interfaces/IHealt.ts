@@ -1,31 +1,57 @@
+export interface Symptom {
+  userId: number;
+  symptom: string;
+  intensity: number | null;
+  frequency: number | null;
+  duration: string;
+  notes: string;
+  timestamp: Date;
+}
+
+
 export interface VitalSigns {
     userId: number;
     bloodPressure: number;
     heartRate: number;
     bodyTemperature: number;
     bloodGlucose: number;
+    timestamp: Date;
   }
   
-  export interface Symptom {
-    name: string;
-    severity: number; // 1-10
-    description: string;
+  export interface Exercise {
+    userId: number;
+    exerciseType: string;
+    duration: string;
+    intensity: number;
+    caloriesBurned: number;
+    timestamp: Date;
   }
+  
   
   export interface Medication {
+    userId: number;
     name: string;
     dose: number;
-    frequency: string; // "daily", "weekly", etc.
+    frequency: string; 
+    timestamp: Date;
   }
+  
   
   export interface FoodDiaryEntry {
-    date: string; // ISO date string
+    userId: number;
     food: string;
     calories: number;
-  }
+    notes: string; // new field
+    timestamp: Date;
+}
+
   
-  export interface SleepLog {
-    date: string; // ISO date string
-    duration: number; // in hours
-  }
+export interface SleepTrackerEntry {
+  userId: number;
+  hoursSlept: number;
+  sleepQuality: string;
+  sleepEvents: string;
+  timestamp: Date;
+}
+
   
