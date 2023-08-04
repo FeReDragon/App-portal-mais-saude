@@ -4,6 +4,7 @@ import { VitalSigns } from '../../interfaces/IHealt';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserHealthDataService } from '../../services/user-health-data.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-vital-signs',
@@ -12,11 +13,10 @@ import { Router } from '@angular/router';
 })
 export class VitalSignsComponent implements OnInit {
   vitalSigns: VitalSigns[] = [];
-  bloodPressure: number | null = null; // Valor inicial null
-  heartRate: number | null = null; // Valor inicial null
-  bodyTemperature: number | null = null; // Valor inicial null
-  bloodGlucose: number | null = null; // Valor inicial null
-
+  bloodPressure: number | null = null;
+  heartRate: number | null = null;
+  bodyTemperature: number | null = null;
+  bloodGlucose: number | null = null;
 
   constructor(
     private userHealthDataService: UserHealthDataService,
@@ -37,8 +37,6 @@ export class VitalSignsComponent implements OnInit {
         } else {
           console.log('No vital signs data returned for user id', currentUser.id);
         }
-        // Limpar os campos após atualizar a lista de sinais vitais
-        this.clearFormFields();
       }, error => {
         console.error('Error fetching vital signs for user id', currentUser.id, error);
       });
@@ -51,29 +49,24 @@ export class VitalSignsComponent implements OnInit {
       bloodPressure: this.bloodPressure || 0,
       heartRate: this.heartRate || 0,
       bodyTemperature: this.bodyTemperature || 0,
-      bloodGlucose: this.bloodGlucose || 0
+      bloodGlucose: this.bloodGlucose || 0,
+      timestamp: new Date() // Adicionando o timestamp com a data atual
     };
 
-    this.userHealthDataService.registerVitalSigns(newVitalSigns).subscribe((response: VitalSigns) => {
-      // Verificar se o registro foi bem-sucedido antes de atualizar a lista de sinais vitais
-      if (response && response.userId) {
-        this.getVitalSigns();
-      } else {
-        console.error('Error registering vital signs');
-      }
+    this.userHealthDataService.registerVitalSigns(newVitalSigns).subscribe(() => {
+      // Atualizar a lista de sinais vitais após o registro ser concluído com sucesso
+      this.getVitalSigns();
+      // Limpar os valores dos inputs após o registro
+      this.resetForm();
     });
   }
 
-  clearFormFields(): void {
+  resetForm(): void {
     this.bloodPressure = null;
     this.heartRate = null;
     this.bodyTemperature = null;
     this.bloodGlucose = null;
   }
 }
-
-
-
-
 
 

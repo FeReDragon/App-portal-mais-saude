@@ -10,7 +10,7 @@
     <input type="number" [(ngModel)]="bodyTemperature" name="bodyTemperature" id="bodyTemperature" placeholder="Temperatura corporal" class="form-control">
   </div>
   <div class="form-group">
-    <input type="number" [(ngModel)]="bloodGlucose" name="bloodGlucose" id="bloodGlucose" placeholder="Níveis de glicose no sangue" class="form-control">
+    <input type="number" [(ngModel)]="bloodGlucose" name="bloodGlucose" id="bloodGlucose" placeholder="Níveis de glicose bo Sangue" class="form-control">
   </div>
   <button type="submit" class="btn btn-primary">Registrar</button>
 </form>
@@ -21,7 +21,8 @@
         <th class="break-word small-header">Pressão arterial</th>
         <th class="break-word small-header">Frequência cardíaca</th>
         <th class="break-word small-header">Temperatura corporal</th>
-        <th class="break-word small-header">Níveis de glicose no sangue</th>
+        <th class="break-word small-header">Níveis de glicose</th>
+        <th class="break-word small-header">Data</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
         <td>{{ vitalSign.heartRate }}</td>
         <td>{{ vitalSign.bodyTemperature }}</td>
         <td>{{ vitalSign.bloodGlucose }}</td>
+        <td>{{ vitalSign.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</td> <!-- Exibir a data formatada -->
       </tr>
     </tbody>
   </table>
