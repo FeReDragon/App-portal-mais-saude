@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'vital-signs', component: VitalSignsComponent, canActivate: [AuthGuard] },
-  { path: 'symptom-monitoring', component: SymptomMonitoringComponent, canActivate: [AuthGuard] },
+  { path: 'symptomMonitoring', component: SymptomMonitoringComponent, canActivate: [AuthGuard] },
   { path: 'medication-log', component: MedicationLogComponent, canActivate: [AuthGuard] },
   { path: 'food-diary', component: FoodDiaryComponent, canActivate: [AuthGuard] },
   { path: 'exercise-log', component: ExerciseLogComponent, canActivate: [AuthGuard] },
