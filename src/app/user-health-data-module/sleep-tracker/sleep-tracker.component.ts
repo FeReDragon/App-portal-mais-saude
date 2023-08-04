@@ -9,7 +9,7 @@ import { SleepTrackerEntry } from '../../interfaces/IHealt';
   styleUrls: ['./sleep-tracker.component.scss']
 })
 export class SleepTrackerComponent implements OnInit {
-  public hoursSlept: number = 0;
+  public hoursSlept?: number;  // Alterado aqui para ser opcional
   public sleepQuality: string = '';
   public sleepEvents: string = '';
   public sleepTrackerEntries: SleepTrackerEntry[] = [];
@@ -35,14 +35,14 @@ export class SleepTrackerComponent implements OnInit {
     if (currentUser && currentUser.id) {
       const newEntry: SleepTrackerEntry = {
         userId: currentUser.id,
-        hoursSlept: this.hoursSlept,
+        hoursSlept: this.hoursSlept || 0,  // Alterado aqui para usar 0 se hoursSlept for undefined
         sleepQuality: this.sleepQuality,
         sleepEvents: this.sleepEvents,
         timestamp: new Date()
       };
       this.userHealthDataService.registerSleepTrackerEntry(newEntry).subscribe(() => {
         this.sleepTrackerEntries.push(newEntry);
-        this.hoursSlept = 0;
+        this.hoursSlept = undefined;  // Alterado aqui para limpar o campo
         this.sleepQuality = '';
         this.sleepEvents = '';
       }, (error: any) => {
