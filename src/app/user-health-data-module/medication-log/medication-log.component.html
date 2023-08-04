@@ -1,15 +1,15 @@
 <h2>Medicamentos</h2>
 <form (submit)="registerMedication()" id="medications-form" class="mb-3">
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="medicationName" name="medicationName" type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="dosage" name="dosage" type="text" id="dosage" placeholder="Dosagem" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="time" name="time" type="text" id="time" placeholder="Horário" class="form-control">
   </div>
-  <button type="submit" class="btn btn-primary">Registrar</button>
+  <button type="submit" class="btn btn-primary mb-2">Registrar</button>
 </form>
 <div class="table-responsive">
   <table id="medications-table" class="table">

@@ -1,16 +1,16 @@
 <!-- Diário alimentar -->
 <h2>Diário Alimentar</h2>
 <form (submit)="registerFoodDiaryEntry()" id="food-diary-form" class="mb-3">
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="food" name="food" type="text" id="meal" placeholder="Refeição" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="calories" name="calories" type="number" id="calories" placeholder="Calorias" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <textarea [(ngModel)]="notes" name="notes" type="text" id="Notas" placeholder="Notas Adicionais" class="form-control"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Registrar</button>
+  <button type="submit" class="btn btn-primary mb-2">Registrar</button>
 </form>
 <div class="table-responsive">
   <table id="food-diary-table" class="table">

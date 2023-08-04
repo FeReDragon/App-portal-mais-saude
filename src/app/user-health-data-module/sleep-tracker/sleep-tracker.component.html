@@ -1,15 +1,15 @@
 <h2>Acompanhamento do Sono</h2>
 <form (submit)="registerSleepTrackerEntry()" id="sleep-tracker-form" class="mb-3">
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="hoursSlept" name="hoursSlept" type="number" id="hoursSlept" placeholder="Horas dormidas" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <input [(ngModel)]="sleepQuality" name="sleepQuality" type="text" id="sleepQuality" placeholder="Qualidade do sono" class="form-control">
   </div>
-  <div class="form-group">
+  <div class="form-group mb-2">
     <textarea [(ngModel)]="sleepEvents" name="sleepEvents" id="sleepEvents" placeholder="Eventos relacionados ao sono" class="form-control"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary">Registrar</button>
+  <button type="submit" class="btn btn-primary mb-2">Registrar</button>
 </form>
 <div class="table-responsive">
   <table id="sleep-tracker-table" class="table">
