@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Product } from '../model/product.model';
 import { EcommerceService } from '../../services/ecommerce.service';
+import { CartService } from '../../services/cart.service';
+import { AuthenticationService, User } from '../../services/authentication.service'; 
 
 @Component({
   selector: 'app-product-category-details',
@@ -33,6 +35,7 @@ export class ProductCategoryDetailsComponent implements OnInit {
       }
     );
   }
+  
 }
 
 

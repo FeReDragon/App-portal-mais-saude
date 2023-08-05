@@ -1,21 +1,33 @@
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
-    <div class="col-lg-8 col-md-10 mx-auto" *ngIf="product" style="background-color: #cccccc; margin: 20px; padding: 10px; border-radius: 5px;">
-      <div class="row">
-        <div class="col-md-6">
-          <img [src]="product.url" alt="Product Image">
-        </div>
-        <div class="col-md-6">
-          <h2>{{ product.nomeProduto }}</h2>
-          <p class="lead text-body-secondary">{{ product.descricao }}</p>
-          <p>Price: {{ product.preco }}</p>
-          <p>Category: {{ product.categoria }}</p>
-          <a href="#" class="btn btn-secondary my-2">Add to Cart</a>
+
+<button routerLink="/lista-produtos" class="btn btn-success btn-lg d-block mx-auto mb-4">Voltar para Lista de Produtos</button>
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto" *ngIf="product">
+        <div class="card border-0 shadow">
+          <div class="row g-0">
+            <div class="col-md-6">
+              <img [src]="product.url" class="img-fluid rounded-start my-4" alt="Product Image">
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h2 class="card-title">{{ product.nomeProduto }}</h2>
+                <p class="card-text">{{ product.descricao }}</p>
+                <p class="card-text"><small class="text-muted">Categoria: {{ product.categoria }}</small></p>
+                <h5 class="card-text mt-3">Preço: {{ product.preco }}</h5>
+                <div class="mt-4">
+                  <a href="#" class="btn btn-secondary">Adicionar ao Carrinho</a>
+                  <a href="#" class="btn btn-success ms-2">Comprar</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 
 

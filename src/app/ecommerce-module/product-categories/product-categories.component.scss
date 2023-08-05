@@ -1,2 +1,6 @@
-
+.card-img-top {
+    width: 350px;
+    height: 200px;   /* ajuste este valor como necessário */
+    object-fit: cover;  /* manter a proporção da imagem */
+}
   

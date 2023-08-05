@@ -4,3 +4,8 @@ main {
     margin-left: 10%;
 }
 
+.card-img-top {
+    width: 200px;
+    height: 200px;   /* ajuste este valor como necessário */
+    object-fit: cover;  /* manter a proporção da imagem */
+}

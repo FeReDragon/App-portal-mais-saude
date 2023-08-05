@@ -1,13 +1,15 @@
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
-    <div class="col-lg-4 col-md-6 mx-auto" *ngFor="let category of categories">
-      <div style="background-color: #cccccc8a; margin: 20px; padding: 20px; border-radius: 5px;">
-        <img class="card-img-top" [src]="category.image" alt="Category Image">
-        <h1 class="fw-light" style="font-size: 1.5em;">{{ category.name }}</h1>
-        <p class="lead text-body-secondary" style="font-size: 1em;">{{ category.description }}</p>
-        <p>
-          <a [routerLink]="'/product-category/' + category.id" class="btn btn-primary my-2">Ver Produtos</a>
-        </p>
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let category of categories">
+      <div class="card h-100 shadow border-0">
+        <img [src]="category.image" class="card-img-top" alt="Category Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <p class="card-text">{{ category.description }}</p>
+        </div>
+        <div class="card-footer">
+          <a [routerLink]="'/product-category/' + category.id" class="btn btn-primary">Ver Produtos</a>
+        </div>
       </div>
     </div>
   </div>

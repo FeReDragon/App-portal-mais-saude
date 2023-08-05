@@ -1,13 +1,19 @@
-<section class="py-5 text-center container" *ngIf="products">
-  <div class="row py-lg-5">
-    <div class="col-lg-4 col-md-6 mx-auto" *ngFor="let product of products">
-      <div style="background-color: #cccccc8a; margin: 20px; padding: 20px; border-radius: 5px;">
+<section class="container py-5" *ngIf="products">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+      <div class="card h-100 border-0 shadow">
         <img class="card-img-top" [src]="product.url" alt="Product Image">
-        <h1 class="fw-light" style="font-size: 1.5em;">{{ product.nomeProduto }}</h1>
-        <p class="lead text-body-secondary" style="font-size: 1em;">{{ product.descricao }}</p>
-        <p class="card-text">Price: {{ product.preco }}</p>
-        <p class="card-text">Category: {{ product.categoria }}</p>
-        <a href="#" class="btn btn-secondary my-2">Add to Cart</a>
+        <div class="card-body">
+          <h5 class="card-title">{{ product.nomeProduto }}</h5>
+          <p class="card-text">{{ product.descricao }}</p>
+          <p class="card-text">Price: {{ product.preco }}</p>
+          <p class="card-text">Category: {{ product.categoria }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <a [routerLink]="['/product-details', product.id]" class="btn btn-primary btn-sm my-2">Detalhes</a>
+          <a href="#" class="btn btn-primary btn-sm my-2">Add to Cart</a>
+          <a href="#" class="btn btn-success btn-sm my-2">Comprar</a>
+        </div>
       </div>
     </div>
   </div>

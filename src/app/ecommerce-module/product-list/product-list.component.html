@@ -1,22 +1,24 @@
-<button routerLink="/categorias-produtos" class="btn btn-primary">Ir para Categorias de Produtos</button>
+<button routerLink="/categorias-produtos" class="btn btn-success btn-lg d-block mx-auto mb-4">Ir para Categorias de Produtos</button>
 
-
-<section class="py-5 text-center container">
-  <div class="row py-lg-5">
-    <div class="col-lg-4 col-md-6 mx-auto" *ngFor="let product of products">
-      <div style="background-color: #cccccc8a; margin: 20px; padding: 20px; border-radius: 5px;">
-        <img [src]="product.url" class="card-img-top" alt="Product Image">
-        <h1 class="fw-light">{{ product.nomeProduto }}</h1>
-        <p class="lead text-body-secondary">{{ product.descricao }}</p>
-        <p class="card-text">Price: {{ product.preco }}</p>
-        <p class="card-text">Category: {{ product.categoria }}</p>
-        <div style="display: flex; justify-content: space-between;">
-          <a [routerLink]="['/product-details', product.id]" class="btn btn-primary btn-sm my-2" style="margin-right: 10px;">Detalhes</a>
-          <a (click)="addToCart(product)" class="btn btn-secondary btn-sm my-2" style="margin-right: 10px;">Add carrinho</a>
+<section class="container py-5">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+      <div class="card h-100 shadow border-0">
+        <img [src]="product.url" class="card-img-top my-4" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.nomeProduto }}</h5>
+          <p class="card-text">{{ product.descricao }}</p>
+          <h6>Preço: {{ product.preco }}</h6>
+          <p class="card-text">Categoria: {{ product.categoria }}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <a [routerLink]="['/product-details', product.id]" class="btn btn-primary btn-sm my-2">Detalhes</a>
+          <a (click)="addToCart(product)" class="btn btn-secondary btn-sm my-2">Add carrinho</a>
           <a href="#" class="btn btn-success btn-sm my-2">Comprar</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
