@@ -9,6 +9,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductCategoriesComponent } from './product-categories/product-categories.component';
 import { ProductCategoryDetailsComponent } from './product-category-details/product-category-details.component';
 import { EcommerceService } from '../services/ecommerce.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EcommerceService } from '../services/ecommerce.service';
     CommonModule,
     HttpClientModule,
     RouterModule,
+    FormsModule,
     
   ],
   exports: [

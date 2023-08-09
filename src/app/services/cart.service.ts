@@ -80,4 +80,12 @@ export class CartService {
       })
     );
   }
+  clearCart() {
+    this._cartItems.next([]); // Limpe a lista de itens do carrinho
+    // Chame a API para remover todos os itens do carrinho do servidor também
+  }
+  checkout(): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/checkout', {});
+  }
+  
 }

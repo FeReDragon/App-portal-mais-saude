@@ -41,8 +41,9 @@
     <h4 class="text-center">Total de itens: {{ totalItems }}</h4>
     <h4 class="text-center">Preço total: R$ {{ totalPrice | number:'1.2-2' }}</h4>
     <div class="d-grid gap-2">
-      <button class="btn btn-primary btn-lg mt-3" (click)="checkout()">Ir para o checkout</button>
-    </div>
+      <button class="btn btn-primary btn-lg mt-3" (click)="checkout()" routerLink="/checkout">Ir para o checkout</button>
+  </div>
+  
   </div>
 </div>
 
