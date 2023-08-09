@@ -1,6 +1,6 @@
 <header class="pb-0 mb-0">
   <nav class="navbar fixed-top bg-info" [class.navbar-dark]="themeService.isDarkTheme()" [class.navbar-light]="!themeService.isDarkTheme()">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex align-items-center">
       <button class="navbar-toggler me-4 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -8,7 +8,16 @@
         <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
         <button class="btn btn-outline-light" type="submit">Pesquisa</button>
       </form>
-      <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
+      <div class="d-flex flex-column align-items-center ms-2">
+        <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
+        <!-- Aqui estão os botões -->
+        <div class="d-flex">
+          <button type="button" class="btn btn-sm mx-1 text-light">Noticias</button>
+          <button type="button" class="btn btn-sm mx-1 text-light">Loja</button>
+          <button type="button" class="btn btn-sm mx-1 text-light">Dados de Saude</button>
+          <button type="button" class="btn btn-sm mx-1 text-light">Carrinho</button>
+        </div>
+      </div>
       <button class="btn btn-mode-toggle ms-3" (click)="themeService.toggleTheme()">
         <i class="fas fa-moon text-dark" *ngIf="!themeService.isDarkTheme()"></i>
         <i class="fas fa-sun text-warning" *ngIf="themeService.isDarkTheme()"></i>
@@ -16,6 +25,7 @@
     </div>
   </nav>
 </header>
+
 
 <div class="offcanvas offcanvas-start offcanvas-custom-width bg-info" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
   <div class="offcanvas-header">
