@@ -2,6 +2,7 @@
 main {
     width: 80%;
     margin-left: 10%;
+    padding-top: 70px;
 }
 
 .card-img-top {
@@ -9,3 +10,6 @@ main {
     height: 200px;   /* ajuste este valor como necessário */
     object-fit: cover;  /* manter a proporção da imagem */
 }
+.small-text {
+    font-size: 0.7rem; /* Ajuste esse valor de acordo com o tamanho desejado para o texto dentro dos botões */
+  }
