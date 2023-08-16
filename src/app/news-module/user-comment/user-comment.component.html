@@ -1,6 +1,10 @@
-<div *ngFor="let comment of comments">
-  <p>{{ comment.comment }}</p>
-  <span>Comentado por Usuário ID: {{ comment.userId }}</span>
+<div class="mt-3" *ngFor="let comment of comments">
+  <!-- Conteúdo do Comentário -->
+  <p class="border p-3 rounded bg-light mb-2">{{ comment.comment }}</p>
+
+  <!-- Detalhes do Usuário -->
+  <small class="text-muted">Comentado por: {{ comment.userId }}</small>
+  <hr>
 </div>
 
 
