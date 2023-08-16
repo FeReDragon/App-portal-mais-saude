@@ -7,19 +7,28 @@
 <section class="py-5">
   <div class="container2">
     <div class="row">
-      <div *ngFor="let newsItem of newsList" class="col-md-4 mb-4">
-        <div class="card" style="width: 300px;">
-          <img [src]="newsItem.url" alt="{{ newsItem.titulo }}" class="card-img-top">
-          <div class="card-body">
-            <h5 class="card-title">{{ newsItem.titulo }}</h5>
-            <p class="card-text">{{ newsItem.conteudo | slice:0:100 }}...</p> <!-- Mostrando apenas os 100 primeiros caracteres do conteúdo -->
-            <a [routerLink]="['/news', newsItem.id]" class="btn btn-primary">Detalhes</a> <!-- Link para os detalhes da notícia -->
+      <div *ngFor="let newsItem of newsList; let i = index" [class.col-md-8]="i === 0 || i === 5" class="col-md-4 mb-4">
+        <div class="card shadow-sm h-100 d-flex flex-column border-0" [style.cursor]="i === 0 ? 'default' : 'pointer'" (click)="i !== 0 && navigateToDetails(newsItem.id)">
+          <img [src]="newsItem.url" alt="{{ newsItem.titulo }}" class="card-img-top news-image">
+          <div class="card-body flex-grow-1 d-flex flex-column">
+            <h5 class="card-title text-info mb-auto">
+              {{ newsItem.titulo }}
+              <!-- Exemplo de uso de badge para categoria (se necessário) -->
+              <span class="badge bg-secondary"></span>
+            </h5>
+            <p class="card-text mb-auto">{{ newsItem.conteudo | slice:0:100 }}...</p>
+            <!-- Se for o card em destaque, mostre o botão, senão use a ação no card todo -->
+            <div class="mt-auto">
+              <a *ngIf="i === 0" [routerLink]="['/news', newsItem.id]" class="btn btn-info text-white">Leia mais...</a>
+              <p *ngIf="i !== 0" class="text-info">Leia mais...</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 
 
