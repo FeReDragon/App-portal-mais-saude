@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
-import { inject } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { UserProfileComponent } from '../app/authentication-module/user-profile/user-profile.component'; 
-import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from '../app/core-module/layout/layout.component';
 import { LoginComponent } from './authentication-module/login/login.component';
 import { RegisterComponent } from './authentication-module/register/register.component';
 import { ForgotPasswordComponent } from './authentication-module/forgot-password/forgot-password.component';
 import { PrivacySettingsComponent } from './authentication-module/privacy-settings/privacy-settings.component';
 import { NewsListComponent } from './news-module/news-list/news-list.component';
-import { NewsDetailsComponent } from './news-module/news-details/news-details.component';
+import { NewsDetailComponent } from './news-module/news-details/news-details.component';
 import { ProductListComponent } from '../app/ecommerce-module/product-list/product-list.component';
 import { ProductDetailsComponent } from './ecommerce-module/product-details/product-details.component';
-// import { CartComponent } from './ecommerce-module/cart/cart.component';
 import { CheckoutComponent } from './ecommerce-module/checkout/checkout.component';
 import { VitalSignsComponent } from './user-health-data-module/vital-signs/vital-signs.component';
 import { SymptomMonitoringComponent } from './user-health-data-module/symptom-monitoring/symptom-monitoring.component';
@@ -33,17 +31,15 @@ const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'categorias-produtos', component: ProductCategoriesComponent },
   { path: 'home', component: NewsListComponent },
-  { path: 'homem', component: LayoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path: 'product-category/:category',component: ProductCategoryDetailsComponent},
+  { path: 'product-category/:category', component: ProductCategoryDetailsComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  
-  // { path: 'cart', component: CartComponent},
+  { path: 'news/:id', component: NewsDetailComponent },
 
   // Rotas restritas
   { path: 'privacy-settings', component: PrivacySettingsComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'vital-signs', component: VitalSignsComponent, canActivate: [AuthGuard] },
   { path: 'symptomMonitoring', component: SymptomMonitoringComponent, canActivate: [AuthGuard] },
@@ -62,3 +58,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
