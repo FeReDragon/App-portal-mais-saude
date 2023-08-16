@@ -2,14 +2,34 @@
   <div class="container2">
     <div class="row">
       <ng-container *ngIf="newsItem.titulo">
-        <h2>{{ newsItem.titulo }}</h2>
-        <img [src]="newsItem.url" alt="{{ newsItem.titulo }}">
-        <p>{{ newsItem.conteudo }}</p>
-        <app-user-comment [comments]="comments"></app-user-comment>
+        <!-- Imagem da Notícia -->
+        <div class="float-lg-left mr-lg-4 mb-4">
+          <img [src]="newsItem.url" alt="{{ newsItem.titulo }}" class="img-fluid rounded news-detail-image">
+        </div>
+        <!-- Título e Conteúdo da Notícia -->
+        <div>
+          <h2 class="mb-4 display-4 text-justify">{{ newsItem.titulo }}</h2>
+          <p class="lead text-justify">{{ newsItem.conteudo }}</p>
+        </div>
+        <!-- Clearfix para limpar o float -->
+        <div class="clearfix"></div>
       </ng-container>
+    </div>
+    
+    <!-- Seção de Comentários -->
+    <div class="row mt-5">
+      <div class="col-lg-8 mx-auto">
+        <h4 class="text-justify">Comentários</h4>
+        <app-user-comment [comments]="comments"></app-user-comment>
+      </div>
     </div>
   </div>
 </section>
+
+
+
+
+
 
 
 
