@@ -1,1 +1,29 @@
-<p>news-details works!</p>
+<section class="py-5">
+  <div class="container2">
+    <div class="row">
+      <ng-container *ngIf="newsItem.titulo">
+        <h2>{{ newsItem.titulo }}</h2>
+        <img [src]="newsItem.url" alt="{{ newsItem.titulo }}">
+        <p>{{ newsItem.conteudo }}</p>
+        <app-user-comment [comments]="comments"></app-user-comment>
+      </ng-container>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
