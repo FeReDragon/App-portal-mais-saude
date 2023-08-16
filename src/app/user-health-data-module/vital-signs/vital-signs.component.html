@@ -1,18 +1,30 @@
 <h2>Sinais Vitais</h2>
-<form id="vital-signs-form" class="mb-3" (ngSubmit)="register()">
+<form *ngIf="vitalSignsForm" [formGroup]="vitalSignsForm" (ngSubmit)="register()" class="mb-3">
   <div class="form-group mb-2">
-    <input type="number" [(ngModel)]="bloodPressure" name="bloodPressure" id="bloodPressure" placeholder="Pressão arterial" class="form-control">
+    <input type="text" formControlName="bloodPressure" placeholder="Pressão arterial" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bloodPressure')?.invalid && vitalSignsForm.get('bloodPressure')?.touched}">
+    <div *ngIf="vitalSignsForm.get('bloodPressure')?.hasError('pattern')" class="invalid-feedback">
+      Formato inválido. Use 000/00, 000/000 ou 00/00.
+    </div>
   </div>
   <div class="form-group mb-2">
-    <input type="number" [(ngModel)]="heartRate" name="heartRate" id="heartRate" placeholder="Frequência cardíaca" class="form-control">
+    <input type="number" formControlName="heartRate" placeholder="Frequência cardíaca" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('heartRate')?.invalid && vitalSignsForm.get('heartRate')?.touched}">
+    <div *ngIf="vitalSignsForm.get('heartRate')?.hasError('min') || vitalSignsForm.get('heartRate')?.hasError('max')" class="invalid-feedback">
+      Frequência cardíaca deve estar entre 40 e 200 batimentos por minuto.
+    </div>
   </div>
   <div class="form-group mb-2">
-    <input type="number" [(ngModel)]="bodyTemperature" name="bodyTemperature" id="bodyTemperature" placeholder="Temperatura corporal" class="form-control">
+    <input type="number" formControlName="bodyTemperature" placeholder="Temperatura corporal" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bodyTemperature')?.invalid && vitalSignsForm.get('bodyTemperature')?.touched}">
+    <div *ngIf="vitalSignsForm.get('bodyTemperature')?.hasError('min') || vitalSignsForm.get('bodyTemperature')?.hasError('max')" class="invalid-feedback">
+      A temperatura corporal deve estar entre 34.0 e 42.0 graus Celsius.
+    </div>
   </div>
   <div class="form-group mb-2">
-    <input type="number" [(ngModel)]="bloodGlucose" name="bloodGlucose" id="bloodGlucose" placeholder="Níveis de glicose bo Sangue" class="form-control">
+    <input type="number" formControlName="bloodGlucose" placeholder="Níveis de glicose no Sangue" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bloodGlucose')?.invalid && vitalSignsForm.get('bloodGlucose')?.touched}">
+    <div *ngIf="vitalSignsForm.get('bloodGlucose')?.hasError('min') || vitalSignsForm.get('bloodGlucose')?.hasError('max')" class="invalid-feedback">
+      A glicose deve estar entre 20 e 800 mg/dL.
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary mb-2">Registrar</button>
+  <button type="submit"  class="btn btn-primary mb-2">Registrar</button>
 </form>
 <div class="table-responsive">
   <table id="vital-signs-table" class="table">
