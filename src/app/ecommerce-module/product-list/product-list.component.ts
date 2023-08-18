@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'; // Importação necessária para a navegação
+import { of, Observable } from 'rxjs'; // Importações para Observable
 import { Product } from '../model/product.model';
 import { EcommerceService } from '../../services/ecommerce.service';
 import { CartService } from '../../services/cart.service';
@@ -16,7 +18,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private ecommerceService: EcommerceService,
     private cartService: CartService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router // Injeção do serviço Router
   ) {}
 
   ngOnInit(): void {
@@ -34,5 +37,12 @@ export class ProductListComponent implements OnInit {
     if (this.currentUser) {
       this.cartService.addToCart(product, this.currentUser.id);
     }
+    return of(null);
+  }
+
+  buyNow(product: Product) {
+    this.addToCart(product).subscribe(() => {
+      this.router.navigate(['/checkout']);
+    });
   }
 }
