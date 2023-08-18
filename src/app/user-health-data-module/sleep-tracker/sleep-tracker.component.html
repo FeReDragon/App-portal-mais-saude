@@ -1,3 +1,5 @@
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
 <h2>Acompanhamento do Sono</h2>
 <form (submit)="registerSleepTrackerEntry()" id="sleep-tracker-form" class="mb-3">
   <div class="form-group mb-2">

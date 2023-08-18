@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserHealthDataService } from '../../services/user-health-data.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FoodDiaryEntry } from '../../interfaces/IHealt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-food-diary',
@@ -13,10 +14,12 @@ export class FoodDiaryComponent implements OnInit {
   public calories?: number;  // Alterado aqui para ser opcional
   public notes: string = '';
   public foodDiaryEntries: FoodDiaryEntry[] = [];
+  @Input() isSummaryView: boolean = false; 
 
   constructor(
     private userHealthDataService: UserHealthDataService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -27,6 +30,11 @@ export class FoodDiaryComponent implements OnInit {
       }, (error: any) => {
         console.log(error);
       });
+    }
+  }
+    checkIfSummaryView(): void {
+    if (this.router.url.includes('summary')) {
+      this.isSummaryView = true;
     }
   }
 

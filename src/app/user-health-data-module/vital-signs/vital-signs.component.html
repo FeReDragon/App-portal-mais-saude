@@ -1,6 +1,8 @@
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
 <h2>Sinais Vitais</h2>
 <form *ngIf="vitalSignsForm" [formGroup]="vitalSignsForm" (ngSubmit)="register()" class="mb-3">
-  <div class="form-group mb-2">
+  <div class="form-group justify-content-center mb-2">
     <input type="text" formControlName="bloodPressure" placeholder="Pressão arterial" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bloodPressure')?.invalid && vitalSignsForm.get('bloodPressure')?.touched}">
     <div *ngIf="vitalSignsForm.get('bloodPressure')?.hasError('pattern')" class="invalid-feedback">
       Formato inválido. Use 000/00, 000/000 ou 00/00.
@@ -48,3 +50,5 @@
     </tbody>
   </table>
 </div>
+</div>
+</main>

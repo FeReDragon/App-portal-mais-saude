@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Symptom } from '../../interfaces/IHealt';
-
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserHealthDataService } from '../../services/user-health-data.service';
 
@@ -16,10 +16,12 @@ export class SymptomMonitoringComponent implements OnInit {
   frequency: number | null = null;
   duration: string = '';
   notes: string = '';
+  @Input() isSummaryView: boolean = false;
 
   constructor(
     private userHealthDataService: UserHealthDataService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +40,11 @@ export class SymptomMonitoringComponent implements OnInit {
       }, error => {
         console.error('Error fetching symptoms for user id', currentUser.id, error);
       });
+    }
+  }
+  checkIfSummaryView(): void {
+    if (this.router.url.includes('summary')) {
+      this.isSummaryView = true;
     }
   }
 

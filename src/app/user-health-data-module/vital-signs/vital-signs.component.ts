@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Importar FormBuilder e Validators
+import { Component, OnInit,Input} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VitalSigns } from '../../interfaces/IHealt';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserHealthDataService } from '../../services/user-health-data.service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-vital-signs',
@@ -13,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class VitalSignsComponent implements OnInit {
   vitalSigns: VitalSigns[] = [];
-  vitalSignsForm: FormGroup; // Formulário reativo
+  vitalSignsForm: FormGroup;
+  @Input() isSummaryView: boolean = false; // Por padrão, definido como falso
 
   constructor(
     private userHealthDataService: UserHealthDataService,
@@ -30,7 +30,14 @@ export class VitalSignsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkIfSummaryView();
     this.getVitalSigns();
+  }
+
+  checkIfSummaryView(): void {
+    if (this.router.url.includes('summary')) {
+      this.isSummaryView = true;
+    }
   }
 
   getVitalSigns(): void {
@@ -49,32 +56,29 @@ export class VitalSignsComponent implements OnInit {
   }
 
   register(): void {
-    // Verificar se pelo menos um campo está preenchido corretamente
     const atLeastOneFieldValid = (
       (this.vitalSignsForm.get('heartRate')?.valid && this.vitalSignsForm.value.heartRate !== null) ||
       (this.vitalSignsForm.get('bodyTemperature')?.valid && this.vitalSignsForm.value.bodyTemperature !== null) ||
       (this.vitalSignsForm.get('bloodGlucose')?.valid && this.vitalSignsForm.value.bloodGlucose !== null) ||
       (this.vitalSignsForm.get('bloodPressure')?.valid && this.vitalSignsForm.value.bloodPressure !== '')
     );
-  
+
     if (atLeastOneFieldValid) {
       const newVitalSigns: VitalSigns = {
-        userId: 0, // Defina aqui o valor correto do ID do usuário (pode ser 0 temporariamente)
+        userId: 0,
         bloodPressure: this.vitalSignsForm.value.bloodPressure,
         heartRate: this.vitalSignsForm.value.heartRate,
         bodyTemperature: this.vitalSignsForm.value.bodyTemperature,
         bloodGlucose: this.vitalSignsForm.value.bloodGlucose,
         timestamp: new Date()
       };
-  
+
       this.userHealthDataService.registerVitalSigns(newVitalSigns).subscribe(() => {
         this.getVitalSigns();
         this.resetForm();
       });
     }
   }
-  
-  
 
   resetForm(): void {
     this.vitalSignsForm.reset();

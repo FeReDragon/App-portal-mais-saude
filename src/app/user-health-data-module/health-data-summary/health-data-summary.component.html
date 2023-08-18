@@ -13,9 +13,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="vital-signs">
-                        <app-vital-signs></app-vital-signs>
+                        <app-vital-signs [isSummaryView]="true"></app-vital-signs>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/vital-signs" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -25,9 +25,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="symptom-monitoring">
-                        <app-symptom-monitoring></app-symptom-monitoring>
+                        <app-symptom-monitoring [isSummaryView]="true"></app-symptom-monitoring>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/symptomMonitoring" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -36,9 +36,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="medication-log">
-                        <app-medication-log></app-medication-log>
+                        <app-medication-log [isSummaryView]="true"></app-medication-log>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button  routerLink="/medication-log" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -47,9 +47,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="food-diary">
-                        <app-food-diary></app-food-diary>
+                        <app-food-diary [isSummaryView]="true"></app-food-diary>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/food-diary" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -58,9 +58,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="exercise-log">
-                        <app-exercise-log></app-exercise-log>
+                        <app-exercise-log [isSummaryView]="true"></app-exercise-log>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/exercise-log" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -69,9 +69,9 @@
             <div class="card mb-4 fixed-height border-0 shadow">
                 <div class="card-body d-flex flex-column justify-content-between small-font">
                     <section class="sleep-tracker">
-                        <app-sleep-tracker></app-sleep-tracker>
+                        <app-sleep-tracker [isSummaryView]="true"></app-sleep-tracker>
                     </section>
-                    <button type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/sleep-tracker" type="button" class="btn btn-primary btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>

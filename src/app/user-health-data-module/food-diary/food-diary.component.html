@@ -1,4 +1,5 @@
-<!-- Diário alimentar -->
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
 <h2>Diário Alimentar</h2>
 <form (submit)="registerFoodDiaryEntry()" id="food-diary-form" class="mb-3">
   <div class="form-group mb-2">
@@ -32,4 +33,6 @@
     </tbody>
   </table>
 </div>
+</div>
+</main>
 

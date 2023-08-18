@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserHealthDataService } from '../../services/user-health-data.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { SleepTrackerEntry } from '../../interfaces/IHealt';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sleep-tracker',
@@ -13,10 +14,12 @@ export class SleepTrackerComponent implements OnInit {
   public sleepQuality: string = '';
   public sleepEvents: string = '';
   public sleepTrackerEntries: SleepTrackerEntry[] = [];
+  @Input() isSummaryView: boolean = false;
 
   constructor(
     private userHealthDataService: UserHealthDataService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -27,6 +30,12 @@ export class SleepTrackerComponent implements OnInit {
       }, (error: any) => {
         console.log(error);
       });
+    }
+  }
+  
+  checkIfSummaryView(): void {
+    if (this.router.url.includes('summary')) {
+      this.isSummaryView = true;
     }
   }
 
