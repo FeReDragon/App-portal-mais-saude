@@ -1,23 +1,27 @@
-
-<button routerLink="/lista-produtos" class="btn btn-success btn-lg d-block mx-auto mb-4">Voltar para Lista de Produtos</button>
 <section class="py-5">
+  <button routerLink="/lista-produtos" class="btn btn-success btn-lg d-block mx-auto mb-4">
+    <i class="bi bi-arrow-left"></i> Voltar para Lista de Produtos
+  </button>
+
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto" *ngIf="product">
-        <div class="card border-0 shadow">
+        <div class="card product-detail-card border-0 shadow">
           <div class="row g-0">
             <div class="col-md-6">
-              <img [src]="product.url" class="img-fluid rounded-start my-4" alt="Product Image">
+              <div class="product-image-wrapper">
+                <img [src]="product.url" class="img-fluid rounded-start product-image" alt="Product Image">
+              </div>
             </div>
             <div class="col-md-6">
               <div class="card-body">
                 <h2 class="card-title">{{ product.nomeProduto }}</h2>
                 <p class="card-text">{{ product.descricao }}</p>
-                <p class="card-text"><small class="text-muted">Categoria: {{ product.categoria }}</small></p>
-                <h5 class="card-text mt-3">Preço: {{ product.preco }}</h5>
+                <p class="card-text"><span class="badge bg-primary">{{ product.categoria }}</span></p>
+                <h5 class="card-text mt-3">Preço: <span class="text-success">{{ product.preco }}</span></h5>
                 <div class="mt-4">
-                  <a href="#" class="btn btn-secondary">Adicionar ao Carrinho</a>
-                  <a href="#" class="btn btn-success ms-2">Comprar</a>
+                  <a (click)="addToCart(product)" class="btn btn-secondary"><i class="bi bi-cart-plus"></i> Adicionar ao Carrinho</a>
+                  <a (click)="buyNow(product)" class="btn btn-success ms-2"><i class="bi bi-cash"></i> Comprar</a>
                 </div>
               </div>
             </div>
@@ -27,6 +31,7 @@
     </div>
   </div>
 </section>
+
 
 
 
