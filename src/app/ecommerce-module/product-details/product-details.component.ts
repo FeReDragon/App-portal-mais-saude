@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
 import { Product } from '../model/product.model';
 import { EcommerceService } from '../../services/ecommerce.service';
+import { CartService } from '../../services/cart.service';
+import { AuthenticationService, User } from '../../services/authentication.service'; 
 
 @Component({
   selector: 'app-product-details',
@@ -10,14 +13,15 @@ import { EcommerceService } from '../../services/ecommerce.service';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-addToCart(arg0: number) {
-throw new Error('Method not implemented.');
-}
   product: Product | undefined;
+  currentUser: User | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private ecommerceService: EcommerceService
+    private ecommerceService: EcommerceService,
+    private cartService: CartService, // Injeção do CartService
+    private authService: AuthenticationService, // Injeção do AuthService
+    private router: Router // Injeção do serviço Router
   ) {}
 
   ngOnInit(): void {
@@ -30,12 +34,27 @@ throw new Error('Method not implemented.');
         this.product = product;
       },
       (error) => {
-        // Lógica de tratamento de erro, se necessário
         console.error('Error loading product details:', error);
       }
     );
+
+    this.currentUser = this.authService.getCurrentUser();
+  }
+
+  addToCart(product: Product) {
+    if (this.currentUser) {
+      this.cartService.addToCart(product, this.currentUser.id);
+    }
+    return of(null);
+  }
+
+  buyNow(product: Product) {
+    this.addToCart(product).subscribe(() => {
+      this.router.navigate(['/checkout']);
+    });
   }
 }
+
 
 
 
