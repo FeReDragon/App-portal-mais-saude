@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { ThemeService } from '../../services/theme.service';
+import { CartService } from '../../services/cart.service'; // Importe o CartService
 
 @Component({
   selector: 'app-navbar',
@@ -13,14 +14,16 @@ export class NavbarComponent {
   password: string = '';
   isDarkTheme = false;
   errorMessage: string = '';
+  totalItemsInCart: number = 0; // Adicione esta propriedade
 
-
-  // Tornar authService pública
   constructor(
     public themeService: ThemeService,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private cartService: CartService // Injete o CartService aqui
   ) {
-    // Construtor do componente
+    this.cartService.cartItems.subscribe(items => {
+      this.totalItemsInCart = items.reduce((total, item) => total + item.quantity, 0);
+    });
   }
 
   isAuthenticated(): boolean {
