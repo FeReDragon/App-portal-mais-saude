@@ -13,6 +13,7 @@ export class NewsListComponent implements OnInit {
 
   newsList: News[] = [];
   showJumbotron = true;
+  loading = true;
 
   constructor(
     private newsService: NewsService, 
@@ -23,6 +24,10 @@ export class NewsListComponent implements OnInit {
   ngOnInit(): void {
     this.newsService.getAllNews().subscribe((news: News[]) => {
       this.newsList = news;
+      // Simula um atraso de 1,5 segundos antes de parar a exibição do spinner
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     });
   }
 

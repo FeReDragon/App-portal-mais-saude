@@ -8,6 +8,7 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsDetailComponent } from './news-details/news-details.component';
 import { NewsCategoriesComponent } from './news-categories/news-categories.component';
 import { UserCommentComponent } from './user-comment/user-comment.component'; // Verifique o caminho correto
+import { SharedModuleModule } from '../shared-module/shared-module.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { UserCommentComponent } from './user-comment/user-comment.component'; //
     CommonModule,
     HttpClientModule,
     RouterModule, // Certifique-se de importar o RouterModule
-    FormsModule,
+    FormsModule
   ],
   exports: [
     NewsDetailComponent,
