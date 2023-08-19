@@ -1,4 +1,11 @@
 <section class="py-5">
+  <div *ngIf="loading" class="spinner-overlay">
+    <div class="spinner-container">
+      <div class="spinner-border text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
   <div class="container2">
     <div class="row">
       <ng-container *ngIf="newsItem.titulo">
@@ -9,13 +16,12 @@
         <!-- Título e Conteúdo da Notícia -->
         <div>
           <h2 class="mb-4 display-4 text-justify">{{ newsItem.titulo }}</h2>
-          <p class="lead text-justify">{{ newsItem.conteudo }}</p>
+          <p class="text-justify">{{ newsItem.conteudo }}</p>
         </div>
         <!-- Clearfix para limpar o float -->
         <div class="clearfix"></div>
       </ng-container>
     </div>
-    
     <!-- Seção de Comentários -->
     <div class="row mt-5">
       <div class="col-lg-8 mx-auto">

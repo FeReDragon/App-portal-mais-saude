@@ -14,8 +14,8 @@ export class NewsDetailComponent implements OnInit {
     titulo: '', url: '', conteudo: '',
     id: 0
   };
-
   comments: UserComment[] = [];
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,8 +29,11 @@ export class NewsDetailComponent implements OnInit {
     this.newsService.getNewsById(newsId).subscribe((news: News) => {
       console.log("Notícia recebida:", news); // Adicione esta linha
       this.newsItem = news;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     });
-
+  
     // Chamada para obter os comentários relacionados à notícia
     this.newsService.getUserCommentsForNews(newsId).subscribe((comments: UserComment[]) => {
       console.log("Comentários recebidos:", comments); // Adicione esta linha
