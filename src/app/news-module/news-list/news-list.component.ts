@@ -27,7 +27,7 @@ export class NewsListComponent implements OnInit {
       // Simula um atraso de 1,5 segundos antes de parar a exibição do spinner
       setTimeout(() => {
         this.loading = false;
-      }, 500);
+      }, 300);
     });
   }
 

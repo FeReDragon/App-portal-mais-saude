@@ -14,6 +14,7 @@ import { AuthenticationService, User } from '../../services/authentication.servi
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentUser: User | null = null; 
+  loading = true;
 
   constructor(
     private ecommerceService: EcommerceService,
@@ -25,6 +26,9 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.ecommerceService.getProductList().subscribe((products: Product[]) => {
       this.products = products;
+      setTimeout(() => {
+        this.loading = false;
+      }, 300);
     });
 
     this.currentUser = this.authService.getCurrentUser();

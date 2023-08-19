@@ -1,4 +1,11 @@
 <main>
+    <div *ngIf="loading" class="spinner-overlay">
+        <div class="spinner-container">
+          <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-8">

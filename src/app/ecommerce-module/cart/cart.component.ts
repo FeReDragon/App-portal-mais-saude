@@ -10,6 +10,7 @@ export class CartComponent implements OnInit {
   items: CartItem[] = [];
   totalItems = 0;
   totalPrice = 0;
+  loading = true;
 
   constructor(private cartService: CartService) { }
 
@@ -17,6 +18,9 @@ export class CartComponent implements OnInit {
     this.cartService.cartItems.subscribe((cartItems: CartItem[]) => {
       this.items = cartItems;
       this.calculateTotal();
+      setTimeout(() => {
+        this.loading = false;
+      }, 300);
     });
   }
 

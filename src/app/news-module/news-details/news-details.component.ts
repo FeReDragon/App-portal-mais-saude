@@ -31,7 +31,7 @@ export class NewsDetailComponent implements OnInit {
       this.newsItem = news;
       setTimeout(() => {
         this.loading = false;
-      }, 500);
+      }, 300);
     });
   
     // Chamada para obter os comentários relacionados à notícia

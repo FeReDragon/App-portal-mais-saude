@@ -4,6 +4,13 @@
         <p class="mb-2">Bem-vindo ao Monitoramento de Saúde. Aqui, você encontra ferramentas intuitivas para acompanhar sua Saúde e seu bem-estar. De sinais vitais a sintomas e estilo de vida, estamos aqui para apoiá-lo em cada passo. Sua saúde está em boas mãos!</p>
     </div>
 </section>
+<div *ngIf="loading" class="spinner-overlay">
+    <div class="spinner-container">
+      <div class="spinner-border text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
 
 <div class="health-data-summary container py-5 mt-5 mb-5">
     <h2 class="text-center">Dados de Saúde</h2>

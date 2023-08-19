@@ -15,6 +15,7 @@ import { AuthenticationService, User } from '../../services/authentication.servi
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
   currentUser: User | null = null;
+  loading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,9 @@ export class ProductDetailsComponent implements OnInit {
     ).subscribe(
       (product: Product) => {
         this.product = product;
+        setTimeout(() => {
+          this.loading = false; // Define loading como false após 500ms
+        }, 300);
       },
       (error) => {
         console.error('Error loading product details:', error);
@@ -54,6 +58,7 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 }
+
 
 
 
