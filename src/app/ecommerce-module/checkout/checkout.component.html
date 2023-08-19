@@ -1,4 +1,5 @@
-<div class="container mt-5">
+<main>
+<div class="container py-5">
     <div class="row">
         <div class="col-lg-8">
             <h2>Checkout</h2>
@@ -61,8 +62,11 @@
                             <option value="">Escolha...</option>
                             <option value="Credit Card">Cartão de crédito</option>
                             <option value="Debit Card">Cartão de débito</option>
+                            <option value="Pix">PIX</option>
+                            <option value="Boleto">Boleto Bancário</option>
                         </select>
                     </div>
+                    
 
 
                     <div class="col-sm-6">
@@ -99,7 +103,7 @@
                 <li *ngFor="let item of items" class="list-group-item d-flex justify-content-between lh-sm">
                     <div>
                         <h6 class="my-0">{{ item.product.nomeProduto }}</h6>
-                        <small class="text-muted">{{ item.product.descricao }}</small>
+                        <small class="text-muted">{{ item.product.descricao | slice:0:75 }}</small>
                     </div>
                     <span class="text-muted">{{ item.product.preco | currency }}</span>
                 </li>
@@ -114,3 +118,5 @@
             </div>
         </div>
     </div>
+</div>
+</main>
