@@ -1,0 +1,133 @@
+import { Component, OnInit } from '@angular/core';
+import { Vaccination, Dose } from '../../interfaces/IHealt';
+import { UserHealthDataService } from '../../services/user-health-data.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+@Component({
+  selector: 'app-vaccination-schedule',
+  templateUrl: './vaccination-schedule.component.html',
+  styleUrls: ['./vaccination-schedule.component.scss']
+})
+export class VaccinationScheduleComponent implements OnInit {
+  vaccineForm: FormGroup;
+  selectedGroup: string = "";
+  selectedVaccine: string = "";
+  selectedDate: string = "";
+  registeredVaccinations: Vaccination[] = [];
+  filteredVaccines: any[] = [];
+  selectedDoses: Dose[] = [];
+  groups: string[] = ["Crianças", "Adolescentes", "Adultos", "Idosos", "Gestantes"];
+  vaccinesByGroup: Record<string, any> = {
+    'Crianças': [
+      { name: 'BCG (Tuberculose)', doses: [{ doseName: 'Dose ao nascer', checked: false, date: '' }] },
+      { name: 'Hepatite B', doses: [
+        { doseName: 'Dose ao nascer', checked: false, date: '' },
+        { doseName: '2 meses', checked: false, date: '' },
+        { doseName: '6 meses', checked: false, date: '' }
+      ]},
+      // ... e assim por diante para cada grupo e vacina
+    ],
+    'Adolescentes': [
+      { name: 'HPV quadrivalente', doses: [
+        { doseName: 'Primeira Dose', checked: false, date: '' },
+        { doseName: 'Segunda Dose - 6 meses', checked: false, date: '' }
+      ]},
+      { name: 'Meningocócica ACWY', doses: [
+        { doseName: 'Dose única aos 11 anos', checked: false, date: '' }
+      ]},
+      { name: 'dTpa (Difteria, Tétano e Coqueluche)', doses: [
+        { doseName: 'Dose única aos 11 anos', checked: false, date: '' }
+      ]}
+    ],
+    'Adultos': [
+      { name: 'Hepatite B', doses: [
+        { doseName: 'Primeira Dose', checked: false, date: '' },
+        { doseName: 'Segunda Dose', checked: false, date: '' },
+        { doseName: 'Terceira Dose', checked: false, date: '' }
+      ]},
+      { name: 'dT (Difteria e Tétano)', doses: [
+        { doseName: 'Reforço a cada 10 anos', checked: false, date: '' }
+      ]},
+      { name: 'Tríplice Viral', doses: [
+        { doseName: 'Primeira Dose', checked: false, date: '' },
+        { doseName: 'Segunda Dose', checked: false, date: '' }
+      ]},
+      { name: 'Febre Amarela', doses: [
+        { doseName: 'Dose única a cada 10 anos', checked: false, date: '' }
+      ]}
+    ],
+    'Idosos': [
+      { name: 'Influenza (Gripe)', doses: [
+        { doseName: 'Dose anual', checked: false, date: '' }
+      ]},
+      { name: 'Pneumocócica 23-valente', doses: [
+        { doseName: 'Dose única', checked: false, date: '' },
+        { doseName: 'Possibilidade de reforço', checked: false, date: '' }
+      ]},
+      { name: 'dT (Difteria e Tétano)', doses: [
+        { doseName: 'Reforço a cada 10 anos', checked: false, date: '' }
+      ]}
+    ],
+    'Gestantes': [
+      { name: 'dTpa (Difteria, Tétano e Coqueluche)', doses: [
+        { doseName: 'Dose única em cada gestação', checked: false, date: '' }
+      ]}
+    ]
+  };
+
+  constructor(private fb: FormBuilder, private healthService: UserHealthDataService) { 
+    this.vaccineForm = this.fb.group({
+      selectedGroup: [''],
+      selectedVaccine: [''],
+      // Add more form controls as needed
+    });
+  }
+
+  ngOnInit(): void {
+    this.vaccineForm?.get('selectedGroup')?.valueChanges.subscribe(value => {
+      this.selectedGroup = value;
+      this.updateVaccines();
+    });
+    
+    this.vaccineForm?.get('selectedVaccine')?.valueChanges.subscribe(value => {
+      this.selectedVaccine = value;
+      this.updateDoses();
+    });
+  }
+  
+
+  updateVaccines(): void {
+    this.filteredVaccines = this.vaccinesByGroup[this.selectedGroup] || [];
+    console.log("Filtered Vaccines:", this.filteredVaccines);
+  }
+
+  updateDoses(): void {
+    const vaccine = this.filteredVaccines.find(v => v.name === this.selectedVaccine);
+    this.selectedDoses = vaccine ? vaccine.doses : [];
+    console.log("Selected Doses:", this.selectedDoses);
+  }
+  
+
+  registerVaccination(): void {
+    const selectedDosesChecked: Dose[] = this.selectedDoses.filter(dose => dose.checked);
+  
+    const vaccination: Vaccination = {
+        userId: 0,  // Este valor será atualizado no serviço
+        selectedGroup: this.selectedGroup,
+        selectedVaccine: this.selectedVaccine,
+        selectedDoses: selectedDosesChecked.map(dose => dose.doseName),
+        selectedDate: this.selectedDate,  // Adicione esta linha se você atualizar sua interface Vaccination para incluir selectedDate
+        timestamp: new Date()
+      };
+      
+  
+    this.healthService.registrarCalendarioVacinas(vaccination).subscribe(
+      data => {
+        this.registeredVaccinations.push(data);
+      },
+      error => {
+        console.error('Error registering vaccination:', error);
+      }
+    );
+  }
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Exercise, FoodDiaryEntry, Medication, SleepTrackerEntry, Symptom, VitalSigns } from '../interfaces/IHealt';
+import { Exercise, FoodDiaryEntry, Medication, SleepTrackerEntry, Symptom, Vaccination, VitalSigns } from '../interfaces/IHealt';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
@@ -94,6 +94,20 @@ export class UserHealthDataService {
       return this.http.post(`${this.apiUrl}/sleepTracker`, entry);
     } else {
       throw new Error('Current user not found.');
+    }
+  }
+
+  getVaccinationSchedulesForUser(userId: number): Observable<Vaccination[]> {
+    return this.http.get<Vaccination[]>(`${this.apiUrl}/calendarioVacinas?userId=${userId}`);
+  }
+
+  registrarCalendarioVacinas(calendario: Vaccination): Observable<Vaccination> {
+    const usuarioAtual = this.authenticationService.getCurrentUser();
+    if (usuarioAtual && usuarioAtual.id) {
+      calendario.userId = usuarioAtual.id;
+      return this.http.post<Vaccination>(`${this.apiUrl}/calendarioVacinas`, calendario);
+    } else {
+      throw new Error('Usuário atual não encontrado.');
     }
   }
   

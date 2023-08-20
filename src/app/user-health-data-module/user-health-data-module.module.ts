@@ -10,6 +10,7 @@ import { PrintableReportsComponent } from './printable-reports/printable-reports
 import { RouterModule } from '@angular/router';
 import { HealthDataSummaryComponent } from './health-data-summary/health-data-summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination-schedule.component';
 
 
 
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExerciseLogComponent,
     SleepTrackerComponent,
     PrintableReportsComponent,
-    HealthDataSummaryComponent
+    HealthDataSummaryComponent,
+    VaccinationScheduleComponent
   ],
   imports: [
     CommonModule,
