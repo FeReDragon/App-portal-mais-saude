@@ -16,7 +16,7 @@ export class VaccinationScheduleComponent implements OnInit {
   registeredVaccinations: Vaccination[] = [];
   filteredVaccines: any[] = [];
   selectedDoses: Dose[] = [];
-  groups: string[] = ["Crianças", "Adolescentes", "Adultos", "Idosos", "Gestantes"];
+  groups: string[] = ["Crianças", "Adolescentes", "Adultos", "Idosos", "Gestantes",];
   vaccinesByGroup: Record<string, any> = {
     'Crianças': [
       { name: 'BCG (Tuberculose)', doses: [{ doseName: 'Dose ao nascer', checked: false, date: '' }] },
@@ -71,7 +71,7 @@ export class VaccinationScheduleComponent implements OnInit {
     'Gestantes': [
       { name: 'dTpa (Difteria, Tétano e Coqueluche)', doses: [
         { doseName: 'Dose única em cada gestação', checked: false, date: '' }
-      ]}
+      ]},
     ]
   };
 
@@ -99,13 +99,22 @@ export class VaccinationScheduleComponent implements OnInit {
   updateVaccines(): void {
     this.filteredVaccines = this.vaccinesByGroup[this.selectedGroup] || [];
     console.log("Filtered Vaccines:", this.filteredVaccines);
+  
+    // Adicione estas linhas
+    if (this.filteredVaccines.length > 0) {
+      this.selectedVaccine = this.filteredVaccines[0].name;
+      this.updateDoses();
+    }
   }
+  
 
   updateDoses(): void {
+    console.log("updateDoses called");
     const vaccine = this.filteredVaccines.find(v => v.name === this.selectedVaccine);
     this.selectedDoses = vaccine ? vaccine.doses : [];
     console.log("Selected Doses:", this.selectedDoses);
   }
+  
   
 
   registerVaccination(): void {

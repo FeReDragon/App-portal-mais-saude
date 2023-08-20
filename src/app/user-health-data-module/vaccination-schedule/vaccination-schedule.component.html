@@ -12,10 +12,10 @@
           <option *ngFor="let vaccine of filteredVaccines">{{ vaccine.name }}</option>
         </select>
       </div>
-      <div class="form-group mb-2" *ngFor="let dose of selectedDoses">
-        <!-- Atualização para a caixa de seleção -->
-        <input type="checkbox" [checked]="dose.checked" (change)="dose.checked = !dose.checked" class="form-check-input">{{ dose.doseName }}
-      </div>
+      <div *ngFor="let dose of selectedDoses">
+        <input type="checkbox" [checked]="dose.checked" (change)="dose.checked = !dose.checked">
+        <label>{{dose.doseName}}</label>
+      </div>      
       <div class="form-group mb-2">
         <input type="date" formControlName="selectedDate" class="form-control">
       </div>
