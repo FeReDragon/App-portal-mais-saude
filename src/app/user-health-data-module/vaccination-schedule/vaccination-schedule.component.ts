@@ -25,9 +25,51 @@ export class VaccinationScheduleComponent implements OnInit {
         { doseName: '2 meses', checked: false, date: '' },
         { doseName: '6 meses', checked: false, date: '' }
       ]},
-      // ... e assim por diante para cada grupo e vacina
+      { name: 'VIP/VOP (Poliomielite)', doses: [
+        { doseName: '2 meses (VIP)', checked: false, date: '' },
+        { doseName: '4 meses (VIP)', checked: false, date: '' },
+        { doseName: '6 meses (VIP)', checked: false, date: '' },
+        { doseName: '15 meses (VOP)', checked: false, date: '' },
+        { doseName: '4 anos (VOP)', checked: false, date: '' }
+      ]},
+      { name: 'Pentavalente (DTP, Hib e Hepatite B)', doses: [
+        { doseName: '2 meses', checked: false, date: '' },
+        { doseName: '4 meses', checked: false, date: '' },
+        { doseName: '6 meses', checked: false, date: '' }
+      ]},
+      { name: 'Pneumocócica 10-valente', doses: [
+        { doseName: '2 meses', checked: false, date: '' },
+        { doseName: '4 meses', checked: false, date: '' },
+        { doseName: '12 meses', checked: false, date: '' }
+      ]},
+      { name: 'Meningocócica C ou ACWY', doses: [
+        { doseName: '3 meses', checked: false, date: '' },
+        { doseName: '5 meses', checked: false, date: '' },
+        { doseName: '12 meses', checked: false, date: '' },
+        { doseName: '11 anos', checked: false, date: '' }
+      ]},
+      { name: 'Rotavírus', doses: [
+        { doseName: '2 meses', checked: false, date: '' },
+        { doseName: '4 meses', checked: false, date: '' }
+      ]},
+      { name: 'Febre Amarela', doses: [
+        { doseName: '9 meses', checked: false, date: '' },
+        { doseName: '4 anos', checked: false, date: '' }
+      ]},
+      { name: 'Tríplice Viral (Sarampo, Caxumba e Rubéola)', doses: [
+        { doseName: '12 meses', checked: false, date: '' },
+        { doseName: '15 meses (Tetra Viral)', checked: false, date: '' }
+      ]},
+      { name: 'DTPa (Difteria, Tétano e Coqueluche)', doses: [
+        { doseName: '15 meses', checked: false, date: '' },
+        { doseName: '4 anos', checked: false, date: '' }
+      ]},
+      { name: 'Hepatite A', doses: [
+        { doseName: '15 meses', checked: false, date: '' }
+      ]}
     ],
-    'Adolescentes': [
+    
+     'Adolescentes': [
       { name: 'HPV quadrivalente', doses: [
         { doseName: 'Primeira Dose', checked: false, date: '' },
         { doseName: 'Segunda Dose - 6 meses', checked: false, date: '' }
