@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Vaccination, Dose } from '../../interfaces/IHealt';
-import { UserHealthDataService } from '../../services/user-health-data.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../../services/authentication.service'; // Adicione esta importação
+import { UserHealthDataService } from '../../services/user-health-data.service';
+import { Vaccination, Dose } from '../../interfaces/IHealt';
 
 @Component({
   selector: 'app-vaccination-schedule',
@@ -116,16 +117,20 @@ export class VaccinationScheduleComponent implements OnInit {
       ]},
     ]
   };
-
-  constructor(private fb: FormBuilder, private healthService: UserHealthDataService) { 
+  constructor(
+    private fb: FormBuilder, 
+    private healthService: UserHealthDataService,
+    private authenticationService: AuthenticationService  // Adicione esta linha
+  ) { 
     this.vaccineForm = this.fb.group({
       selectedGroup: [''],
       selectedVaccine: [''],
-      // Add more form controls as needed
+      // ... outros controles de formulário aqui
     });
   }
 
   ngOnInit(): void {
+    this.getRegisteredVaccinations(); // Adicione esta linha
     this.vaccineForm?.get('selectedGroup')?.valueChanges.subscribe(value => {
       this.selectedGroup = value;
       this.updateVaccines();
@@ -136,8 +141,21 @@ export class VaccinationScheduleComponent implements OnInit {
       this.updateDoses();
     });
   }
-  
 
+  getRegisteredVaccinations(): void {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      this.healthService.getVaccinationSchedulesForUser(currentUser.id).subscribe((data: Vaccination[]) => {
+        if (data) {
+          this.registeredVaccinations = data;
+        }
+      },
+      error => {
+        console.error('Error fetching registered vaccinations:', error);
+      });
+    }
+  }
+  
   updateVaccines(): void {
     this.filteredVaccines = this.vaccinesByGroup[this.selectedGroup] || [];
     console.log("Filtered Vaccines:", this.filteredVaccines);
@@ -149,7 +167,6 @@ export class VaccinationScheduleComponent implements OnInit {
     }
   }
   
-
   updateDoses(): void {
     console.log("updateDoses called");
     const vaccine = this.filteredVaccines.find(v => v.name === this.selectedVaccine);
@@ -157,8 +174,6 @@ export class VaccinationScheduleComponent implements OnInit {
     console.log("Selected Doses:", this.selectedDoses);
   }
   
-  
-
   registerVaccination(): void {
     const selectedDosesChecked: Dose[] = this.selectedDoses.filter(dose => dose.checked);
   
@@ -172,13 +187,14 @@ export class VaccinationScheduleComponent implements OnInit {
       };
       
   
-    this.healthService.registrarCalendarioVacinas(vaccination).subscribe(
-      data => {
-        this.registeredVaccinations.push(data);
-      },
-      error => {
-        console.error('Error registering vaccination:', error);
-      }
-    );
+      this.healthService.registrarCalendarioVacinas(vaccination).subscribe(
+        data => {
+          this.registeredVaccinations.push(data);
+          this.vaccineForm.reset(); // Reseta o formulário
+        },
+        error => {
+          console.error('Error registering vaccination:', error);
+        }
+      );
+    }
   }
-}
