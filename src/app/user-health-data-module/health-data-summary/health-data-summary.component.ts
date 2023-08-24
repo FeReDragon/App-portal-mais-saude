@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HealthDataSummaryComponent implements OnInit {
   loading = true; // Inicialmente, o spinner será exibido
+  cards = [
+    { text: 'Sinais Vitais' },
+    { text: 'Sintomas' },
+    { text: 'Medicamntos' },
+    { text: 'Diário Alimentar' },
+    { text: 'Exercicios' },
+    { text: 'Acompanhamento do Sono' },
+    { text: 'Vacinas' },
+    { text: 'Relatorio Para Impressão' }
+  ];
 
   ngOnInit(): void {
     setTimeout(() => {

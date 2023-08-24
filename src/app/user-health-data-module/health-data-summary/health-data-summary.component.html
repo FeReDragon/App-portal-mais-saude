@@ -4,6 +4,36 @@
         <p class="mb-2">Bem-vindo ao Monitoramento de Saúde. Aqui, você encontra ferramentas intuitivas para acompanhar sua Saúde e seu bem-estar. De sinais vitais a sintomas e estilo de vida, estamos aqui para apoiá-lo em cada passo. Sua saúde está em boas mãos!</p>
     </div>
 </section>
+
+<div class="container mt-5">
+    <!-- Primeira Linha -->
+    <div class="row justify-content-center">
+      <div *ngFor="let card of cards.slice(0, 4);" class="col-3 mb-2">
+        <div class="card border-0 shadow"
+             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 200px; height: 70px;">
+          <div class="card-body">
+            <p class="card-text text-white">{{ card.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Segunda Linha -->
+    <div class="row justify-content-center mt-4">
+      <div *ngFor="let card of cards.slice(4, 8);" class="col-3 mb-2">
+        <div class="card border-0 shadow"
+             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 200px; height: 70px;">
+          <div class="card-body">
+            <p class="card-text text-white">{{ card.text }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
 <div *ngIf="loading" class="spinner-overlay">
     <div class="spinner-container">
       <div class="spinner-border text-info" role="status">
@@ -22,7 +52,7 @@
                     <section class="vital-signs">
                         <app-vital-signs [isSummaryView]="true"></app-vital-signs>
                     </section>
-                    <button routerLink="/vital-signs" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/vital-signs" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -34,7 +64,7 @@
                     <section class="symptom-monitoring">
                         <app-symptom-monitoring [isSummaryView]="true"></app-symptom-monitoring>
                     </section>
-                    <button routerLink="/symptomMonitoring" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/symptomMonitoring" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -45,7 +75,7 @@
                     <section class="medication-log">
                         <app-medication-log [isSummaryView]="true"></app-medication-log>
                     </section>
-                    <button  routerLink="/medication-log" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button  routerLink="/medication-log" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -56,7 +86,7 @@
                     <section class="food-diary">
                         <app-food-diary [isSummaryView]="true"></app-food-diary>
                     </section>
-                    <button routerLink="/food-diary" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/food-diary" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -67,7 +97,7 @@
                     <section class="exercise-log">
                         <app-exercise-log [isSummaryView]="true"></app-exercise-log>
                     </section>
-                    <button routerLink="/exercise-log" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/exercise-log" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
@@ -78,7 +108,7 @@
                     <section class="sleep-tracker">
                         <app-sleep-tracker [isSummaryView]="true"></app-sleep-tracker>
                     </section>
-                    <button routerLink="/sleep-tracker" type="button" class="btn btn-primary btn-sm">Detalhe</button>
+                    <button routerLink="/sleep-tracker" type="button" class="btn btn-info text-white btn-sm">Detalhe</button>
                 </div>
             </div>
         </div>
