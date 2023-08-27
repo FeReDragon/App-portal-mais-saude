@@ -10,10 +10,9 @@
     <div class="row justify-content-center">
       <div *ngFor="let card of cards.slice(0, 4);" class="col-3">
         <div class="card border-0 shadow"
-             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 200px; height: 85px;">
+             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 250px; height: 70px;">
           <div class="card-body">
-            <i class="{{ getCardIconClass(card) }} text-white"></i> <!-- Adicionei a classe text-white aqui -->
-            <p class="card-text text-white">{{ card.text }}</p>
+            <i class="{{ getCardIconClass(card) }} text-white"></i> <p class="card-text text-white">{{ card.text }}</p>
           </div>
         </div>
       </div>
@@ -23,7 +22,7 @@
     <div class="row justify-content-center mt-2">
       <div *ngFor="let card of cards.slice(4, 8);" class="col-3">
         <div class="card border-0 shadow"
-             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 200px; height: 85px;">
+             style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200'); background-size: cover; width: 250px; height: 70px;">
           <div class="card-body">
             <i class="{{ getCardIconClass(card) }} text-white"></i> <!-- Adicionei a classe text-white aqui -->
             <p class="card-text text-white">{{ card.text }}</p>
