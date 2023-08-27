@@ -3,9 +3,9 @@ export interface Product {
   url: string;
   nomeProduto: string;
   preco: number;
-  quantidade: number;
   descricao: string;
-  categoria: number;
+  categoria: number; // assumindo que categoria é um ID (número)
+  categoriaNome: string; // novo campo para o nome da categoria
 }
 
 

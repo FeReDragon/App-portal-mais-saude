@@ -9,7 +9,7 @@
   <div class="container py-5">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto" *ngIf="product">
-        <div class="card product-detail-card border-0 shadow">
+        <div class="card product-detail-card border-0 shadow" >
           <div class="row g-0">
             <div class="col-md-6">
               <!-- Image wrapper -->
@@ -19,7 +19,7 @@
 
               <!-- Buttons below the image -->
               <div class="mt-4 d-flex flex-column align-items-center ">
-                <p class="card-text mb-2"><span class="badge bg-primary">{{ product.categoria }}</span></p>
+                <p class="card-text mb-2"><span class="badge bg-primary">{{ getCategoryNameById(product.categoria) }}</span></p>
                 <h5 class="card-text mt-3 mb-3">Preço: <span class="text-success">{{ product.preco }}</span></h5>
               </div>
               <div class="d-flex justify-content-center mt-2">

@@ -14,15 +14,16 @@ import { AuthenticationService, User } from '../../services/authentication.servi
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
+  categories: any[] = [];  // Adicione esta linha para armazenar as categorias
   currentUser: User | null = null;
   loading = true;
 
   constructor(
     private route: ActivatedRoute,
     private ecommerceService: EcommerceService,
-    private cartService: CartService, // Injeção do CartService
-    private authService: AuthenticationService, // Injeção do AuthService
-    private router: Router // Injeção do serviço Router
+    private cartService: CartService,
+    private authService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,13 +35,18 @@ export class ProductDetailsComponent implements OnInit {
       (product: Product) => {
         this.product = product;
         setTimeout(() => {
-          this.loading = false; // Define loading como false após 500ms
+          this.loading = false;
         }, 300);
       },
       (error) => {
         console.error('Error loading product details:', error);
       }
     );
+
+    // Carregue as categorias aqui, como você fez em ProductListComponent
+    this.ecommerceService.getCategories().subscribe((categories: any[]) => {
+      this.categories = categories;
+    });
 
     this.currentUser = this.authService.getCurrentUser();
   }
@@ -57,7 +63,14 @@ export class ProductDetailsComponent implements OnInit {
       this.router.navigate(['/checkout']);
     });
   }
+
+  // Copie esta função do ProductListComponent
+  getCategoryNameById(id: number): string {
+    const category = this.categories.find(cat => cat.id === id);
+    return category ? category.name : 'Desconhecido';
+  }
 }
+
 
 
 

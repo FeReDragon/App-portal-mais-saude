@@ -1,19 +1,26 @@
-<section class="container py-5">
+<section class="custom-width">
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let category of categories">
-      <div class="card h-100 shadow border-0">
-        <img [src]="category.image" class="card-img-top" alt="Category Image">
-        <div class="card-body">
-          <h5 class="card-title">{{ category.name }}</h5>
-          <p class="card-text">{{ category.description }}</p>
-        </div>
-        <div class="card-footer">
-          <a [routerLink]="'/product-category/' + category.id" class="btn btn-primary">Ver Produtos</a>
+    <div class="col-lg-4 col-md-4 col-sm-4 mb-2" *ngFor="let category of categories">
+      <div class="card h-100 shadow border-0 category-card">
+        <div class="card-body text-center category-card-body">
+          <a [routerLink]="'/product-category/' + category.id" class="category-link">
+            <h5 class="card-title">
+              <i [ngClass]="getCategoryIconClass(category)"></i>
+{{ category.name }}
+            </h5>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
 
 
 
