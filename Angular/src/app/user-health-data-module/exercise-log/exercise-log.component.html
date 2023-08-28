@@ -1,0 +1,42 @@
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
+<h2>Exercícios</h2>
+<form (submit)="registerExercise()" id="exercise-form" class="mb-3">
+  <div class="form-group mb-2">
+    <input [(ngModel)]="exerciseType" name="exerciseType" type="text" id="exerciseType" placeholder="Tipo de exercício" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="duration" name="duration" type="text" id="duration" placeholder="Duração" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="intensity" name="intensity" type="number" id="intensity" placeholder="Intensidade" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="caloriesBurned" name="caloriesBurned" type="number" id="caloriesBurned" placeholder="Calorias queimadas" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-info text-white mb-2">Registrar</button>
+</form>
+<div class="table-responsive shadow rounded">
+  <table id="exercise-table" class="table table-hover">
+    <thead>
+      <tr>
+        <th class="break-word small-header">Tipo de exercício</th>
+        <th class="break-word small-header">Duração</th>
+        <th class="break-word small-header">Intensidade</th>
+        <th class="break-word small-header">Calorias queimadas</th>
+        <th class="break-word small-header">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exercise of exercises">
+        <td>{{ exercise.exerciseType }}</td>
+        <td>{{ exercise.duration }}</td>
+        <td>{{ exercise.intensity }}</td>
+        <td>{{ exercise.caloriesBurned }}</td>
+        <td>{{ exercise.timestamp | date:'dd/MM/yy HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</main>

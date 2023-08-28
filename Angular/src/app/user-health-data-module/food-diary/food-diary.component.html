@@ -1,0 +1,38 @@
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
+<h2>Diário Alimentar</h2>
+<form (submit)="registerFoodDiaryEntry()" id="food-diary-form" class="mb-3">
+  <div class="form-group mb-2">
+    <input [(ngModel)]="food" name="food" type="text" id="meal" placeholder="Refeição" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="calories" name="calories" type="number" id="calories" placeholder="Calorias" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <textarea [(ngModel)]="notes" name="notes" type="text" id="Notas" placeholder="Notas Adicionais" class="form-control"></textarea>
+  </div>
+  <button type="submit" class="btn btn-info text-white mb-2">Registrar</button>
+</form>
+<div class="table-responsive shadow rounded">
+  <table id="food-diary-table" class="table table-hover">
+    <thead>
+      <tr>
+        <th class="break-word small-header">Refeição</th>
+        <th class="break-word small-header">Calorias</th>
+        <th class="break-word small-header">Notas</th>
+        <th class="break-word small-header">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of foodDiaryEntries">
+        <td>{{ entry.food }}</td>
+        <td>{{ entry.calories }}</td>
+        <td>{{ entry.notes }}</td>
+        <td>{{ entry.timestamp | date:'dd/MM/yy HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</main>
+

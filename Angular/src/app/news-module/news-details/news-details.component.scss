@@ -1,0 +1,33 @@
+.container2 {
+    width: 70%;
+    margin-left: 15%;
+    padding-top: 70px;
+}
+
+.news-detail-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.text-justify {
+    text-align: justify;
+}
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo escura semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Certifique-se de que o z-index esteja acima dos outros elementos */
+  }
+  
+  .spinner-container {
+    position: relative;
+    z-index: 1001; /* Z-index para o spinner */
+  }
+  

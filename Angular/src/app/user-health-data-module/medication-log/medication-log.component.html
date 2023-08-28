@@ -1,0 +1,37 @@
+<main [ngClass]="{'component-padding': !isSummaryView}">
+  <div class="container">
+<h2>Medicamentos</h2>
+<form (submit)="registerMedication()" id="medications-form" class="mb-3">
+  <div class="form-group mb-2">
+    <input [(ngModel)]="medicationName" name="medicationName" type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="dosage" name="dosage" type="text" id="dosage" placeholder="Dosagem" class="form-control">
+  </div>
+  <div class="form-group mb-2">
+    <input [(ngModel)]="time" name="time" type="text" id="time" placeholder="Horário" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-info text-white mb-2">Registrar</button>
+</form>
+<div class="table-responsive shadow rounded">
+  <table id="medications-table" class="table table-hover">
+    <thead>
+      <tr>
+        <th class="break-word small-header">Nome do medicamento</th>
+        <th class="break-word small-header">Dosagem</th>
+        <th class="break-word small-header">Horário</th>
+        <th class="break-word small-header">Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medication of medications">
+        <td>{{ medication.name }}</td>
+        <td>{{ medication.dose }}</td>
+        <td>{{ medication.frequency }}</td>
+        <td>{{ medication.timestamp | date:'dd/MM/yy HH:mm' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</main>

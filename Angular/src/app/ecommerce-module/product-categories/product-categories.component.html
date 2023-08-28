@@ -1,0 +1,40 @@
+<section class="custom-width">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 mb-2" *ngFor="let category of categories">
+      <div class="card h-100 shadow border-0 category-card">
+        <div class="card-body text-center category-card-body">
+          <a [routerLink]="'/product-category/' + category.id" class="category-link">
+            <h5 class="card-title">
+              <i [ngClass]="getCategoryIconClass(category)"></i>
+{{ category.name }}
+            </h5>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
