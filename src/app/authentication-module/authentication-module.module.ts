@@ -4,6 +4,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { PrivacySettingsComponent } from './privacy-settings/privacy-settings.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 
 
@@ -12,10 +17,14 @@ import { PrivacySettingsComponent } from './privacy-settings/privacy-settings.co
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    PrivacySettingsComponent
+    PrivacySettingsComponent,
+    UserProfileComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class AuthenticationModuleModule { }

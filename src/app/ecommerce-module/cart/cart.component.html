@@ -1,1 +1,57 @@
-<p>cart works!</p>
+<Main>
+<div class="container py-5">
+  <h1 class="mb-5 text-center">Carrinho de Compras  <i class="fas fa-shopping-cart"></i></h1>
+  <div *ngIf="loading" class="spinner-overlay">
+    <div class="spinner-container">
+      <div class="spinner-border text-info" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <!-- Seção de carrinho vazio -->
+  <div *ngIf="items.length === 0" class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card mb-3 shadow h-100">
+        <div class="card-body text-center">
+          <i class="fas fa-shopping-cart fa-4x mb-4"></i>
+          <h5 class="card-title">O carrinho está vazio</h5>
+          <p class="card-text">Adicione produtos ao carrinho para começar a compra.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção de produtos no carrinho -->
+  <div class="row row-cols-1 row-cols-md-2 g-4" *ngIf="items.length > 0"> 
+    <div *ngFor="let item of items" class="col">
+      <div class="card mb-3 shadow h-100">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img [src]="item.product.url" alt="Imagem do Produto" class="img-fluid rounded-start">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.product.nomeProduto }}</h5>
+              <p class="card-text">Preço: R$ {{ item.product.preco }}</p>
+              <p class="card-text">Quantidade: {{ item.quantity }}</p>
+              <button class="btn btn-danger" (click)="removeFromCart(item)">Remover</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção de total e checkout -->
+  <div *ngIf="items.length > 0" class="mt-5">
+    <h4 class="text-center">Total de itens: {{ totalItems }}</h4>
+    <h4 class="text-center">Preço total: R$ {{ totalPrice | number:'1.2-2' }}</h4>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary btn-lg mt-3" (click)="checkout()" routerLink="/checkout">Ir para o checkout</button>
+  </div>
+  
+  </div>
+</div>
+
+
+</Main>

@@ -4,6 +4,10 @@ import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { ModalComponent } from './modal/modal.component';
+import { RouterModule } from '@angular/router';
+import { PublicComponentComponent } from './components/public-component/public-component.component';
+import { PrivateComponentComponent } from './components/private-component/private-component.component';
+
 
 
 
@@ -12,10 +16,13 @@ import { ModalComponent } from './modal/modal.component';
     ButtonComponent,
     InputComponent,
     DropdownComponent,
-    ModalComponent
+    ModalComponent,
+    PublicComponentComponent,
+    PrivateComponentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class SharedModuleModule { }
