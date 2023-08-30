@@ -2,6 +2,7 @@ export interface News {
     id: number;
     titulo: string;
     conteudo: string;
+    // Autor: string;
     url: string; // URL da imagem da notícia
   }
 
