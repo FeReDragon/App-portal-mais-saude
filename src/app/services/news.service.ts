@@ -24,9 +24,9 @@ export class NewsService {
     return this.http.get<UserComment[]>(`${this.baseUrl}/comments?newsId=${newsId}`);
   }
 
-  addComment(comment: UserComment): Observable<UserComment> {
+  addComment(comment: Partial<UserComment>): Observable<UserComment> {
     return this.http.post<UserComment>(`${this.baseUrl}/comments`, comment);
-  }
+  }  
 }
 
 
