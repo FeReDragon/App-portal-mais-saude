@@ -18,27 +18,27 @@ export class UserCommentComponent {
 
   addComment() {
     const currentUser = this.authService.getCurrentUser();
-    if (currentUser && currentUser.id && this.currentNewsId !== null) { // Adicione a checagem aqui
-      const newComment: UserComment = {
-        id: this.comments.length + 1,
+    if (currentUser && currentUser.id && this.currentNewsId !== null) {
+      // Remova o campo 'id' para que o json-server gere um automaticamente
+      const newComment: Omit<UserComment, 'id'> = {
         userId: currentUser.id,
         newsId: this.currentNewsId,
         comment: this.newComment
       };
-
-    // Utilize o serviço para adicionar o novo comentário
-    this.newsService.addComment(newComment).subscribe(
-      (addedComment) => {
-        this.comments.push(addedComment);  // Atualize o array local de comentários
-        this.commentAdded.emit(addedComment);  // Emita o evento para atualizar em outros lugares, se necessário
-        this.newComment = '';  // Limpe o campo de entrada
-      },
-      (error) => {
-        console.error('Ocorreu um erro ao adicionar o comentário:', error);
-      }
-    );
+  
+      this.newsService.addComment(newComment as unknown as UserComment).subscribe(
+        (addedComment) => {
+          this.comments.push(addedComment);
+          this.commentAdded.emit(addedComment);
+          this.newComment = '';
+        },
+        (error) => {
+          console.error('Ocorreu um erro ao adicionar o comentário:', error);
+        }
+      );
+    }
   }
-}
+  
 
 }
 
