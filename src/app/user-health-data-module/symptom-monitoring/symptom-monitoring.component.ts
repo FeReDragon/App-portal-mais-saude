@@ -15,7 +15,7 @@ export class SymptomMonitoringComponent implements OnInit {
   intensity: number | null = null;
   frequency: number | null = null;
   duration: string = '';
-  notes: string = '';
+  notes: string = ''; 
   @Input() isSummaryView: boolean = false;
 
   constructor(

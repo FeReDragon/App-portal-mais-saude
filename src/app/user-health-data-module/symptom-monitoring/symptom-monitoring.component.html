@@ -7,17 +7,15 @@
   </div>
 
   <div class="form-group mb-2">
-    <select class="form-control" [(ngModel)]="intensity" name="intensity">
-      <option [ngValue]="null" disabled selected>Intensidade</option>
+    <select class="form-control" [(ngModel)]="intensity" name="intensity" required>
+      <option [ngValue]="null" disabled >Intensidade</option>
       <option [ngValue]="0">Muito Leve</option>
       <option [ngValue]="1">Leve</option>
       <option [ngValue]="2">Moderada</option>
       <option [ngValue]="3">Forte</option>
       <option [ngValue]="4">Muito Forte</option>
-
     </select>
   </div>
-
   <div class="form-group mb-2">
     <input type="number" id="frequency" placeholder="Frequência" class="form-control" [(ngModel)]="frequency" name="frequency">
   </div>

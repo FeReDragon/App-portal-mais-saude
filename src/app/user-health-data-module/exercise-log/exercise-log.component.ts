@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 export class ExerciseLogComponent implements OnInit {
   public exerciseType: string = '';
   public duration: string = '';
-  public intensity?: number;  // Alterado aqui para ser opcional
-  public caloriesBurned?: number;  // Alterado aqui para ser opcional
+  intensity: number | null = null;
+  public caloriesBurned?: number; 
   public timestamp: string = '';
   public exercises: Exercise[] = [];
   @Input() isSummaryView: boolean = false; 
@@ -41,6 +41,19 @@ export class ExerciseLogComponent implements OnInit {
     }
   }
 
+  intensityToText(value: number): string {
+    switch (value) {
+      case 0:
+        return 'Leve';
+      case 1:
+        return 'Moderada';
+      case 2:
+        return 'Intensa';
+      default:
+        return ''; // ou alguma string padrão
+    }
+  }
+
   registerExercise() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
@@ -56,7 +69,7 @@ export class ExerciseLogComponent implements OnInit {
         this.exercises.push(newExercise);
         this.exerciseType = '';
         this.duration = '';
-        this.intensity = undefined;  // Alterado aqui para limpar o campo
+        this.intensity !== null ? this.intensity : 0,  // Alterado aqui para limpar o campo
         this.caloriesBurned = undefined;  // Alterado aqui para limpar o campo
         this.timestamp = '';
       }, (error: any) => {
