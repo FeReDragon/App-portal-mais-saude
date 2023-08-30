@@ -81,6 +81,24 @@ export class SymptomMonitoringComponent implements OnInit {
     }
   }
 
+  intensityToText(value: number): string {
+    switch (value) {
+      case 0:
+        return 'Muito Leve';
+      case 1:
+        return 'Leve';
+      case 2:
+        return 'Moderada';
+      case 3:
+        return 'Forte';
+      case 4:
+        return 'Muito Forte';
+      default:
+        return ''; // ou alguma string padrão
+    }
+  }
+  
+
   resetForm(): void {
     this.symptom = '';
     this.intensity = null;
