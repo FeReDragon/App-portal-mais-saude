@@ -26,7 +26,9 @@
     <div class="row mt-5">
       <div class="col-lg-8 mx-auto">
         <h4 class="text-justify">Comentários</h4>
-        <app-user-comment [comments]="comments"></app-user-comment>
+        <!-- Dentro do seu news-details.component.html -->
+<app-user-comment [currentNewsId]="newsId" [comments]="comments"></app-user-comment>
+
       </div>
     </div>
   </div>

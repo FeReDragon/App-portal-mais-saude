@@ -9,7 +9,7 @@ import { News, UserComment } from '../../interfaces/INews';
   styleUrls: ['./news-details.component.scss']
 })
 export class NewsDetailComponent implements OnInit {
-
+  newsId: number | null = null;  // Inicializado com nully
   newsItem: News = {
     titulo: '', url: '', conteudo: '',
     id: 0
@@ -23,24 +23,34 @@ export class NewsDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const newsId = Number(this.route.snapshot.params['id']); // Converta para Number
-
+    this.newsId = Number(this.route.snapshot.params['id']);  // Atualizado
+    
     // Chamada para obter a notícia pelo ID
-    this.newsService.getNewsById(newsId).subscribe((news: News) => {
-      console.log("Notícia recebida:", news); // Adicione esta linha
-      this.newsItem = news;
-      setTimeout(() => {
-        this.loading = false;
-      }, 300);
-    });
+    this.newsService.getNewsById(this.newsId).subscribe(
+      (news: News) => {
+        console.log("Notícia recebida:", news);
+        this.newsItem = news;
+        this.loading = false; // Defina como false quando a notícia é carregada
+      },
+      (error) => {
+        console.error("Erro ao receber a notícia:", error);
+        this.loading = false; // Defina como false mesmo se a requisição falhar
+      }
+    );
   
-    // Chamada para obter os comentários relacionados à notícia
-    this.newsService.getUserCommentsForNews(newsId).subscribe((comments: UserComment[]) => {
-      console.log("Comentários recebidos:", comments); // Adicione esta linha
-      this.comments = comments;
-    });
+    // Similarmente para comentários
+    this.newsService.getUserCommentsForNews(this.newsId).subscribe(
+      (comments: UserComment[]) => {
+        console.log("Comentários recebidos:", comments);
+        this.comments = comments;
+      },
+      (error) => {
+        console.error("Erro ao receber os comentários:", error);
+      }
+    );
   }
-}
+}  
+
 
 
 
