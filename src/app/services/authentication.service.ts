@@ -1,74 +1,103 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../interfaces/IUsuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:3000/users';
-  private currentUser: User | null;
+  private apiUrl = 'http://localhost:5215/auth';
+  private currentUserSubject: BehaviorSubject<User | null>;
 
   constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User | null>(null);
     const currentUserString = localStorage.getItem('currentUser');
-    this.currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+    if (currentUserString !== null) {
+      this.currentUserSubject.next(JSON.parse(currentUserString));
+      console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
+    }
   }
 
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.get<User[]>(this.apiUrl).pipe(
-      map(users => {
-        const user = users.find(u => u.name === username && u.password === password);
-        if (user !== undefined) {
-          this.currentUser = user;
-          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-          return true;
-        } else {
+  public login(username: string, password: string): Observable<boolean> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
+      .pipe(
+        map(response => {
+          console.log('Resposta da API:', response);
+          if (response && response.token) {
+            const user: User = {
+              id: response.id,
+              username: response.username,
+              name: response.name,
+              password: '',
+              email: response.email,
+              birthday: new Date(response.birthday)
+            };
+            console.log('Usuário transformado:', user);
+            this.currentUserSubject.next(user);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            console.log('Usuário armazenado no local storage:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+            localStorage.setItem('token', response.token);
+            return true;
+          } else {
+            return false;
+          }
+        }),
+        catchError(() => {
+          return throwError('Credenciais inválidas. Por favor, tente novamente.');
+        })
+      );
+  }
+
+  public register(userData: Omit<User, 'id'>): Observable<boolean> {
+    return this.http.post<any>(`${this.apiUrl}/register`, userData)
+      .pipe(
+        map(response => {
+          console.log('Resposta da API ao registrar:', response);
+          if (response && response.token) {
+            const user: User = {
+              id: response.id,
+              username: response.username,
+              name: response.name,
+              password: '',
+              email: response.email,
+              birthday: new Date(response.birthday)
+            };
+            console.log('Usuário transformado ao registrar:', user);
+            this.currentUserSubject.next(user);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            console.log('Usuário armazenado no local storage ao registrar:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+            localStorage.setItem('token', response.token);
+            return true;
+          }
           return false;
-        }
-      }),
-      catchError(() => {
-        return throwError('Credenciais inválidas. Por favor, tente novamente.');
-      })
-    );
+        }),
+        catchError((error: any) => {
+          console.error('Erro ao registrar usuário:', error);
+          return throwError('Erro ao registrar usuário. Por favor, tente novamente.');
+        })
+      );
   }
 
+  public getCurrentUser(): User | null {
+    const currentUser = this.currentUserSubject.getValue();
+    console.log('Obtendo usuário atual:', currentUser);
+    return currentUser;
+  }
 
-register(userData: Omit<User, 'id'>): Observable<boolean> {
-  return this.http.post<User>(this.apiUrl, userData).pipe(
-    map((response: User) => {
-      this.currentUser = {
-        id: response.id,
-        username: response.username,  // adiciona isto
-        name: response.name,
-        password: response.password,
-        birthday: response.birthday,
-        email: response.email
-      };
-      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-      return true;
-    }),
-    catchError(error => {
-      console.error('Erro ao registrar usuário:', error);
-      return throwError('Erro ao registrar usuário. Por favor, tente novamente.');
-    })
-  );
-}
-
-
-  logout(): void {
-    this.currentUser = null;
+  public logout(): void {
+    this.currentUserSubject.next(null);
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
-  isAuthenticated(): boolean {
-    return !!this.currentUser;
-  }
-
-  getCurrentUser(): User | null {
-    return this.currentUser;
+  public isAuthenticated(): boolean {
+    const currentUser = this.currentUserSubject.getValue();
+    return !!currentUser;
   }
 }
+
 
 export { User };
+
