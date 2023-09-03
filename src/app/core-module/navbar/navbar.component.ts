@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService, User } from '../../services/authentication.service';
 import { ThemeService } from '../../services/theme.service';
-import { CartService } from '../../services/cart.service'; // Importe o CartService
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,15 +14,17 @@ export class NavbarComponent {
   password: string = '';
   isDarkTheme = false;
   errorMessage: string = '';
-  totalItemsInCart: number = 0; // Adicione esta propriedade
+  totalItemsInCart: number = 0;
+  currentUser: User | null = null;
 
   constructor(
     public themeService: ThemeService,
     public authService: AuthenticationService,
-    private cartService: CartService // Injete o CartService aqui
+    private cartService: CartService
   ) {
     this.cartService.cartItems.subscribe(items => {
       this.totalItemsInCart = items.reduce((total, item) => total + item.quantity, 0);
+      this.currentUser = this.authService.getCurrentUser();
     });
   }
 
@@ -31,20 +33,16 @@ export class NavbarComponent {
   }
 
   login(): void {
-    // Implemente a lógica de login aqui
-    // Por exemplo, pode chamar o serviço de autenticação
     this.authService.login(this.username, this.password).subscribe(
       (authenticated) => {
         if (authenticated) {
-          // Limpar campos de login após o login bem-sucedido
           this.username = '';
           this.password = '';
         } else {
-          // Tratar erro de login
           alert('Credenciais inválidas. Por favor, tente novamente.');
         }
       },
-      (error) => {
+      (error: any) => {
         console.error('Erro durante o login:', error);
         alert('Erro durante o login. Por favor, tente novamente.');
       }
@@ -55,6 +53,7 @@ export class NavbarComponent {
     this.authService.logout();
   }
 }
+
 
 
 
