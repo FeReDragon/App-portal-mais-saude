@@ -152,12 +152,108 @@
     }
   ],
   "cartItems": [],
-  "medications": [],
-  "exercises": [],
-  "sleepTracker": [],
-  "foodDiary": [],
-  "symptomMonitoring": [],
-  "vitalSigns": [],
+  "medications": [
+    {
+      "userId": 3,
+      "name": "",
+      "dose": 0,
+      "frequency": "",
+      "timestamp": "2023-08-29T14:15:37.705Z",
+      "id": 1
+    }
+  ],
+  "exercises": [
+    {
+      "userId": 3,
+      "exerciseType": "",
+      "duration": "",
+      "intensity": 0,
+      "caloriesBurned": 0,
+      "timestamp": "2023-08-29T14:15:40.106Z",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "exerciseType": "",
+      "duration": "",
+      "intensity": 0,
+      "caloriesBurned": 0,
+      "timestamp": "2023-08-30T16:41:05.561Z",
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "exerciseType": "",
+      "duration": "",
+      "intensity": 2,
+      "caloriesBurned": 0,
+      "timestamp": "2023-08-30T16:41:13.870Z",
+      "id": 3
+    }
+  ],
+  "sleepTracker": [
+    {
+      "userId": 3,
+      "hoursSlept": 0,
+      "sleepQuality": "",
+      "sleepEvents": "",
+      "timestamp": "2023-08-29T14:15:42.036Z",
+      "id": 1
+    }
+  ],
+  "foodDiary": [
+    {
+      "userId": 3,
+      "food": "",
+      "calories": 0,
+      "notes": "",
+      "timestamp": "2023-08-29T14:15:35.035Z",
+      "id": 1
+    }
+  ],
+  "symptomMonitoring": [
+    {
+      "userId": 3,
+      "symptom": "",
+      "intensity": 1,
+      "frequency": 0,
+      "duration": "",
+      "notes": "",
+      "timestamp": "2023-08-30T00:27:19.142Z",
+      "id": 1
+    },
+    {
+      "userId": 3,
+      "symptom": "",
+      "intensity": 3,
+      "frequency": 0,
+      "duration": "",
+      "notes": "",
+      "timestamp": "2023-08-30T01:11:24.857Z",
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "symptom": "",
+      "intensity": 4,
+      "frequency": 0,
+      "duration": "",
+      "notes": "",
+      "timestamp": "2023-08-30T17:17:20.602Z",
+      "id": 3
+    }
+  ],
+  "vitalSigns": [
+    {
+      "userId": 3,
+      "bloodPressure": "120/80",
+      "heartRate": null,
+      "bodyTemperature": null,
+      "bloodGlucose": null,
+      "timestamp": "2023-08-29T14:16:21.761Z",
+      "id": 1
+    }
+  ],
   "news": [
     {
       "id": 1,
@@ -225,14 +321,75 @@
       "id": 1,
       "userId": 3,
       "newsId": 1,
-      "comment": "Comentário do usuário 3 para a notícia 1"
+      "comment": " teste Comentário do usuário 3 para a notícia 1"
     },
     {
       "id": 2,
       "userId": 5,
       "newsId": 1,
-      "comment": "Outro comentário para a notícia 1"
+      "comment": "Outro teste comentário para a notícia 1"
+    },
+    {
+      "id": 3,
+      "userId": 5,
+      "newsId": 1,
+      "comment": "ola"
+    },
+    {
+      "id": 3,
+      "userId": 5,
+      "newsId": 2,
+      "comment": "ola"
+    },
+    {
+      "userId": 5,
+      "newsId": 2,
+      "comment": "eae",
+      "id": 4
+    },
+    {
+      "userId": 5,
+      "newsId": 4,
+      "comment": "foi? ",
+      "id": 5
+    },
+    {
+      "userId": 5,
+      "newsId": 4,
+      "comment": "sim",
+      "id": 6
+    },
+    {
+      "userId": 3,
+      "newsId": 4,
+      "comment": "agora sim ",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "newsId": 6,
+      "comment": "suave ? ",
+      "id": 8
+    },
+    {
+      "userId": 3,
+      "newsId": 6,
+      "comment": "asa",
+      "id": 9
     }
   ],
-  "calendarioVacinas": []
+  "calendarioVacinas": [
+    {
+      "userId": 3,
+      "selectedGroup": "Adolescentes",
+      "selectedVaccine": "HPV quadrivalente",
+      "selectedDoses": [
+        "Primeira Dose",
+        "Segunda Dose - 6 meses"
+      ],
+      "selectedDate": "",
+      "timestamp": "2023-08-29T14:17:19.858Z",
+      "id": 1
+    }
+  ]
 }
