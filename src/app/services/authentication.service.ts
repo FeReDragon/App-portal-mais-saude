@@ -10,6 +10,7 @@ import { User } from '../interfaces/IUsuario';
 export class AuthenticationService {
   private apiUrl = 'http://localhost:5215/auth';
   private currentUserSubject: BehaviorSubject<User | null>;
+  currentUser: User | null;
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User | null>(null);
@@ -18,36 +19,36 @@ export class AuthenticationService {
       this.currentUserSubject.next(JSON.parse(currentUserString));
       console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
     }
+    this.currentUser = this.getCurrentUser();
   }
 
-  public login(username: string, password: string): Observable<boolean> {
-    return this.http.post<any>(`${this.apiUrl}/login`, { username, password })
-      .pipe(
-        map(response => {
-          console.log('Resposta da API:', response);
-          if (response && response.token) {
-            const user: User = {
-              id: response.id,
-              username: response.username,
-              name: response.name,
-              password: '',
-              email: response.email,
-              birthday: new Date(response.birthday)
-            };
-            console.log('Usuário transformado:', user);
-            this.currentUserSubject.next(user);
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            console.log('Usuário armazenado no local storage:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
-            localStorage.setItem('token', response.token);
-            return true;
-          } else {
-            return false;
-          }
-        }),
-        catchError(() => {
-          return throwError('Credenciais inválidas. Por favor, tente novamente.');
-        })
-      );
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
+      map(response => {
+        console.log("Resposta HTTP para login:", response);
+
+        if (response && response.token) {
+          this.currentUser = {
+            id: response.id,
+            username: response.username,
+            name: response.name,
+            password: '',
+            email: response.email,
+            birthday: new Date(response.birthday)
+          };
+
+          console.log("currentUser após login:", this.currentUser);
+
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+          localStorage.setItem('token', response.token);
+          return true;
+        }
+        return false;
+      }),
+      catchError(() => {
+        return throwError('Credenciais inválidas. Por favor, tente novamente.');
+      })
+    );
   }
 
   public register(userData: Omit<User, 'id'>): Observable<boolean> {
