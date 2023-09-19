@@ -50,7 +50,7 @@ export interface SleepTrackerEntry {
   timestamp: Date;
 }
 
-// New interfaces for vaccination tracking
+
 export interface Dose {
   doseName: string;
   checked: boolean;
@@ -62,7 +62,7 @@ export interface Vaccination {
   selectedGroup: string;
   selectedVaccine: string;
   selectedDoses: string[];
-  selectedDate: string;  // Esta linha deve ser adicionada
+  selectedDate: string;  
   timestamp: Date;
 }
 
