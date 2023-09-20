@@ -24,12 +24,12 @@ export class NewsListComponent implements OnInit {
   ngOnInit(): void {
     this.newsService.getAllNews().subscribe((news: News[]) => {
       this.newsList = news;
-      // Simula um atraso de 1,5 segundos antes de parar a exibição do spinner
       setTimeout(() => {
         this.loading = false;
-      }, 300);
+      }, 500);  // Mudança na duração para melhor visualização
     });
   }
+  
 
   handleImageError(event: Event): void {
     const target = event.target as HTMLImageElement;
