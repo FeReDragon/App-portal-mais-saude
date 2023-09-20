@@ -3,7 +3,7 @@ export interface News {
     titulo: string;
     conteudo: string;
     url: string; 
-    // categoryId: number;
+    categoryId?: number; 
   }
 
   export interface UserComment {
