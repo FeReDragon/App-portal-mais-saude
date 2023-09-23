@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs'; // Adicione 'of' para simular um Observable
-import { Product, CartItem, Category, Order } from '../interfaces/IEcommerce';
+import { Product, Category, Order } from '../interfaces/IEcommerce';
+import { CartItem, CartService } from '../services/cart.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +36,16 @@ export class EcommerceService {
     return this.http.post<Order>('http://localhost:5215/orders', order);
   }
 
-  getProductsByCategory(categoryName: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`http://localhost:5215/products?categoria=${categoryName}`);
-  }
+  // Altere a assinatura do método getProductsByCategory para aceitar um número (categoryId)
+getProductsByCategory(categoryId: number): Observable<Product[]> {
+  // Atualize o URL para usar categoryId
+  return this.http.get<Product[]>(`http://localhost:5215/products?categoryId=${categoryId}`);
+}
 
-  getCategories(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:5215/categories');
-  }
+// Se você tiver um tipo definido para Category, substitua any[] por Category[]
+getCategories(): Observable<Category[]> {
+  return this.http.get<Category[]>('http://localhost:5215/categorys');
+}
+
 
 }

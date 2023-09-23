@@ -86,3 +86,5 @@ export class CartService {
   }
 
 }
+export { CartItem };
+
