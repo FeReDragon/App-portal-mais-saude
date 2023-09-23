@@ -11,35 +11,35 @@ export class EcommerceService {
   constructor(private http: HttpClient) {}
 
   getProductList(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3000/products');
+    return this.http.get<Product[]>('http://localhost:5215/products');
   }
 
   getProductDetails(productId: number): Observable<Product> {
-    return this.http.get<Product>(`http://localhost:3000/products/${productId}`);
+    return this.http.get<Product>(`http://localhost:5215/products/${productId}`);
   }
 
   addProductToCart(cartItem: CartItem): Observable<CartItem> {
-    return this.http.post<CartItem>('http://localhost:3000/cartItems', cartItem);
+    return this.http.post<CartItem>('http://localhost:5215/cartItems', cartItem);
   }
 
   updateCartItem(cartItem: CartItem): Observable<CartItem> {
-    return this.http.put<CartItem>(`http://localhost:3000/cartItems/${cartItem.id}`, cartItem);
+    return this.http.put<CartItem>(`http://localhost:5215/cartItems/${cartItem.id}`, cartItem);
   }
 
   deleteCartItem(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:3000/cartItems/${id}`);
+    return this.http.delete<void>(`http://localhost:5215/cartItems/${id}`);
   }
 
   createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>('http://localhost:3000/orders', order);
+    return this.http.post<Order>('http://localhost:5215/orders', order);
   }
 
   getProductsByCategory(categoryName: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`http://localhost:3000/products?categoria=${categoryName}`);
+    return this.http.get<Product[]>(`http://localhost:5215/products?categoria=${categoryName}`);
   }
 
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:3000/categories');
+    return this.http.get<any[]>('http://localhost:5215/categories');
   }
 
 }
