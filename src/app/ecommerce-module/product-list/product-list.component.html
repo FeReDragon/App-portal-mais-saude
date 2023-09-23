@@ -21,7 +21,6 @@
     <app-product-categories></app-product-categories>
   </div>
   
-  
 
   <section class="container py-5 mt-4">
     <div class="row">
@@ -37,7 +36,6 @@
             <h5 class="card-title">{{ product.nomeProduto }}</h5>
             <p class="card-text">{{ product.descricao.slice(0, 100) + (product.descricao.length > 100 ? '...' : '') }}</p>
             <h6>Preço: <span class="text-success">{{ product.preco }}</span></h6>
-            <p class="card-text"><span class="badge bg-primary">{{ getCategoryNameById(product.categoria) }}</span></p>
 
           </div>
           <div class="card-footer d-flex justify-content-between">

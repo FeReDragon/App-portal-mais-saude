@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-import { Product } from '../model/product.model';
 import { EcommerceService } from '../../services/ecommerce.service';
 import { CartService } from '../../services/cart.service';
 import { AuthenticationService, User } from '../../services/authentication.service'; 
+import { Product } from 'src/app/interfaces/IEcommerce';
 
 @Component({
   selector: 'app-product-details',

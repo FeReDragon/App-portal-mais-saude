@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { of, Observable } from 'rxjs';
-import { Product } from '../model/product.model';
+import { Product } from '../../interfaces/IEcommerce';
 import { EcommerceService } from '../../services/ecommerce.service';
 import { CartService } from '../../services/cart.service';
 import { AuthenticationService, User } from '../../services/authentication.service';
