@@ -17,7 +17,7 @@ export class NewsService {
   }
 
   getNewsById(id: number): Observable<News> {
-    return this.http.get<News>(`${this.baseUrl}/getNewsById/${id}`);  // Atualizado endpoint
+    return this.http.get<News>(`${this.baseUrl}/News/${id}`);  // Atualizado endpoint
   }
 
   getUserCommentsForNews(newsId: number): Observable<UserComment[]> {
