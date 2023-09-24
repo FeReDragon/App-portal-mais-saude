@@ -4,8 +4,9 @@ export interface Product {
   nomeProduto: string;
   preco: number;
   descricao: string;
-  categoria: Category; 
+  categoryId: number; // Alterado de Category para categoryId
 }
+
 
 export interface CartItem {
   id: number;
@@ -31,8 +32,8 @@ export interface OrderItem {
 
 export interface Category {
   id: number;
-  name: string;
-  description: string;
-  image: string;
+  categoriaNome: string;
+  descricao: string;
 }
+
 
