@@ -10,6 +10,7 @@ import { EcommerceService } from './ecommerce.service';
 })
 export class CartService {
   private _cartItems = new BehaviorSubject<CartItem[]>([]);
+  private baseUrl = 'http://localhost:5215/'; // Adicionado baseUrl
 
   constructor(private http: HttpClient, private ecommerceService: EcommerceService) {
     const currentUserString = localStorage.getItem('currentUser');
@@ -41,7 +42,7 @@ export class CartService {
       });
     } else {
       this.ecommerceService.addProductToCart({
-        id: 0, // ID será gerado pelo servidor
+        id: 0,
         product,
         quantity: 1,
         userId
@@ -60,7 +61,8 @@ export class CartService {
   }
 
   fetchCartItemsFromServer(userId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(`http://localhost:5215/cartItems?userId=${userId}`).pipe(
+    // Remova a barra extra na URL
+    return this.http.get<CartItem[]>(`${this.baseUrl}cartItems?userId=${userId}`).pipe(
       tap(response => {
         this._cartItems.next(response);
       })
@@ -68,10 +70,7 @@ export class CartService {
   }
 
   clearCart() {
-    // Limpe a lista de itens do carrinho
     this._cartItems.next([]);
-
-    // Chame a API para remover todos os itens do carrinho do servidor também
     const userId = JSON.parse(localStorage.getItem('currentUser') || '{}').id;
     if (userId) {
       this.fetchCartItemsFromServer(userId).subscribe(items => {
@@ -81,10 +80,9 @@ export class CartService {
   }
 
   checkout(order: Order): Observable<Order> {
-    // Substitua por seu modelo de Order
     return this.ecommerceService.createOrder(order);
   }
-
 }
 export { CartItem };
+
 
