@@ -10,7 +10,7 @@ import { EcommerceService } from './ecommerce.service';
 })
 export class CartService {
   private _cartItems = new BehaviorSubject<CartItem[]>([]);
-  private baseUrl = 'http://localhost:5215/'; // Adicionado baseUrl
+  private baseUrl = 'http://localhost:5215/api/Ecommerce'; 
 
   constructor(private http: HttpClient, private ecommerceService: EcommerceService) {
     const currentUserString = localStorage.getItem('currentUser');
@@ -30,7 +30,7 @@ export class CartService {
 
   addToCart(product: Product, userId: number) {
     const cartItems = this.getCurrentCartItemsValue();
-    const itemIndex = cartItems.findIndex(i => i.product.id === product.id);
+    const itemIndex = cartItems.findIndex(i => i.productId === product.id); // Corrigido para productId
 
     if (itemIndex > -1) {
       this.ecommerceService.updateCartItem({
@@ -43,7 +43,7 @@ export class CartService {
     } else {
       this.ecommerceService.addProductToCart({
         id: 0,
-        product,
+        productId: product.id, // Corrigido para productId
         quantity: 1,
         userId
       }).subscribe(newItem => {
@@ -61,13 +61,13 @@ export class CartService {
   }
 
   fetchCartItemsFromServer(userId: number): Observable<CartItem[]> {
-    // Remova a barra extra na URL
-    return this.http.get<CartItem[]>(`${this.baseUrl}cartItems?userId=${userId}`).pipe(
+    return this.http.get<CartItem[]>(`${this.baseUrl}/cartItems/${userId}`).pipe(
       tap(response => {
         this._cartItems.next(response);
       })
     );
   }
+  
 
   clearCart() {
     this._cartItems.next([]);
@@ -83,6 +83,6 @@ export class CartService {
     return this.ecommerceService.createOrder(order);
   }
 }
-export { CartItem };
+export { CartItem, EcommerceService, Product };
 
 
