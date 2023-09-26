@@ -1,3 +1,5 @@
+import { User } from "./IUsuario";
+
 export interface Product {
   id: number;
   url: string;
@@ -10,10 +12,14 @@ export interface Product {
 
 export interface CartItem {
   id: number;
-  product: Product;
+  productId: number;
   quantity: number;
   userId: number;
+  nomeProduto: string;
 }
+
+
+
 
 export interface Order {
   id?: number;
@@ -36,4 +42,6 @@ export interface Category {
   descricao: string;
 }
 
+
+export { User };
 
