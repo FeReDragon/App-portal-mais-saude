@@ -20,18 +20,20 @@ export class UserHealthDataService {
   }
 
   getVitalSignsForUser(userId: number): Observable<VitalSigns[]> {
-    return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalSigns?userId=${userId}`);
+    return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalsign?userId=${userId}`);
   }
+
 
   registerVitalSigns(vitalSigns: VitalSigns): Observable<VitalSigns> {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      vitalSigns.userId = currentUser.id;
-      return this.http.post<VitalSigns>(`${this.baseUrl}/vitalSigns`, vitalSigns);
+        vitalSigns.userId = currentUser.id;
+        return this.http.post<VitalSigns>(`${this.baseUrl}/vitalsign`, vitalSigns);
     } else {
-      throw new Error('Current user not found.');
+        throw new Error('Current user not found.');
     }
-  }
+}
+
 
   getSymptomsForUser(userId: number): Observable<Symptom[]> {
     return this.http.get<Symptom[]>(`${this.baseUrl}/symptomMonitoring?userId=${userId}`);
