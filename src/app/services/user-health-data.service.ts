@@ -85,18 +85,20 @@ export class UserHealthDataService {
   }
 
   getFoodDiaryEntriesForUser(userId: number): Observable<FoodDiaryEntry[]> {
-    return this.http.get<FoodDiaryEntry[]>(`${this.baseUrl}/foodDiary?userId=${userId}`);
+    return this.http.get<FoodDiaryEntry[]>(`${this.baseUrl}/food-diary-entry?userId=${userId}`);
   }
+  
 
   registerFoodDiaryEntry(entry: FoodDiaryEntry): Observable<any> {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
       entry.userId = currentUser.id;
-      return this.http.post(`${this.baseUrl}/foodDiary`, entry);
+      return this.http.post(`${this.baseUrl}/food-diary-entry`, entry);
     } else {
       throw new Error('Current user not found.');
     }
   }
+  
 
   getSleepTrackerEntriesForUser(userId: number): Observable<SleepTrackerEntry[]> {
     return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker?userId=${userId}`);
