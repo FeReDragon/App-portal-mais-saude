@@ -78,11 +78,12 @@ export class UserHealthDataService {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
       exercise.userId = currentUser.id;
-      return this.http.post(`${this.baseUrl}/exercises`, exercise);
+      return this.http.post(`${this.baseUrl}/exercise`, exercise); 
     } else {
       throw new Error('Current user not found.');
     }
   }
+  
 
   getFoodDiaryEntriesForUser(userId: number): Observable<FoodDiaryEntry[]> {
     return this.http.get<FoodDiaryEntry[]>(`${this.baseUrl}/food-diary-entry?userId=${userId}`);
