@@ -1,6 +1,6 @@
 export interface Symptom {
   userId: number;
-  symptom: string;
+  symptomName: string;
   intensity: number | null;
   frequency: number | null;
   duration: string;
@@ -42,14 +42,24 @@ export interface FoodDiaryEntry {
   timestamp: Date;
 }
 
+
+export enum SleepQuality {
+  VeryPoor = 0,
+  Poor = 1,
+  Average = 2,
+  Good = 3,
+  Excellent = 4
+  
+}
+
+
 export interface SleepTrackerEntry {
   userId: number;
   hoursSlept: number;
-  sleepQuality: string;
+  sleepQuality: SleepQuality;
   sleepEvents: string;
   timestamp: Date;
 }
-
 
 export interface Dose {
   doseName: string;
