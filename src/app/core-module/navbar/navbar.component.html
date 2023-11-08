@@ -8,6 +8,7 @@
         <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
         <button class="btn btn-outline-light" type="submit">Pesquisa</button>
       </form>
+      <img src="../../../assets//mascote.png" alt="Ícone" style="height: 50px;">
       <div class="d-flex flex-column align-items-center ms-2">
         <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
         <!-- Aqui estão os botões -->
@@ -63,14 +64,14 @@
     </ul>
 
     <div class="auth-section">
-      <!-- <i class="fas fa-user fa-3x"></i> -->
-      <!-- Mensagem de boas-vindas -->
       <div *ngIf="authService.isAuthenticated()">
+        <button class="btn btn-dark " (click)="logout()">Logout</button>
+        <img src="../../../assets/mascote.png" alt="Ícone" class="float-end my-2" style="height: 75px;">
         <div *ngIf="currentUser">
           <p>Bem-vindo, {{ currentUser.name }}!</p>
         </div>
-        <button class="btn btn-dark mt-3" (click)="logout()">Logout</button>
-      </div>
+        
+      
       
 
       <!-- Formulário de login -->
