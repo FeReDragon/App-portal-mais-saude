@@ -3,7 +3,7 @@
 <h2>Sintomas</h2>
 <form id="symptoms-form" class="mb-3" (ngSubmit)="register()">
   <div class="form-group mb-2">
-    <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptom" name="symptom">
+    <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptomName" name="symptom">
   </div>
 
   <div class="form-group mb-2">
@@ -42,13 +42,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let symptom of symptoms">
-        <td>{{ symptom.symptom }}</td>
+        <td>{{ symptom.symptomName }}</td>
         <td>{{ symptom.intensity !== null ? intensityToText(symptom.intensity) : '' }}</td>
         <td>{{ symptom.frequency !== null ? symptom.frequency : '' }}</td>
         <td>{{ symptom.duration }}</td>
         <td>{{ symptom.notes }}</td>
         <td>{{ symptom.timestamp | date:'dd/MM/yy HH:mm' }}</td>
       </tr>
+      
     </tbody>
   </table>
 </div>
