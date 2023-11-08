@@ -36,12 +36,19 @@ export class UserHealthDataService {
 
 
   getSymptomsForUser(userId: number): Observable<Symptom[]> {
-    return this.http.get<Symptom[]>(`${this.baseUrl}/symptomMonitoring?userId=${userId}`);
+    return this.http.get<Symptom[]>(`${this.baseUrl}/symptom?userId=${userId}`);
   }
 
-  registerSymptom(symptom: Symptom): Observable<any> {
-    return this.http.post(`${this.baseUrl}/symptomMonitoring`, symptom);
+  registerSymptom(symptom: Symptom): Observable<Symptom> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      symptom.userId = currentUser.id; 
+      return this.http.post<Symptom>(`${this.baseUrl}/symptom`, symptom);
+    } else {
+      throw new Error('Current user not found.'); 
+    }
   }
+  
 
   getMedicationById(medicationId: number): Observable<Medication> {
     return this.http.get<Medication>(`${this.baseUrl}/medication/${medicationId}`);
@@ -101,19 +108,25 @@ export class UserHealthDataService {
   }
   
 
-  getSleepTrackerEntriesForUser(userId: number): Observable<SleepTrackerEntry[]> {
-    return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker?userId=${userId}`);
-  }
-
-  registerSleepTrackerEntry(entry: SleepTrackerEntry): Observable<any> {
+  getSleepTrackerEntriesForUser(): Observable<SleepTrackerEntry[]> {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      entry.userId = currentUser.id;
-      return this.http.post(`${this.baseUrl}/sleepTracker`, entry);
+      return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker?userId=${currentUser.id}`);
     } else {
       throw new Error('Current user not found.');
     }
   }
+
+  registerSleepTrackerEntry(entry: SleepTrackerEntry): Observable<SleepTrackerEntry> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      entry.userId = currentUser.id;
+      return this.http.post<SleepTrackerEntry>(`${this.baseUrl}/sleepTracker`, entry);
+    } else {
+      throw new Error('Current user not found.');
+    }
+  }
+
 
   getVaccinationSchedulesForUser(userId: number): Observable<Vaccination[]> {
     return this.http.get<Vaccination[]>(`${this.baseUrl}/calendarioVacinas?userId=${userId}`);
