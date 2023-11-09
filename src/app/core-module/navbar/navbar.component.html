@@ -1,5 +1,5 @@
 <header class="pb-0 mb-0">
-  <nav class="navbar fixed-top bg-info" [class.navbar-dark]="themeService.isDarkTheme()" [class.navbar-light]="!themeService.isDarkTheme()">
+  <nav class="navbar fixed-top bg-personal" [class.navbar-dark]="themeService.isDarkTheme()" [class.navbar-light]="!themeService.isDarkTheme()">
     <div class="container-fluid d-flex align-items-center">
       <button class="navbar-toggler me-4 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
         <button class="btn btn-outline-light" type="submit">Pesquisa</button>
       </form>
-      <img src="../../../assets//mascote.png" alt="Ícone" style="height: 50px;">
+      <img src="../../../assets//novologo.png" alt="Ícone" style="height: 75px;">
       <div class="d-flex flex-column align-items-center ms-2">
         <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
         <!-- Aqui estão os botões -->
@@ -66,7 +66,7 @@
     <div class="auth-section">
       <div *ngIf="authService.isAuthenticated()">
         <button class="btn btn-dark " (click)="logout()">Logout</button>
-        <img src="../../../assets/mascote.png" alt="Ícone" class="float-end my-2" style="height: 75px;">
+        <img src="../../../assets/novologo.png" alt="Ícone" class="float-end my-2" style="height: 75px;">
         <div *ngIf="currentUser">
           <p>Bem-vindo, {{ currentUser.name }}!</p>
         </div>
