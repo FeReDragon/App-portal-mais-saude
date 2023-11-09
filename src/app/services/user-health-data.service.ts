@@ -78,7 +78,7 @@ export class UserHealthDataService {
 
 
   getExercisesForUser(userId: number): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(`${this.baseUrl}/exercises?userId=${userId}`);
+    return this.http.get<Exercise[]>(`${this.baseUrl}/exercise?userId=${userId}`);
   }
 
   registerExercise(exercise: Exercise): Observable<any> {

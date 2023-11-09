@@ -12,70 +12,75 @@ import { Router } from '@angular/router';
 export class ExerciseLogComponent implements OnInit {
   public exerciseType: string = '';
   public duration: string = '';
-  intensity: number | null = null;
-  public caloriesBurned?: number; 
-  public timestamp: string = '';
+  public intensity: number | null = null;
+  public caloriesBurned?: number;
   public exercises: Exercise[] = [];
-  @Input() isSummaryView: boolean = false; 
+  @Input() isSummaryView: boolean = false;
 
   constructor(
     private userHealthDataService: UserHealthDataService,
     private authenticationService: AuthenticationService,
-     private router: Router,
+    private router: Router,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loadExercises();
+  }
+
+  loadExercises(): void {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getExercisesForUser(currentUser.id).subscribe((exercises: Exercise[]) => {
-        this.exercises = exercises;
-      }, (error: any) => {
-        console.log(error);
+      this.userHealthDataService.getExercisesForUser(currentUser.id).subscribe({
+        next: (exercises: Exercise[]) => {
+          this.exercises = exercises;
+        },
+        error: (error) => {
+          console.error('Error fetching exercises:', error);
+        },
       });
     }
   }
 
-  checkIfSummaryView(): void {
-    if (this.router.url.includes('summary')) {
-      this.isSummaryView = true;
-    }
-  }
-
-  intensityToText(value: number): string {
-    switch (value) {
-      case 0:
-        return 'Leve';
-      case 1:
-        return 'Moderada';
-      case 2:
-        return 'Intensa';
-      default:
-        return ''; // ou alguma string padrão
-    }
-  }
-
-  registerExercise() {
+  registerExercise(): void {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
       const newExercise: Exercise = {
         userId: currentUser.id,
         exerciseType: this.exerciseType,
         duration: this.duration,
-        intensity: this.intensity || 0,  // Alterado aqui para usar 0 se intensity for undefined
-        caloriesBurned: this.caloriesBurned || 0,  // Alterado aqui para usar 0 se caloriesBurned for undefined
-        timestamp: new Date()
+        intensity: this.intensity || 0,
+        caloriesBurned: this.caloriesBurned || 0,
+        timestamp: new Date(),
       };
-      this.userHealthDataService.registerExercise(newExercise).subscribe(() => {
-        this.exercises.push(newExercise);
-        this.exerciseType = '';
-        this.duration = '';
-        this.intensity !== null ? this.intensity : 0,  // Alterado aqui para limpar o campo
-        this.caloriesBurned = undefined;  // Alterado aqui para limpar o campo
-        this.timestamp = '';
-      }, (error: any) => {
-        console.log(error);
+
+      this.userHealthDataService.registerExercise(newExercise).subscribe({
+        next: () => {
+          // Após o registro, recarregue a lista de exercícios para obter os dados atualizados
+          this.loadExercises();
+        },
+        error: (error) => {
+          console.error('Error registering exercise:', error);
+        },
       });
+
+      // Limpar o formulário após o registro
+      this.resetForm();
     }
   }
-}
 
+  intensityToText(value: number): string {
+    switch (value) {
+      case 0: return 'Leve';
+      case 1: return 'Moderada';
+      case 2: return 'Intensa';
+      default: return '';
+    }
+  }
+
+  resetForm(): void {
+    this.exerciseType = '';
+    this.duration = '';
+    this.intensity = null;
+    this.caloriesBurned = undefined;
+  }
+}
