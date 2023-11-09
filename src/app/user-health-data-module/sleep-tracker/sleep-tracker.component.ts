@@ -27,7 +27,6 @@ export class SleepTrackerComponent implements OnInit {
   }
 
   getSleepTrackerEntries(): void {
-    // Não é mais necessário obter o currentUser aqui, pois o serviço já cuida disso.
     this.userHealthDataService.getSleepTrackerEntriesForUser().subscribe({
       next: (entries: SleepTrackerEntry[]) => {
         this.sleepTrackerEntries = entries;
@@ -37,39 +36,35 @@ export class SleepTrackerComponent implements OnInit {
       }
     });
   }
-  
 
   register(): void {
-    if (this.hoursSlept && this.sleepQuality) {
-      const currentUser = this.authenticationService.getCurrentUser();
-      if (currentUser?.id) {
-        const newSleepTrackerEntry: SleepTrackerEntry = {
-          userId: currentUser.id,
-          hoursSlept: this.hoursSlept,
-          sleepQuality: this.sleepQuality,
-          sleepEvents: this.sleepEvents,
-          timestamp: new Date()
-        };
-        
-        this.userHealthDataService.registerSleepTrackerEntry(newSleepTrackerEntry).subscribe({
-          next: (response) => {
-            console.log('Sleep Tracker Entry saved:', response);
-            this.resetForm();
-            this.getSleepTrackerEntries(); // Refresh list
-          },
-          error: (error) => {
-            console.error('Error saving sleep tracker entry:', error);
-          }
-        });
-      } else {
-        console.error('Current user not found.');
-      }
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser?.id && this.hoursSlept && this.sleepQuality !== null) {
+      const newSleepTrackerEntry: SleepTrackerEntry = {
+        userId: currentUser.id, // Certifique-se de que userId está sendo passado
+        hoursSlept: this.hoursSlept,
+        sleepQuality: this.sleepQuality,
+        sleepEvents: this.sleepEvents,
+        timestamp: new Date()
+      };
+      
+      this.userHealthDataService.registerSleepTrackerEntry(newSleepTrackerEntry).subscribe({
+        next: (response) => {
+          console.log('Sleep Tracker Entry saved:', response);
+          this.resetForm();
+          this.getSleepTrackerEntries(); // Refresh list
+        },
+        error: (error) => {
+          console.error('Error saving sleep tracker entry:', error);
+        }
+      });
     } else {
       console.error('Hours slept and sleep quality must be set.');
     }
   }
 
   sleepQualityToText(value: SleepQuality): string {
+    // Correção: Garantir que todas as ramificações da função retornem um valor
     switch (value) {
       case SleepQuality.Excellent:
         return 'Excelente';
@@ -87,6 +82,7 @@ export class SleepTrackerComponent implements OnInit {
   }
 
   resetForm(): void {
+    // Correção: Função corrigida para não retornar um valor, pois seu tipo de retorno é void
     this.hoursSlept = null;
     this.sleepQuality = null;
     this.sleepEvents = '';
