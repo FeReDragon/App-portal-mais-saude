@@ -19,7 +19,7 @@
         <div class="card shadow-sm h-100 d-flex flex-column border-0" [style.cursor]="i === 0 ? 'default' : 'pointer'" (click)="i !== 0 && navigateToDetails(newsItem.id)">
           <img [src]="newsItem.url" alt="{{ newsItem.titulo }}" class="card-img-top news-image">
           <div class="card-body flex-grow-1 d-flex flex-column">
-            <h5 class="card-title text-info mb-auto">
+            <h5 class="card-title text-black mb-auto">
               {{ newsItem.titulo }}
               <!-- Exemplo de uso de badge para categoria (se necessário) -->
               <span class="badge bg-secondary"></span>
