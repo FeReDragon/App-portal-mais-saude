@@ -1,1 +1,34 @@
-<p>printable-reports works!</p>
+<!-- Dentro de printable-reports.component.html -->
+<div #reportContent>
+    <h1>Relatório de Saúde</h1>
+    <section *ngIf="vitalSigns.length > 0">
+      <h2>Sinais Vitais</h2>
+      <ul>
+        <li *ngFor="let sign of vitalSigns">
+          Pressão Arterial: {{ sign.bloodPressure }},
+          Frequência Cardíaca: {{ sign.heartRate }},
+          Temperatura Corporal: {{ sign.bodyTemperature }},
+          Glicemia: {{ sign.bloodGlucose }},
+          Data: {{ sign.timestamp | date:'medium' }}
+        </li>
+      </ul>
+    </section>
+    <section *ngIf="symptoms.length > 0">
+      <h2>Sintomas</h2>
+      <ul>
+        <li *ngFor="let symptom of symptoms">
+          Nome: {{ symptom.symptomName }},
+          Intensidade: {{ symptom.intensity }},
+          Frequência: {{ symptom.frequency }},
+          Duração: {{ symptom.duration }},
+          Notas: {{ symptom.notes }},
+          Data: {{ symptom.timestamp | date:'medium' }}
+        </li>
+      </ul>
+    </section>
+    <!-- Repita para os outros tipos de dados -->
+  </div>
+  <button (click)="generatePdf()">Gerar PDF</button>
+  
+  
+
