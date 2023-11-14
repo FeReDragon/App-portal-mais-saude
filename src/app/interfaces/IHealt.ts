@@ -2,7 +2,7 @@ export interface Symptom {
   userId: number;
   symptomName: string;
   intensity: number | null;
-  frequency: number | null;
+  frequency: string;
   duration: string;
   notes: string;
   timestamp: Date;

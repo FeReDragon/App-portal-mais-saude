@@ -151,7 +151,86 @@
       "birthday": "1984-01-26"
     }
   ],
-  "cartItems": [],
+  "cartItems": [
+    {
+      "product": {
+        "id": 1,
+        "url": "https://cdn-cosmos.bluesoft.com.br/products/g-tech-free-1_300x300-PU4e7b2_1.jpg",
+        "nomeProduto": "g-tech",
+        "preco": 199.99,
+        "descricao": "G-Tech Free - Aparelho de Controle de Glicose\n\nMonitore seus níveis de glicose com precisão e facilidade com o G-Tech Free. Projetado para proporcionar leituras rápidas e confiáveis, este aparelho é uma ferramenta essencial para todos que necessitam de um controle contínuo da glicemia.\n\nCaracterísticas Principais:\n- Precisão Avançada: Equipado com tecnologia de ponta, oferece resultados precisos em segundos, ajudando você a manter sua glicose sob controle.\n\n- Design Confortável: Seu design ergonômico permite um manuseio fácil e confortável, ideal para uso diário.\n\n- Memória Integrada: Armazene leituras anteriores e acompanhe as tendências da sua glicemia ao longo do tempo.\n\n- Indicador de Faixa de Glicemia: Saiba rapidamente se seus níveis estão dentro do intervalo desejado, graças ao indicador colorido de faixa de glicemia.\n\n- Uso Simplificado: Com uma interface intuitiva e instruções claras, o G-Tech Free é adequado tanto para iniciantes quanto para usuários experientes.\n\n- Economia e Eficiência: Compatível com tiras de teste G-Tech Free, que requerem uma pequena amostra de sangue, tornando o processo menos invasivo e mais econômico.\n\nMantenha-se saudável e seguro com o G-Tech Free, o parceiro ideal para o controle diário de sua saúde.",
+        "categoria": 1
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 5
+    },
+    {
+      "product": {
+        "id": 6,
+        "url": "https://static.regmarkets.ru/listpreview/images3/30/7e/307e0d02638d5a58d6d8381d220a2b5b.jpg",
+        "nomeProduto": "Generic ",
+        "preco": 12.99,
+        "descricao": "Descrição do Produto 6",
+        "categoria": 4
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 7
+    },
+    {
+      "product": {
+        "id": 7,
+        "url": "https://s2.glbimg.com/xofbbR3ou3-goDFqKFWuCmm-tq0=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2017/1/e/dQ7BuIRBK0y6DxvZcdLw/fosfoetanolamina-suplemento1.jpg",
+        "nomeProduto": "Produto 7",
+        "preco": 10.49,
+        "descricao": "Descrição do Produto 7",
+        "categoria": 5
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 8
+    },
+    {
+      "product": {
+        "id": 8,
+        "url": "https://mass-zone.eu/images/producenci/trec/trec-bcaa-g-force-1150-360-kaps1.webp",
+        "nomeProduto": "Produto 8",
+        "preco": 8.99,
+        "descricao": "Descrição do Produto 8",
+        "categoria": 6
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 9
+    },
+    {
+      "product": {
+        "id": 10,
+        "url": "https://avatars.mds.yandex.net/i?id=6a617498ede9fd663c477699a2a4b4840bf5ca62-4621682-images-thumbs&n=13",
+        "nomeProduto": "Produto 10",
+        "preco": 18.99,
+        "descricao": "Descrição do Produto 10",
+        "categoria": 2
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 10
+    },
+    {
+      "product": {
+        "id": 11,
+        "url": "https://http2.mlstatic.com/bola-de-pilates-suica-gym-ball-65cm-t9-azul-acte-sports-D_Q_NP_601369-MLB43398446506_092020-F.webp",
+        "nomeProduto": "Produto 11",
+        "preco": 20.99,
+        "descricao": "Descrição do Produto 11",
+        "categoria": 3
+      },
+      "quantity": 1,
+      "userId": 5,
+      "id": 11
+    }
+  ],
   "medications": [
     {
       "userId": 3,
@@ -252,6 +331,24 @@
       "bloodGlucose": null,
       "timestamp": "2023-08-29T14:16:21.761Z",
       "id": 1
+    },
+    {
+      "userId": 5,
+      "bloodPressure": "120/80",
+      "heartRate": null,
+      "bodyTemperature": null,
+      "bloodGlucose": null,
+      "timestamp": "2023-09-04T16:14:03.379Z",
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "bloodPressure": "100/65",
+      "heartRate": null,
+      "bodyTemperature": null,
+      "bloodGlucose": null,
+      "timestamp": "2023-09-04T16:15:28.212Z",
+      "id": 3
     }
   ],
   "news": [
@@ -390,6 +487,29 @@
       "selectedDate": "",
       "timestamp": "2023-08-29T14:17:19.858Z",
       "id": 1
+    },
+    {
+      "userId": 2,
+      "selectedGroup": "Crianças",
+      "selectedVaccine": "Hepatite B",
+      "selectedDoses": [
+        "Dose ao nascer",
+        "2 meses"
+      ],
+      "selectedDate": "",
+      "timestamp": "2023-09-19T21:14:19.047Z",
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "selectedGroup": "Crianças",
+      "selectedVaccine": "Febre Amarela",
+      "selectedDoses": [
+        "9 meses"
+      ],
+      "selectedDate": "",
+      "timestamp": "2023-09-19T21:15:41.716Z",
+      "id": 3
     }
   ]
 }

@@ -28,7 +28,7 @@
             <!-- Se for o card em destaque, mostre o botão, senão use a ação no card todo -->
             <div class="mt-auto">
               <a *ngIf="i === 0" [routerLink]="['/news', newsItem.id]" class="btn btn-personal text-white">Leia mais...</a>
-              <p *ngIf="i !== 0" class="text-info">Leia mais...</p>
+              <p *ngIf="i !== 0" class="btn btn-personal text-white">Leia mais...</p>
             </div>
           </div>
         </div>

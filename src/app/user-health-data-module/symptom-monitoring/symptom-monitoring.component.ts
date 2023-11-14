@@ -13,7 +13,7 @@ export class SymptomMonitoringComponent implements OnInit {
   symptoms: Symptom[] = [];
   symptomName: string = '';
   intensity: number | null = null;
-  frequency: number | null = null;
+  frequency: string = '';
   duration: string = '';
   notes: string = ''; 
   @Input() isSummaryView: boolean = false;
@@ -59,7 +59,7 @@ export class SymptomMonitoringComponent implements OnInit {
       userId: 0, 
       symptomName: this.symptomName,
       intensity: this.intensity !== null ? this.intensity : 0,
-      frequency: this.frequency !== null ? this.frequency : 0,
+      frequency: this.frequency,
       duration: this.duration,
       notes: this.notes,
       timestamp: new Date()
@@ -103,7 +103,7 @@ export class SymptomMonitoringComponent implements OnInit {
   resetForm(): void {
     this.symptomName = '';
     this.intensity = null;
-    this.frequency = null;
+    this.frequency = '';
     this.duration = '';
     this.notes = '';
   }
