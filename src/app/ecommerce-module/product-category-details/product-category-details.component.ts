@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Product } from '../model/product.model';
 import { EcommerceService } from '../../services/ecommerce.service';
-import { CartService } from '../../services/cart.service';
-import { AuthenticationService, User } from '../../services/authentication.service'; 
+import { Product } from '../../interfaces/IEcommerce';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-product-category-details',
@@ -22,8 +21,15 @@ export class ProductCategoryDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        const category = params.get('category') ?? ''; // Use uma string vazia como valor padrão se category for null
-        return this.ecommerceService.getProductsByCategory(category);
+        const category = params.get('category');
+        if (category) {
+          // Converta a categoria para number antes de passar para getProductsByCategory
+          return this.ecommerceService.getProductsByCategory(Number(category));
+        } else {
+          // Trate o caso em que a categoria não é fornecida ou não pode ser convertida para número
+          // Por exemplo, você pode retornar um Observable vazio
+          return of([]);
+        }
       })
     ).subscribe(
       (products: Product[]) => {
@@ -35,6 +41,7 @@ export class ProductCategoryDetailsComponent implements OnInit {
       }
     );
   }
+  
   
 }
 

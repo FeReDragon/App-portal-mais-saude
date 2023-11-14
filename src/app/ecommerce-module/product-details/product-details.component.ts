@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
-import { Product } from '../model/product.model';
+import { of } from 'rxjs';
 import { EcommerceService } from '../../services/ecommerce.service';
 import { CartService } from '../../services/cart.service';
 import { AuthenticationService, User } from '../../services/authentication.service'; 
+import { Product } from 'src/app/interfaces/IEcommerce';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +14,7 @@ import { AuthenticationService, User } from '../../services/authentication.servi
 })
 export class ProductDetailsComponent implements OnInit {
   product: Product | undefined;
-  categories: any[] = [];  // Adicione esta linha para armazenar as categorias
+  categories: any[] = [];
   currentUser: User | null = null;
   loading = true;
 
@@ -34,16 +34,13 @@ export class ProductDetailsComponent implements OnInit {
     ).subscribe(
       (product: Product) => {
         this.product = product;
-        setTimeout(() => {
-          this.loading = false;
-        }, 300);
+        this.loading = false;
       },
       (error) => {
         console.error('Error loading product details:', error);
       }
     );
 
-    // Carregue as categorias aqui, como você fez em ProductListComponent
     this.ecommerceService.getCategories().subscribe((categories: any[]) => {
       this.categories = categories;
     });
@@ -53,7 +50,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.currentUser) {
-      this.cartService.addToCart(product, this.currentUser.id);
+      this.cartService.addToCart(product); // Modificado aqui
     }
     return of(null);
   }
@@ -64,7 +61,6 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  // Copie esta função do ProductListComponent
   getCategoryNameById(id: number): string {
     const category = this.categories.find(cat => cat.id === id);
     return category ? category.name : 'Desconhecido';

@@ -3,13 +3,21 @@
 <h2>Sintomas</h2>
 <form id="symptoms-form" class="mb-3" (ngSubmit)="register()">
   <div class="form-group mb-2">
-    <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptom" name="symptom">
+    <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptomName" name="symptom">
+  </div>
+
+  <div class="form-group mb-2">
+    <select class="form-control" [(ngModel)]="intensity" name="intensity" required>
+      <option [ngValue]="null" disabled >Intensidade</option>
+      <option [ngValue]="0">Muito Leve</option>
+      <option [ngValue]="1">Leve</option>
+      <option [ngValue]="2">Moderada</option>
+      <option [ngValue]="3">Forte</option>
+      <option [ngValue]="4">Muito Forte</option>
+    </select>
   </div>
   <div class="form-group mb-2">
-    <input type="number" id="intensity" placeholder="Intensidade" class="form-control" [(ngModel)]="intensity" name="intensity">
-  </div>
-  <div class="form-group mb-2">
-    <input type="number" id="frequency" placeholder="Frequência" class="form-control" [(ngModel)]="frequency" name="frequency">
+    <input type="text" id="frequency" placeholder="Frequência" class="form-control" [(ngModel)]="frequency" name="frequency">
   </div>
   <div class="form-group mb-2">
     <input type="text" id="duration" placeholder="Duração" class="form-control" [(ngModel)]="duration" name="duration">
@@ -17,7 +25,7 @@
   <div class="form-group mb-2">
     <textarea id="notes" placeholder="Notas adicionais" class="form-control" [(ngModel)]="notes" name="notes"></textarea>
   </div>
-  <button type="submit" class="btn btn-info text-white mb-2">Registrar</button>
+  <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
 </form>
 
 <div class="table-responsive shadow rounded">
@@ -34,13 +42,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let symptom of symptoms">
-        <td>{{ symptom.symptom }}</td>
-        <td>{{ symptom.intensity !== null ? symptom.intensity : '' }}</td>
+        <td>{{ symptom.symptomName }}</td>
+        <td>{{ symptom.intensity !== null ? intensityToText(symptom.intensity) : '' }}</td>
         <td>{{ symptom.frequency !== null ? symptom.frequency : '' }}</td>
         <td>{{ symptom.duration }}</td>
         <td>{{ symptom.notes }}</td>
         <td>{{ symptom.timestamp | date:'dd/MM/yy HH:mm' }}</td>
       </tr>
+      
     </tbody>
   </table>
 </div>

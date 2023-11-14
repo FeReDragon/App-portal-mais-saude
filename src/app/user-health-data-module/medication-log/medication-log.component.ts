@@ -23,6 +23,7 @@ export class MedicationLogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.checkIfSummaryView();
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
       this.userHealthDataService.getMedicationsForUser(currentUser.id).subscribe((medications: Medication[]) => {
@@ -54,7 +55,6 @@ export class MedicationLogComponent implements OnInit {
         this.medicationName = '';
         this.dosage = '';
         this.time = '';
-        timestamp: new Date() 
       }, (error: any) => {
         console.log(error);
       });

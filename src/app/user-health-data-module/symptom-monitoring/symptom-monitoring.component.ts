@@ -11,11 +11,11 @@ import { UserHealthDataService } from '../../services/user-health-data.service';
 })
 export class SymptomMonitoringComponent implements OnInit {
   symptoms: Symptom[] = [];
-  symptom: string = '';
+  symptomName: string = '';
   intensity: number | null = null;
-  frequency: number | null = null;
+  frequency: string = '';
   duration: string = '';
-  notes: string = '';
+  notes: string = ''; 
   @Input() isSummaryView: boolean = false;
 
   constructor(
@@ -49,7 +49,7 @@ export class SymptomMonitoringComponent implements OnInit {
   }
 
   register(): void {
-    console.log('Valor de symptom:', this.symptom);
+    console.log('Valor de symptom:', this.symptomName);
     console.log('Valor de intensity:', this.intensity);
     console.log('Valor de frequency:', this.frequency);
     console.log('Valor de duration:', this.duration);
@@ -57,13 +57,14 @@ export class SymptomMonitoringComponent implements OnInit {
 
     const newSymptom: Symptom = {
       userId: 0, 
-      symptom: this.symptom,
+      symptomName: this.symptomName,
       intensity: this.intensity !== null ? this.intensity : 0,
-      frequency: this.frequency !== null ? this.frequency : 0,
+      frequency: this.frequency,
       duration: this.duration,
       notes: this.notes,
       timestamp: new Date()
     };
+    
 
     console.log('New Symptom object:', newSymptom); 
 
@@ -81,10 +82,28 @@ export class SymptomMonitoringComponent implements OnInit {
     }
   }
 
+  intensityToText(value: number): string {
+    switch (value) {
+      case 0:
+        return 'Muito Leve';
+      case 1:
+        return 'Leve';
+      case 2:
+        return 'Moderada';
+      case 3:
+        return 'Forte';
+      case 4:
+        return 'Muito Forte';
+      default:
+        return ''; 
+    }
+  }
+  
+
   resetForm(): void {
-    this.symptom = '';
+    this.symptomName = '';
     this.intensity = null;
-    this.frequency = null;
+    this.frequency = '';
     this.duration = '';
     this.notes = '';
   }

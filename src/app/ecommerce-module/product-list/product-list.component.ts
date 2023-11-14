@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of, Observable } from 'rxjs';
-import { Product } from '../model/product.model';
+import { of } from 'rxjs';
+import { Product } from '../../interfaces/IEcommerce';
 import { EcommerceService } from '../../services/ecommerce.service';
 import { CartService } from '../../services/cart.service';
 import { AuthenticationService, User } from '../../services/authentication.service';
@@ -13,7 +13,7 @@ import { AuthenticationService, User } from '../../services/authentication.servi
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
-  categories: any[] = []; // Nova propriedade para armazenar as categorias
+  categories: any[] = [];
   currentUser: User | null = null;
   loading = true;
 
@@ -25,15 +25,11 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Obter produtos
     this.ecommerceService.getProductList().subscribe((products: Product[]) => {
       this.products = products;
-      setTimeout(() => {
-        this.loading = false;
-      }, 300);
+      this.loading = false;
     });
 
-    // Obter categorias
     this.ecommerceService.getCategories().subscribe((categories: any[]) => {
       this.categories = categories;
     });
@@ -46,7 +42,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product) {
     if (this.currentUser) {
-      this.cartService.addToCart(product, this.currentUser.id);
+      this.cartService.addToCart(product); // Modificado aqui
     }
     return of(null);
   }
@@ -57,7 +53,6 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  // Nova função para encontrar o nome da categoria usando o ID
   getCategoryNameById(id: number): string {
     const category = this.categories.find(cat => cat.id === id);
     return category ? category.name : 'Desconhecido';

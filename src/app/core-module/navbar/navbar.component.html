@@ -1,5 +1,5 @@
 <header class="pb-0 mb-0">
-  <nav class="navbar fixed-top bg-info" [class.navbar-dark]="themeService.isDarkTheme()" [class.navbar-light]="!themeService.isDarkTheme()">
+  <nav class="navbar fixed-top bg-personal" [class.navbar-dark]="themeService.isDarkTheme()" [class.navbar-light]="!themeService.isDarkTheme()">
     <div class="container-fluid d-flex align-items-center">
       <button class="navbar-toggler me-4 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -8,6 +8,7 @@
         <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
         <button class="btn btn-outline-light" type="submit">Pesquisa</button>
       </form>
+      <img src="../../../assets//logo4.png" alt="Ícone" style="height: 75px;">
       <div class="d-flex flex-column align-items-center ms-2">
         <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Portal Mais Saude</a>
         <!-- Aqui estão os botões -->
@@ -32,7 +33,7 @@
   </nav>
 </header>
 
-<div class="offcanvas offcanvas-start offcanvas-custom-width bg-info" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+<div class="offcanvas offcanvas-start offcanvas-custom-width bg-personal" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -63,14 +64,15 @@
     </ul>
 
     <div class="auth-section">
-      <!-- <i class="fas fa-user fa-3x"></i> -->
-      <!-- Mensagem de boas-vindas -->
       <div *ngIf="authService.isAuthenticated()">
-        <div class="text-light mt-3">
-          Bem-vindo, {{ authService.getCurrentUser()?.name }} 
+        <button class="btn btn-dark " (click)="logout()">Logout</button>
+        <img src="../../../assets/logo4.png" alt="Ícone" class="float-end my-2" style="height: 75px;">
+        <div *ngIf="currentUser">
+          <p>Bem-vindo, {{ currentUser.name }}!</p>
         </div>
-        <button class="btn btn-dark mt-3" (click)="logout()">Logout</button>
-      </div>
+        
+      
+      
 
       <!-- Formulário de login -->
       <form (ngSubmit)="login()" #loginForm="ngForm" *ngIf="!authService.isAuthenticated()">
@@ -96,7 +98,7 @@
           <a class="text-primary" routerLink="/register">Cadastre-se</a>
         </div>
         <div class="text-primary">
-          <a href="#" class="text-primary">Esqueceu sua senha?</a>
+          <a class="text-primary" routerLink="/forgot-password" >Esqueceu sua senha?</a>
         </div>
       </form>
     </div>

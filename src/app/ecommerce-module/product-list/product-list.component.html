@@ -1,5 +1,5 @@
 <main>
-<section class="bg-info py-3 mt-0 mb-5 text-white">
+  <section class="bg-personal py-3 mt-0 mb-5 text-white">
     <div class="container text-center">
       <h2 class="fw-bold mt-2 mb-3">Bem-vindo à Loja Virtual Portal Mais Saúde!</h2>
       <p class="mb-2">Aqui, promovemos saúde e bem-estar com uma variedade de produtos naturais, suplementos e equipamentos de ginástica e aparelhos médicos.
@@ -11,38 +11,30 @@
   <div *ngIf="loading" class="spinner-overlay">
     <div class="spinner-container">
       <div class="spinner-border text-info" role="status">
-        <span class="visually-hidden">Loading...</span>
+        <span class="visually-hidden">Carregando...</span>
       </div>
     </div>
   </div>
 
-
   <div class="custom-width">
     <app-product-categories></app-product-categories>
   </div>
-  
-  
 
   <section class="container py-5 mt-4">
     <div class="row">
       <div class="col-lg-3 col-md-3 col-sm-6 mb-4" *ngFor="let product of products">
         <div class="card product-card h-100 shadow border-0">
           <div class="product-image-wrapper">
-            <img [src]="product.url" class="card-img-top product-image my-2" alt="Product Image">
+            <img [src]="product.url" class="card-img-top product-image my-2" alt="Imagem do Produto" onError="this.onerror=null;this.src='/assets/placeholder-image.png';">
           </div>
-          <div class="card-body" 
-          style="background-image: url('https://avatars.mds.yandex.net/i?id=9038c11f2803c96c9e22b503724bfee34eed6c47-9238775-images-thumbs&ref=rim&n=33&w=356&h=200');
-                 background-size: cover; 
-                 background-position: center;">
+          <div class="card-body" style="background-size: cover; background-position: center;">
             <h5 class="card-title">{{ product.nomeProduto }}</h5>
-            <p class="card-text">{{ product.descricao.slice(0, 100) + (product.descricao.length > 100 ? '...' : '') }}</p>
-            <h6>Preço: <span class="text-success">{{ product.preco }}</span></h6>
-            <p class="card-text"><span class="badge bg-primary">{{ getCategoryNameById(product.categoria) }}</span></p>
-
+            <p class="card-text">{{ product.descricao ? (product.descricao.slice(0, 100) + (product.descricao.length > 100 ? '...' : '')) : 'Descrição não disponível' }}</p>
+            <h6>Preço: <span class="text-success">{{ product.preco | currency:'BRL' }}</span></h6>
           </div>
           <div class="card-footer d-flex justify-content-between">
-            <a [routerLink]="['/product-details', product.id]" class="btn btn-info btn-sm my-2 small-text mr-2">Detalhes</a>
-            <a (click)="addToCart(product)" class="btn btn-secondary btn-sm my-2 small-text mr-2"> Add carrinho</a>
+            <a [routerLink]="['/product-details', product.id]" class="btn btn-personal btn-sm my-2 small-text mr-2">Detalhes</a>
+            <a (click)="addToCart(product)" class="btn btn-secondary btn-sm my-2 small-text mr-2"> Add ao Carrinho</a>
             <a (click)="buyNow(product)" class="btn btn-success btn-sm my-2 small-text"> Comprar</a>
           </div>
         </div>

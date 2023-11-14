@@ -2,7 +2,8 @@ export interface News {
     id: number;
     titulo: string;
     conteudo: string;
-    url: string; // URL da imagem da notícia
+    url: string; 
+    categoryId?: number; 
   }
 
   export interface UserComment {

@@ -7,7 +7,7 @@
           <h5 class="card-title">{{ product.nomeProduto }}</h5>
           <p class="card-text">{{ product.descricao }}</p>
           <h6>Preço: {{ product.preco }}</h6>
-          <p class="card-text">Categoria: {{ product.categoria }}</p>
+          <p class="card-text">Categoria: {{ product.categoryId }}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
           <a [routerLink]="['/product-details', product.id]" class="btn btn-primary btn-sm my-2 small-text mr-2">Detalhes</a>

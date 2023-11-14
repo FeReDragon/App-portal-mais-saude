@@ -1,8 +1,8 @@
 export interface Symptom {
   userId: number;
-  symptom: string;
+  symptomName: string;
   intensity: number | null;
-  frequency: number | null;
+  frequency: string;
   duration: string;
   notes: string;
   timestamp: Date;
@@ -42,15 +42,25 @@ export interface FoodDiaryEntry {
   timestamp: Date;
 }
 
+
+export enum SleepQuality {
+  VeryPoor = 0,
+  Poor = 1,
+  Average = 2,
+  Good = 3,
+  Excellent = 4
+  
+}
+
+
 export interface SleepTrackerEntry {
   userId: number;
   hoursSlept: number;
-  sleepQuality: string;
+  sleepQuality: SleepQuality;
   sleepEvents: string;
   timestamp: Date;
 }
 
-// New interfaces for vaccination tracking
 export interface Dose {
   doseName: string;
   checked: boolean;
@@ -62,7 +72,7 @@ export interface Vaccination {
   selectedGroup: string;
   selectedVaccine: string;
   selectedDoses: string[];
-  selectedDate: string;  // Esta linha deve ser adicionada
+  selectedDate: string;  
   timestamp: Date;
 }
 

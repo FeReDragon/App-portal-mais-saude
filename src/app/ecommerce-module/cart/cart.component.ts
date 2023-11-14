@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { CartItem, CartService } from '../../services/cart.service';
+import { Product, EcommerceService } from '../../services/ecommerce.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,19 +10,29 @@ import { CartItem, CartService } from '../../services/cart.service';
 })
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
+  products: Product[] = []; // Supondo que você tem um array de produtos
   totalItems = 0;
   totalPrice = 0;
   loading = true;
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private ecommerceService: EcommerceService // Injetando EcommerceService
+  ) {}
 
   ngOnInit(): void {
     this.cartService.cartItems.subscribe((cartItems: CartItem[]) => {
       this.items = cartItems;
-      this.calculateTotal();
-      setTimeout(() => {
-        this.loading = false;
-      }, 300);
+      
+      // Buscando detalhes dos produtos
+      const productObservables = cartItems.map(item => this.ecommerceService.getProductDetails(item.productId));
+      forkJoin(productObservables).subscribe(products => {
+        this.products = products;
+        this.calculateTotal();
+        setTimeout(() => {
+          this.loading = false;
+        }, 300);
+      });
     });
   }
 
@@ -30,14 +42,13 @@ export class CartComponent implements OnInit {
 
   calculateTotal() {
     this.totalItems = this.items.reduce((total, item) => total + item.quantity, 0);
-    this.totalPrice = this.items.reduce((total, item) => total + (item.product.preco * item.quantity), 0);
+    this.totalPrice = this.products.reduce((total, product, index) => total + (product.preco * this.items[index].quantity), 0);
   }
 
   checkout() {
-    // Implement your checkout logic here
-    // This method will handle the checkout process
-    // For example, you can navigate to a checkout page or show a success message
+    // Implemente sua lógica de finalização de compra aqui
   }
 }
+
 
 

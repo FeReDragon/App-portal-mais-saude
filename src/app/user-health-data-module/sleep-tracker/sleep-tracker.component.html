@@ -1,35 +1,47 @@
 <main [ngClass]="{'component-padding': !isSummaryView}">
   <div class="container">
-<h2>Acompanhamento do Sono</h2>
-<form (submit)="registerSleepTrackerEntry()" id="sleep-tracker-form" class="mb-3">
-  <div class="form-group mb-2">
-    <input [(ngModel)]="hoursSlept" name="hoursSlept" type="number" id="hoursSlept" placeholder="Horas dormidas" class="form-control">
+    <h2>Rastreamento do Sono</h2>
+    <form id="sleep-form" class="mb-3" (ngSubmit)="register()">
+      <div class="form-group mb-2">
+        <input type="number" id="hoursSlept" placeholder="Horas Dormidas" class="form-control" [(ngModel)]="hoursSlept" name="hoursSlept" required>
+      </div>
+
+      <div class="form-group mb-2">
+        <select class="form-control" [(ngModel)]="sleepQuality" name="sleepQuality" required>
+          <option [ngValue]="null" disabled>Qualidade do Sono</option>
+          <option [ngValue]="0">Péssima</option>
+          <option [ngValue]="1">Ruim</option>
+          <option [ngValue]="2">Razoável</option>
+          <option [ngValue]="3">Boa</option>
+          <option [ngValue]="4">Excelente</option>
+        </select>
+      </div>
+      <div class="form-group mb-2">
+        <textarea id="sleepEvents" placeholder="Eventos Notáveis" class="form-control" [(ngModel)]="sleepEvents" name="sleepEvents"></textarea>
+      </div>
+      <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
+    </form>
+
+    <div class="table-responsive shadow rounded">
+      <table id="sleep-table" class="table table-hover">
+        <thead>
+          <tr>
+            <th class="break-word small-header">Horas Dormidas</th>
+            <th class="break-word small-header">Qualidade do Sono</th>
+            <th class="break-word small-header">Eventos Notáveis</th>
+            <th class="break-word small-header">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of sleepTrackerEntries">
+            <td>{{ entry.hoursSlept }}</td>
+            <td>{{ entry.sleepQuality !== null ? sleepQualityToText(entry.sleepQuality) : 'Indefinido' }}</td>
+            <td>{{ entry.sleepEvents }}</td>
+            <td>{{ entry.timestamp | date:'dd/MM/yy HH:mm' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="form-group mb-2">
-    <input [(ngModel)]="sleepQuality" name="sleepQuality" type="text" id="sleepQuality" placeholder="Qualidade do sono" class="form-control">
-  </div>
-  <div class="form-group mb-2">
-    <textarea [(ngModel)]="sleepEvents" name="sleepEvents" id="sleepEvents" placeholder="Eventos relacionados ao sono" class="form-control"></textarea>
-  </div>
-  <button type="submit" class="btn btn-info text-white mb-2">Registrar</button>
-</form>
-<div class="table-responsive shadow rounded">
-  <table id="sleep-tracker-table" class="table table-hover">
-    <thead>
-      <tr>
-        <th class="break-word small-header">Horas dormidas</th>
-        <th class="break-word small-header">Qualidade do sono</th>
-        <th class="break-word small-header">Eventos relacionados ao sono</th>
-        <th class="break-word small-header">Data</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let entry of sleepTrackerEntries">
-        <td>{{ entry.hoursSlept }}</td>
-        <td>{{ entry.sleepQuality }}</td>
-        <td>{{ entry.sleepEvents }}</td>
-        <td>{{ entry.timestamp | date:'dd/MM/yy HH:mm' }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</main>
+

@@ -8,26 +8,23 @@ import { News, UserComment } from '../interfaces/INews';
 })
 export class NewsService {
 
-  private baseUrl = 'http://localhost:3000'; // URL base do JSON Server
+  private baseUrl = 'http://localhost:5215/api'; // Atualizado para o servidor ASP.NET Core
 
   constructor(private http: HttpClient) { }
 
   getAllNews(): Observable<News[]> {
-    return this.http.get<News[]>(`${this.baseUrl}/news`);
+    return this.http.get<News[]>(`${this.baseUrl}/News`);  // Atualizado endpoint
   }
 
   getNewsById(id: number): Observable<News> {
-    return this.http.get<News>(`${this.baseUrl}/news/${id}`);
+    return this.http.get<News>(`${this.baseUrl}/News/${id}`);  // Atualizado endpoint
   }
 
   getUserCommentsForNews(newsId: number): Observable<UserComment[]> {
-    return this.http.get<UserComment[]>(`${this.baseUrl}/comments?newsId=${newsId}`);
+    return this.http.get<UserComment[]>(`${this.baseUrl}/getUserComments/${newsId}`);  // Atualizado endpoint
   }
 
-  addComment(comment: UserComment): Observable<UserComment> {
-    return this.http.post<UserComment>(`${this.baseUrl}/comments`, comment);
-  }
+  addComment(comment: Partial<UserComment>): Observable<UserComment> {
+    return this.http.post<UserComment>(`${this.baseUrl}/addComment`, comment);  // Atualizado endpoint
+  }  
 }
-
-
-
