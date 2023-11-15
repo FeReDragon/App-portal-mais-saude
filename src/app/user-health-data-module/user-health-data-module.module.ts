@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { HealthDataSummaryComponent } from './health-data-summary/health-data-summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination-schedule.component';
+import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-signs-chart.component';
 
 
 
@@ -24,7 +25,8 @@ import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination
     SleepTrackerComponent,
     PrintableReportsComponent,
     HealthDataSummaryComponent,
-    VaccinationScheduleComponent
+    VaccinationScheduleComponent,
+    VitalSignsChartComponent
   ],
   imports: [
     CommonModule,
