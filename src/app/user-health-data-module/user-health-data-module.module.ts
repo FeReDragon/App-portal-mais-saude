@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination-schedule.component';
 import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-signs-chart.component';
 import { SymptomMonitoringChartComponent } from './symptom-monitoring/symptom-monitoring-chart/symptom-monitoring-chart.component';
+import { MedicationLogChartComponent } from './medication-log/medication-log-chart/medication-log-chart.component';
 
 
 
@@ -28,7 +29,8 @@ import { SymptomMonitoringChartComponent } from './symptom-monitoring/symptom-mo
     HealthDataSummaryComponent,
     VaccinationScheduleComponent,
     VitalSignsChartComponent,
-    SymptomMonitoringChartComponent
+    SymptomMonitoringChartComponent,
+    MedicationLogChartComponent
   ],
   imports: [
     CommonModule,
