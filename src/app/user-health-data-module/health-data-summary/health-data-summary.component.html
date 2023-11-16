@@ -39,6 +39,51 @@
     </div>
   </div>
 
+  <div class="container py-5 mt-5 mb-5">
+    <div class="row">
+      <!-- Primeira Coluna -->
+      <div class="col-md-4">
+        <div class="card py-2 my-2 bg-personal2 text-center text-white" style="width: 350px; height: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+          <app-vital-signs-chart></app-vital-signs-chart>
+          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+        </div>
+      </div>
+  
+      <!-- Segunda Coluna -->
+      <div class="col-md-4">
+        <div class="card py-2 my-2 bg-personal2 text-center text-white" style="width: 350px; height: auto;">
+          <app-symptom-monitoring-chart></app-symptom-monitoring-chart>
+          <button routerLink="/symptomMonitoring" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+        </div>
+      </div>
+  
+      <!-- Terceira Coluna -->
+      <div class="col-md-4">
+        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
+          <app-vital-signs-chart></app-vital-signs-chart>
+          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
+          <app-vital-signs-chart></app-vital-signs-chart>
+          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
+          <app-vital-signs-chart></app-vital-signs-chart>
+          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+        </div>
+      </div>
+  
+      <!-- Repita as estruturas de card para as colunas restantes, conforme necessário -->
+    </div>
+  </div>
+  
+
   <div class="container mt-5 chart-container">
     <app-vital-signs-chart></app-vital-signs-chart>
   </div>

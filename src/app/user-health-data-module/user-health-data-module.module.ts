@@ -12,6 +12,7 @@ import { HealthDataSummaryComponent } from './health-data-summary/health-data-su
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination-schedule.component';
 import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-signs-chart.component';
+import { SymptomMonitoringChartComponent } from './symptom-monitoring/symptom-monitoring-chart/symptom-monitoring-chart.component';
 
 
 
@@ -26,7 +27,8 @@ import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-
     PrintableReportsComponent,
     HealthDataSummaryComponent,
     VaccinationScheduleComponent,
-    VitalSignsChartComponent
+    VitalSignsChartComponent,
+    SymptomMonitoringChartComponent
   ],
   imports: [
     CommonModule,
