@@ -39,50 +39,73 @@
     </div>
   </div>
 
-  <div class="container py-5 mt-5 mb-5">
-    <div class="row">
+  <div class="container py-5 my-5">
+    <div class="row g-4"> <!-- 'g-4' adiciona um gap entre os cards -->
+  
       <!-- Primeira Coluna -->
-      <div class="col-md-4">
-        <div class="card py-2 my-2 bg-personal2 text-center text-white" style="width: 350px; height: auto; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-          <app-vital-signs-chart></app-vital-signs-chart>
-          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-vital-signs-chart></app-vital-signs-chart>
+            <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
         </div>
       </div>
   
       <!-- Segunda Coluna -->
-      <div class="col-md-4">
-        <div class="card py-2 my-2 bg-personal2 text-center text-white" style="width: 350px; height: auto;">
-          <app-symptom-monitoring-chart></app-symptom-monitoring-chart>
-          <button routerLink="/symptomMonitoring" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-symptom-monitoring-chart></app-symptom-monitoring-chart>
+            <button routerLink="/symptomMonitoring" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
         </div>
       </div>
   
       <!-- Terceira Coluna -->
-      <div class="col-md-4">
-        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
-          <app-medication-log-chart></app-medication-log-chart>
-          <button routerLink="/medication-log" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
-          <app-food-diary-chart></app-food-diary-chart>
-          <button routerLink="/food-diary" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card py-2 my-2 bg-personal" style="width: 350px; height: auto;">
-          <app-vital-signs-chart></app-vital-signs-chart>
-          <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white">Registrar/Histórico</button>
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-medication-log-chart></app-medication-log-chart>
+            <button routerLink="/medication-log" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
         </div>
       </div>
   
-      <!-- Repita as estruturas de card para as colunas restantes, conforme necessário -->
+      <!-- Quarta Coluna -->
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-food-diary-chart></app-food-diary-chart>
+            <button routerLink="/food-diary" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Quinta Coluna -->
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-exercise-log-chart></app-exercise-log-chart>
+            <button routerLink="/exercise-log" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Sexta Coluna -->
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <app-sleep-tracker-chart></app-sleep-tracker-chart>
+            <button routerLink="/sleep-tracker" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   
+  
+<!--   
 
   <div class="container mt-5 chart-container">
     <app-vital-signs-chart></app-vital-signs-chart>
@@ -183,4 +206,4 @@
         </div>
     </div>
 </div>
-
+ -->

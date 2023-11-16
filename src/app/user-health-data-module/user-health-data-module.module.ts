@@ -15,6 +15,8 @@ import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-
 import { SymptomMonitoringChartComponent } from './symptom-monitoring/symptom-monitoring-chart/symptom-monitoring-chart.component';
 import { MedicationLogChartComponent } from './medication-log/medication-log-chart/medication-log-chart.component';
 import { FoodDiaryChartComponent } from './food-diary/food-diary-chart/food-diary-chart.component';
+import { ExerciseLogChartComponent } from './exercise-log/exercise-log-chart/exercise-log-chart.component';
+import { SleepTrackerChartComponent } from './sleep-tracker/sleep-tracker-chart/sleep-tracker-chart.component';
 
 
 
@@ -32,7 +34,9 @@ import { FoodDiaryChartComponent } from './food-diary/food-diary-chart/food-diar
     VitalSignsChartComponent,
     SymptomMonitoringChartComponent,
     MedicationLogChartComponent,
-    FoodDiaryChartComponent
+    FoodDiaryChartComponent,
+    ExerciseLogChartComponent,
+    SleepTrackerChartComponent
   ],
   imports: [
     CommonModule,

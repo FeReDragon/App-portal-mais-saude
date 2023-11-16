@@ -45,17 +45,16 @@
 
   }
 
-  // #vitalSignsChart {
-  //   max-width: 500px;
-  //   max-height: 500px;
-  //   width: 100%; /* Isso garante que o gráfico seja responsivo */
-  //   height: auto; /* Altura automática para manter a proporção */
-  // }
-  // .chart-container {
-  //   display: flex;
-  //   justify-content: center; /* Centraliza o gráfico */
-  //   max-width: 350px;
-  //   margin: auto; /* Centraliza o contêiner */
-  // }
+  .card-equal-height {
+    display: flex; /* Flex para manter a altura igual */
+    flex-direction: column; /* Orientação da coluna para os itens flex */
+    height: 100%; /* Define a altura para 100% dentro de seu container flex */
+  }
+  
+  .card-body {
+    flex: 1; /* Faz com que o corpo do card ocupe todo o espaço disponível */
+    display: flex; /* Habilita o display flex no corpo do card */
+   
+  }  
     
   
