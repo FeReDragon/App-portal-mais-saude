@@ -14,6 +14,7 @@ import { VaccinationScheduleComponent } from './vaccination-schedule/vaccination
 import { VitalSignsChartComponent } from './vital-signs/vital-signs-chart/vital-signs-chart.component';
 import { SymptomMonitoringChartComponent } from './symptom-monitoring/symptom-monitoring-chart/symptom-monitoring-chart.component';
 import { MedicationLogChartComponent } from './medication-log/medication-log-chart/medication-log-chart.component';
+import { FoodDiaryChartComponent } from './food-diary/food-diary-chart/food-diary-chart.component';
 
 
 
@@ -30,7 +31,8 @@ import { MedicationLogChartComponent } from './medication-log/medication-log-cha
     VaccinationScheduleComponent,
     VitalSignsChartComponent,
     SymptomMonitoringChartComponent,
-    MedicationLogChartComponent
+    MedicationLogChartComponent,
+    FoodDiaryChartComponent
   ],
   imports: [
     CommonModule,
