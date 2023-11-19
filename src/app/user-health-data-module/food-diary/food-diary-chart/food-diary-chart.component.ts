@@ -33,7 +33,6 @@ export class FoodDiaryChartComponent implements OnInit {
 
   aggregateCalories() {
     this.foodDiaryEntries.forEach(entry => {
-      // Converte o timestamp de string para Date, se necessário
       const entryDate = new Date(entry.timestamp);
       const date = entryDate.toISOString().split('T')[0]; // Obtém a data no formato 'YYYY-MM-DD'
   

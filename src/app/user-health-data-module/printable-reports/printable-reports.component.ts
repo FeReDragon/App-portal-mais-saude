@@ -36,7 +36,7 @@ export class PrintableReportsComponent implements OnDestroy {
   ngOnInit(): void {
     if (this.currentUser && this.currentUser.id) {
       const userId = this.currentUser.id;
-      const vitalSigns$ = this.healthDataService.getVitalSignsForUser(userId);
+      const vitalSigns$ = this.healthDataService.getVitalSignsForUser();
       const symptoms$ = this.healthDataService.getSymptomsForUser(userId);
       // ... other data fetch calls
   

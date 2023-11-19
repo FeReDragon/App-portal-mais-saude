@@ -30,7 +30,7 @@ export class VitalSignsChartComponent implements OnInit {
   ngOnInit() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getVitalSignsForUser(currentUser.id).subscribe(data => {
+      this.userHealthDataService.getVitalSignsForUser().subscribe(data => {
         this.vitalSignsData = data;
         this.processData();
         this.initializeChart();

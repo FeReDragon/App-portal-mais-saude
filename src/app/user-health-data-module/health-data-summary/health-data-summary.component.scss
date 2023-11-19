@@ -33,9 +33,10 @@
     
   }
   .bg-personal2 {
-    background: rgba(52, 143, 79, 0.185); /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, rgba(86, 180, 211, 0.7), rgba(52, 143, 80, 0.7)); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, rgba(86, 180, 211, 0.7), rgba(52, 143, 80, 0.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #fc4a1a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
   .btn-personal {
     border: none;

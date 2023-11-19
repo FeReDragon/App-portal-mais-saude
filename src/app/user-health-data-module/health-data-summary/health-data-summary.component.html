@@ -6,28 +6,40 @@
 </section>
 
 <div class="container mt-5">
-    <!-- Primeira Linha -->
-    <div class="row justify-content-center">
-      <div *ngFor="let card of cards.slice(0, 4);" class="col-3">
-        <div class="card border-0 shadow bg-personal">
-          <div class="card-body">
-            <i class="{{ getCardIconClass(card) }} text-white"></i> <p class="card-text text-white">{{ card.text }}</p>
+      <!-- Primeira Linha -->
+      <div class="container">
+        <!-- Primeira Linha -->
+        <div class="row justify-content-center">
+          <div *ngFor="let card of cards.slice(0, 4);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 border-0 shadow bg-transparent">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="{{ getCardIconClass(card) }}  me-2"></i>
+                  <h5 class="card-title mb-0">{{ card.text }}</h5>
+                </div>
+                <p class="card-text">{{ card.desc }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Segunda Linha -->
+        <div class="row justify-content-center mt-2">
+          <div *ngFor="let card of cards.slice(4, 8);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 border-0 shadow bg-transparent">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="{{ getCardIconClass(card) }} me-2"></i>
+                  <h5 class="card-title mb-0">{{ card.text }}</h5>
+                </div>
+                <p class="card-text">{{ card.desc }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  
-    <!-- Segunda Linha -->
-    <div class="row justify-content-center mt-2">
-      <div *ngFor="let card of cards.slice(4, 8);" class="col-3">
-        <div class="card border-0 shadow bg-personal">
-          <div class="card-body">
-            <i class="{{ getCardIconClass(card) }} text-white"></i> <!-- Adicionei a classe text-white aqui -->
-            <p class="card-text text-white">{{ card.text }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      
+    
   </div>
   
 
@@ -44,60 +56,69 @@
   
       <!-- Primeira Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-vital-signs-chart></app-vital-signs-chart>
-            <button routerLink="/vital-signs" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/vital-signs" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
           </div>
         </div>
       </div>
   
       <!-- Segunda Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-symptom-monitoring-chart></app-symptom-monitoring-chart>
-            <button routerLink="/symptomMonitoring" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/symptomMonitoring" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
           </div>
         </div>
       </div>
   
       <!-- Terceira Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-medication-log-chart></app-medication-log-chart>
-            <button routerLink="/medication-log" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/medication-log" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
           </div>
         </div>
       </div>
   
       <!-- Quarta Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-food-diary-chart></app-food-diary-chart>
-            <button routerLink="/food-diary" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/food-diary" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
           </div>
         </div>
       </div>
   
       <!-- Quinta Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-exercise-log-chart></app-exercise-log-chart>
-            <button routerLink="/exercise-log" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/exercise-log" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
           </div>
         </div>
       </div>
   
       <!-- Sexta Coluna -->
       <div class="col-xl-4 col-lg-6 col-md-6 col-12">
-        <div class="card card-equal-height bg-light text-center text-white shadow-sm rounded">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
           <div class="card-body d-flex flex-column justify-content-between">
             <app-sleep-tracker-chart></app-sleep-tracker-chart>
-            <button routerLink="/sleep-tracker" type="button" class="btn btn-personal text-white mt-3">Registrar/Histórico</button>
+            <button routerLink="/sleep-tracker" type="button" class="btn btn-secondary text-white mt-3">Registrar/Histórico</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-lg-6 col-md-6 col-12">
+        <div class="card card-equal-height bg-light text-center shadow-sm rounded border-0">
+          <div class="card-body d-flex flex-column justify-content-between">
+            <!-- <app-printable-reports></app-printable-reports> -->
+            <button routerLink="/printable-reports" type="button" class="btn btn-secondary text-white mt-3">Relatorio para Impressao</button>
           </div>
         </div>
       </div>
