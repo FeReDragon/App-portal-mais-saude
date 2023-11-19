@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Exercise, FoodDiaryEntry, Medication, SleepTrackerEntry, Symptom, Vaccination, VitalSigns } from '../interfaces/IHealt';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -37,11 +37,16 @@ export class UserHealthDataService {
     } else {
         throw new Error('Current user not found.');
     }
-}
+  }
 
 
-  getSymptomsForUser(userId: number): Observable<Symptom[]> {
-    return this.http.get<Symptom[]>(`${this.baseUrl}/symptom?userId=${userId}`);
+  getSymptomsForUser(): Observable<Symptom[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<Symptom[]>(`${this.baseUrl}/symptom/user/${currentUser.id}`);
+    } else {
+      return throwError(new Error('Current user not found.'));
+    }
   }
 
   registerSymptom(symptom: Symptom): Observable<Symptom> {

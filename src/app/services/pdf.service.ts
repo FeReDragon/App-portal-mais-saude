@@ -15,7 +15,7 @@ export class PdfService {
   public generatePdfForUser(userId: number, duration: number, title: string): void {
     forkJoin({
       vitalSigns: this.healthDataService.getVitalSignsForUser(),
-      symptoms: this.healthDataService.getSymptomsForUser(userId),
+      symptoms: this.healthDataService.getSymptomsForUser(),
       medications: this.healthDataService.getMedicationsForUser(userId),
       exercises: this.healthDataService.getExercisesForUser(userId),
       foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(userId),
