@@ -23,7 +23,7 @@ export class SymptomMonitoringChartComponent implements OnInit {
   ngOnInit() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getSymptomsForUser(currentUser.id).subscribe(data => {
+      this.userHealthDataService.getSymptomsForUser().subscribe(data => {
         this.symptomsData = data;
         this.calculateSymptomFrequencies();
         this.initializeChart();

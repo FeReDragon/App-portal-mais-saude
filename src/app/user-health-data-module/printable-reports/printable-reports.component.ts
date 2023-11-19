@@ -37,7 +37,7 @@ export class PrintableReportsComponent implements OnDestroy {
     if (this.currentUser && this.currentUser.id) {
       const userId = this.currentUser.id;
       const vitalSigns$ = this.healthDataService.getVitalSignsForUser();
-      const symptoms$ = this.healthDataService.getSymptomsForUser(userId);
+      const symptoms$ = this.healthDataService.getSymptomsForUser();
       // ... other data fetch calls
   
       const subscription = forkJoin({
