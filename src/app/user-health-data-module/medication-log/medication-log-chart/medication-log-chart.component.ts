@@ -23,7 +23,7 @@ export class MedicationLogChartComponent implements OnInit {
   ngOnInit() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getMedicationsForUser(currentUser.id).subscribe(data => {
+      this.userHealthDataService.getMedicationsForUser().subscribe(data => {
         this.medicationsData = data;
         this.calculateMedicationFrequencies();
         this.initializeChart();

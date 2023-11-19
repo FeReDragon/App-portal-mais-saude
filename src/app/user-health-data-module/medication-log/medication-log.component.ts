@@ -26,7 +26,7 @@ export class MedicationLogComponent implements OnInit {
     this.checkIfSummaryView();
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getMedicationsForUser(currentUser.id).subscribe((medications: Medication[]) => {
+      this.userHealthDataService.getMedicationsForUser().subscribe((medications: Medication[]) => {
         this.medications = medications;
       }, (error: any) => {
         console.log(error);
