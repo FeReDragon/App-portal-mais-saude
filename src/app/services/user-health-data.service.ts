@@ -19,8 +19,13 @@ export class UserHealthDataService {
     return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalSigns`);
   }
 
-  getVitalSignsForUser(userId: number): Observable<VitalSigns[]> {
-    return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalsign?userId=${userId}`);
+  getVitalSignsForUser(): Observable<VitalSigns[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalsign/user/${currentUser.id}`);
+    } else {
+      throw new Error('Current user not found.');
+    }
   }
 
 
