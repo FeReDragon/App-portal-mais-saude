@@ -1,9 +1,9 @@
-<section class="custom-width">
-  <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4 mb-2" *ngFor="let category of categories">
-      <div class="card h-100 shadow border-0 category-card">
-        <div class="card-body text-center bg-personal">
-          <a [routerLink]="'/product-category/' + category.id" class="category-link">
+<section>
+  <div class="row justify-content-center row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
+    <div *ngFor="let category of categories" class="col d-flex">
+      <div class="card h-100 shadow border-0 category-card bg-transparent">
+        <div class="card-body text-center bg-transparent">
+          <a [routerLink]="'/product-category/' + category.id" class="stretched-link category-link text-decoration-none text-dark">
             <h5 class="card-title">
               {{ category.categoriaNome }}
             </h5>
@@ -13,6 +13,7 @@
     </div>
   </div>
 </section>
+
 
 
 
