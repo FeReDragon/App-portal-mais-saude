@@ -59,7 +59,14 @@ export class UserHealthDataService {
     }
   }
   
-
+  getMedicationsForUser(): Observable<Medication[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<Medication[]>(`${this.baseUrl}/medication/user/${currentUser.id}`);
+    } else {
+      throw new Error('Current user not found.');
+    }
+  }
   getMedicationById(medicationId: number): Observable<Medication> {
     return this.http.get<Medication>(`${this.baseUrl}/medication/${medicationId}`);
   }
@@ -70,10 +77,6 @@ export class UserHealthDataService {
 
   deleteMedication(medicationId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/medication/${medicationId}`);
-  }
-
-  getMedicationsForUser(userId: number): Observable<Medication[]> {
-    return this.http.get<Medication[]>(`${this.baseUrl}/medication?userId=${userId}`);
   }
 
   registerMedication(medication: Medication): Observable<Medication> {

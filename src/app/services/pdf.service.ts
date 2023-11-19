@@ -16,7 +16,7 @@ export class PdfService {
     forkJoin({
       vitalSigns: this.healthDataService.getVitalSignsForUser(),
       symptoms: this.healthDataService.getSymptomsForUser(),
-      medications: this.healthDataService.getMedicationsForUser(userId),
+      medications: this.healthDataService.getMedicationsForUser(),
       exercises: this.healthDataService.getExercisesForUser(userId),
       foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(userId),
       sleepTrackerEntries: this.healthDataService.getSleepTrackerEntriesForUser(),
