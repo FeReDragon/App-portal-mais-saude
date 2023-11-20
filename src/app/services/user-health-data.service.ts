@@ -133,7 +133,7 @@ getExercisesForUser(): Observable<Exercise[]> {
   getSleepTrackerEntriesForUser(): Observable<SleepTrackerEntry[]> {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker?userId=${currentUser.id}`);
+      return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker/user/${currentUser.id}`);
     } else {
       throw new Error('Current user not found.');
     }
