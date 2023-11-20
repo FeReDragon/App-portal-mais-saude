@@ -14,13 +14,13 @@ export class PdfService {
 
   public generatePdfForUser(userId: number, duration: number, title: string): void {
     forkJoin({
-      vitalSigns: this.healthDataService.getVitalSignsForUser(),
-      symptoms: this.healthDataService.getSymptomsForUser(),
-      medications: this.healthDataService.getMedicationsForUser(),
-      exercises: this.healthDataService.getExercisesForUser(userId),
-      foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(),
-      sleepTrackerEntries: this.healthDataService.getSleepTrackerEntriesForUser(),
-      vaccinationSchedules: this.healthDataService.getVaccinationSchedulesForUser(userId)
+    vitalSigns: this.healthDataService.getVitalSignsForUser(),
+    symptoms: this.healthDataService.getSymptomsForUser(),
+    medications: this.healthDataService.getMedicationsForUser(),
+    exercises: this.healthDataService.getExercisesForUser(),
+    foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(),
+    sleepTrackerEntries: this.healthDataService.getSleepTrackerEntriesForUser(),
+    vaccinationSchedules: this.healthDataService.getVaccinationSchedulesForUser(userId)
     }).pipe(
       map(data => {
         // Aqui você processaria todos os dados e os formataria para a saída do PDF

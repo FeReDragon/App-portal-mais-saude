@@ -23,7 +23,7 @@ export class ExerciseLogChartComponent implements OnInit {
   ngOnInit() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getExercisesForUser(currentUser.id).subscribe(data => {
+      this.userHealthDataService.getExercisesForUser().subscribe(data => {
         this.exercisesData = data;
         this.aggregateCaloriesBurned();
         this.initializeChart();

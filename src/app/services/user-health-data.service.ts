@@ -90,9 +90,14 @@ export class UserHealthDataService {
 }
 
 
-  getExercisesForUser(userId: number): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(`${this.baseUrl}/exercise?userId=${userId}`);
+getExercisesForUser(): Observable<Exercise[]> {
+  const currentUser = this.authenticationService.getCurrentUser();
+  if (currentUser && currentUser.id) {
+    return this.http.get<Exercise[]>(`${this.baseUrl}/exercise/user/${currentUser.id}`);
+  } else {
+    throw new Error('Current user not found.');
   }
+}
 
   registerExercise(exercise: Exercise): Observable<any> {
     const currentUser = this.authenticationService.getCurrentUser();
