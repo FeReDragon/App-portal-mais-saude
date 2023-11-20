@@ -53,6 +53,10 @@ export class AuthenticationService {
       })
     );
   }
+  public getCurrentUserObservable(): Observable<User | null> {
+  return this.currentUserSubject.asObservable();
+}
+
 
   public register(userData: Omit<User, 'id'>): Observable<boolean> {
     return this.http.post<any>(`${this.apiUrl}/register`, userData)
