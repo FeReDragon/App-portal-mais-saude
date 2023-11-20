@@ -26,7 +26,7 @@ export class AuthenticationService {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
       map(response => {
         console.log("Resposta HTTP para login:", response);
-
+  
         if (response && response.token) {
           this.currentUser = {
             id: response.id,
@@ -36,9 +36,12 @@ export class AuthenticationService {
             email: response.email,
             birthday: new Date(response.birthday)
           };
-
+  
           console.log("currentUser após login:", this.currentUser);
-
+  
+          // Atualiza o currentUserSubject com o novo estado do usuário
+          this.currentUserSubject.next(this.currentUser);
+  
           localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           localStorage.setItem('token', response.token);
           return true;
