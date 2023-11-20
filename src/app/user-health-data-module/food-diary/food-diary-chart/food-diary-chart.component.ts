@@ -23,7 +23,7 @@ export class FoodDiaryChartComponent implements OnInit {
   ngOnInit() {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      this.userHealthDataService.getFoodDiaryEntriesForUser(currentUser.id).subscribe(data => {
+      this.userHealthDataService.getFoodDiaryEntriesForUser().subscribe(data => {
         this.foodDiaryEntries = data;
         this.aggregateCalories();
         this.initializeChart();

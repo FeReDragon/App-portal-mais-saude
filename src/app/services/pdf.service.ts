@@ -18,7 +18,7 @@ export class PdfService {
       symptoms: this.healthDataService.getSymptomsForUser(),
       medications: this.healthDataService.getMedicationsForUser(),
       exercises: this.healthDataService.getExercisesForUser(userId),
-      foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(userId),
+      foodDiaryEntries: this.healthDataService.getFoodDiaryEntriesForUser(),
       sleepTrackerEntries: this.healthDataService.getSleepTrackerEntriesForUser(),
       vaccinationSchedules: this.healthDataService.getVaccinationSchedulesForUser(userId)
     }).pipe(
