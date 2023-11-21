@@ -88,6 +88,21 @@ export class AuthenticationService {
       );
   }
 
+  public forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgotpassword`, { email }, { responseType: 'text' })
+      .pipe(
+        catchError(error => throwError(error))
+      );
+  }
+  
+
+  public resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/resetpassword`, { token, newPassword }, { responseType: 'text' })
+      .pipe(
+        catchError(error => throwError(error))
+      );
+  }  
+
   public getCurrentUser(): User | null {
     const currentUser = this.currentUserSubject.getValue();
     console.log('Obtendo usuário atual:', currentUser);
