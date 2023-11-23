@@ -68,14 +68,10 @@ export class VitalSignsChartComponent implements OnInit {
   
 
   initializeChart() {
-    // Primeiro, obtemos o elemento canvas do DOM
     const canvas = <HTMLCanvasElement>document.getElementById('vitalSignsChart');
-    // Em seguida, obtemos o contexto de renderização 2D do canvas
     const ctx = canvas.getContext('2d');
 
-    // Verificamos se o contexto não é null
     if (ctx) {
-        // Se o contexto é válido, inicializamos o gráfico
         const chart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -83,28 +79,43 @@ export class VitalSignsChartComponent implements OnInit {
                 datasets: [{
                     label: 'Pressão Sistólica',
                     data: this.bloodPressureSystolicData,
-                    borderColor: 'red',
-                    // Outras configurações específicas do dataset
+                    borderColor: '#FF6384',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    pointBackgroundColor: '#FF6384',
+                    borderWidth: 2,
+                    tension: 0.4
                 }, {
                     label: 'Pressão Diastólica',
                     data: this.bloodPressureDiastolicData,
-                    borderColor: 'blue',
-                    // Outras configurações específicas do dataset
+                    borderColor: '#36A2EB',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    pointBackgroundColor: '#36A2EB',
+                    borderWidth: 2,
+                    tension: 0.4
                 }, {
                     label: 'Frequência Cardíaca',
                     data: this.heartRateData,
-                    borderColor: 'green',
-                    // Outras configurações específicas do dataset
+                    borderColor: '#4BC0C0',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    pointBackgroundColor: '#4BC0C0',
+                    borderWidth: 2,
+                    tension: 0.4
                 }, {
                     label: 'Temperatura Corporal',
                     data: this.bodyTemperatureData,
-                    borderColor: 'orange',
-                    // Outras configurações específicas do dataset
+                    borderColor: '#FFCE56',
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    pointBackgroundColor: '#FFCE56',
+                    borderWidth: 2,
+                    tension: 0.4
                 }, {
                     label: 'Glicose no Sangue',
                     data: this.bloodGlucoseData,
-                    borderColor: 'purple',
-                    // Outras configurações específicas do dataset
+                    borderColor: '#9966FF',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    pointBackgroundColor: '#9966FF',
+                    borderWidth: 2,
+                    tension: 0.4
                 }]
             },
             options: {
@@ -113,11 +124,49 @@ export class VitalSignsChartComponent implements OnInit {
               aspectRatio: 1, // Pode ajustar conforme necessário
               scales: {
                     y: {
-                        beginAtZero: true // Isto é opcional, dependendo dos seus dados
+                        beginAtZero: true,
+                        grid: {
+                            color: 'lightgrey',
+                        },
+                        ticks: {
+                            color: 'grey',
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'grey',
+                        }
                     }
                 },
-                // Outras opções de configuração do gráfico
+                plugins: {
+                  legend: {
+                    position: 'top',
+                    align: 'start', // Alinha os itens da legenda à esquerda
+                    fullSize: true, // Impede que a legenda ocupe todo o topo do gráfico
+                    labels: {
+                      boxWidth: 10, // Largura do retângulo da legenda
+                      boxHeight: 10, // Altura do retângulo da legenda
+                      padding: 10, // Espaçamento entre os itens da legenda
+                      font: {
+                        size: 12
+                      },
+                      usePointStyle: true, // Usa o estilo do ponto para a legenda
+                      pointStyle: 'rectRounded' // Faz com que os itens da legenda sejam retângulos arredondados
+                    }
+                  },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: 'rgba(255,255,255,0.8)',
+                        titleColor: '#000',
+                        bodyColor: '#000',
+                        borderColor: '#ddd',
+                        borderWidth: 1
+                    }
+                }
             }
+
+            
         });
     } else {
         console.error('Não foi possível obter o contexto do canvas');

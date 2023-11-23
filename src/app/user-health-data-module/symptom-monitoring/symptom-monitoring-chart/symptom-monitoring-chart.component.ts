@@ -30,6 +30,15 @@ export class SymptomMonitoringChartComponent implements OnInit {
       });
     }
   }
+  
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   calculateSymptomFrequencies() {
     this.symptomsData.forEach(symptom => {
@@ -44,40 +53,72 @@ export class SymptomMonitoringChartComponent implements OnInit {
   initializeChart() {
     const symptomNames = Object.keys(this.symptomFrequencies);
     const frequencies = Object.values(this.symptomFrequencies);
-  
-    // Gera uma cor aleatória para cada sintoma
     const backgroundColors = symptomNames.map(() => this.getRandomColor());
-  
+
     const canvas = <HTMLCanvasElement>document.getElementById('symptomsChart');
     const ctx = canvas.getContext('2d');
-  
+
     if (ctx) {
       new Chart(ctx, {
-        type: 'doughnut', // Ou 'pie' se preferir um gráfico de pizza
+        type: 'polarArea',
         data: {
           labels: symptomNames,
           datasets: [{
             label: 'Frequência dos Sintomas',
             data: frequencies,
-            backgroundColor: backgroundColors
+            backgroundColor: backgroundColors,
+            borderWidth: 0,
           }]
         },
         options: {
-          // Opções adicionais, se necessário
+          responsive: true,
+          maintainAspectRatio: true, // Tente mudar para true
+          aspectRatio: 1, // Pode ajustar conforme necessário
+          scales: {
+            r: {
+              angleLines: {
+                display: false
+              },
+              suggestedMin: 0,
+              ticks: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+              align: 'start', // Alinha os itens da legenda à esquerda
+              fullSize: true, // Impede que a legenda ocupe todo o topo do gráfico
+              labels: {
+                boxWidth: 10,
+                boxHeight: 10,
+                padding: 10,
+                font: {
+                  size: 12
+                },
+                usePointStyle: true, // Usa o estilo do ponto para a legenda
+                pointStyle: 'rectRounded' // Faz com que os itens da legenda sejam retângulos arredondados
+              }
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              backgroundColor: 'rgba(255,255,255,0.8)',
+              titleColor: '#000',
+              bodyColor: '#000',
+              borderColor: '#ddd',
+              borderWidth: 1
+            }
+          },
+          animation: {
+            animateRotate: true,
+            animateScale: true
+          }
         }
       });
     } else {
       console.error('Não foi possível obter o contexto do canvas');
     }
   }
-
-  getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
 }
-

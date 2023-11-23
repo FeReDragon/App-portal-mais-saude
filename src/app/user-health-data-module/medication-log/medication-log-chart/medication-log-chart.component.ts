@@ -31,6 +31,15 @@ export class MedicationLogChartComponent implements OnInit {
     }
   }
 
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   calculateMedicationFrequencies() {
     this.medicationsData.forEach(medication => {
       if (this.medicationFrequencies[medication.name]) {
@@ -45,45 +54,45 @@ export class MedicationLogChartComponent implements OnInit {
     const medicationNames = Object.keys(this.medicationFrequencies);
     const frequencies = Object.values(this.medicationFrequencies);
     const backgroundColors = medicationNames.map(() => this.getRandomColor());
-  
+
     const canvas = <HTMLCanvasElement>document.getElementById('medicationChart');
     const ctx = canvas.getContext('2d');
-  
+
     if (ctx) {
       new Chart(ctx, {
-        type: 'polarArea',
+        type: 'doughnut',
         data: {
           labels: medicationNames,
           datasets: [{
             label: 'Frequência de Uso dos Medicamentos',
             data: frequencies,
             backgroundColor: backgroundColors,
-            borderWidth: 1 // Pode ajustar ou remover conforme necessário
+            borderWidth: 0
           }]
         },
         options: {
-          scales: {
-            r: {
-              angleLines: {
-                display: false
-              },
-              suggestedMin: 0 // Isso assegura que o gráfico comece do zero
+          plugins: {
+            legend: {
+              position: 'top',
+              align: 'start',
+              fullSize: true,
+              labels: {
+                boxWidth: 10,
+                boxHeight: 10,
+                padding: 10,
+                font: {
+                  size: 12
+                },
+                usePointStyle: true,
+                pointStyle: 'rectRounded'
+              }
             }
-          },
+          }
           // Outras opções de customização podem ser adicionadas aqui
         }
       });
     } else {
       console.error('Não foi possível obter o contexto do canvas');
     }
-  }
-
-  getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
   }
 }
