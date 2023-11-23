@@ -58,4 +58,20 @@
    
   }  
     
-  
+  @media (max-width: 940px) {
+    main {
+      margin-top: 90px//; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 518px) {
+    main {
+      margin-top: 120px; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 438px) {
+    main {
+      margin-top: 180px; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }

@@ -1,34 +1,59 @@
 <!-- Dentro de printable-reports.component.html -->
-<div #reportContent>
-    <h1>Relatório de Saúde</h1>
-    <section *ngIf="vitalSigns.length > 0">
-      <h2>Sinais Vitais</h2>
-      <ul>
-        <li *ngFor="let sign of vitalSigns">
-          Pressão Arterial: {{ sign.bloodPressure }},
-          Frequência Cardíaca: {{ sign.heartRate }},
-          Temperatura Corporal: {{ sign.bodyTemperature }},
-          Glicemia: {{ sign.bloodGlucose }},
-          Data: {{ sign.timestamp | date:'medium' }}
-        </li>
-      </ul>
+<div class="container py-5 my-5">
+  <div #reportContent>
+    <h1 class="text-center mb-4">Relatório de Saúde</h1>
+
+    <section *ngIf="vitalSigns.length > 0" class="mb-4">
+      <h2 class="mb-3">Sinais Vitais</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Pressão Arterial</th>
+            <th>Frequência Cardíaca</th>
+            <th>Temperatura Corporal</th>
+            <th>Glicemia</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sign of vitalSigns">
+            <td>{{ sign.bloodPressure }}</td>
+            <td>{{ sign.heartRate }}</td>
+            <td>{{ sign.bodyTemperature }}</td>
+            <td>{{ sign.bloodGlucose }}</td>
+            <td>{{ sign.timestamp | date:'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-    <section *ngIf="symptoms.length > 0">
-      <h2>Sintomas</h2>
-      <ul>
-        <li *ngFor="let symptom of symptoms">
-          Nome: {{ symptom.symptomName }},
-          Intensidade: {{ symptom.intensity }},
-          Frequência: {{ symptom.frequency }},
-          Duração: {{ symptom.duration }},
-          Notas: {{ symptom.notes }},
-          Data: {{ symptom.timestamp | date:'medium' }}
-        </li>
-      </ul>
+
+    <section *ngIf="symptoms.length > 0" class="mb-4">
+      <h2 class="mb-3">Sintomas</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Intensidade</th>
+            <th>Frequência</th>
+            <th>Duração</th>
+            <th>Notas</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let symptom of symptoms">
+            <td>{{ symptom.symptomName }}</td>
+            <td>{{ symptom.intensity }}</td>
+            <td>{{ symptom.frequency }}</td>
+            <td>{{ symptom.duration }}</td>
+            <td>{{ symptom.notes }}</td>
+            <td>{{ symptom.timestamp | date:'medium' }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
+
     <!-- Repita para os outros tipos de dados -->
   </div>
-  <button (click)="generatePdf()">Gerar PDF</button>
-  
-  
-
+  <button class="btn btn-personal text-white" (click)="generatePdf()">Gerar Relatorio PDF</button>
+</div>
