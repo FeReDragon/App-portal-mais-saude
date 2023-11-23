@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Exercise, FoodDiaryEntry, Medication, SleepTrackerEntry, Symptom, Vaccination, VitalSigns } from '../interfaces/IHealt';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -19,8 +19,13 @@ export class UserHealthDataService {
     return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalSigns`);
   }
 
-  getVitalSignsForUser(userId: number): Observable<VitalSigns[]> {
-    return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalsign?userId=${userId}`);
+  getVitalSignsForUser(): Observable<VitalSigns[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<VitalSigns[]>(`${this.baseUrl}/vitalsign/user/${currentUser.id}`);
+    } else {
+      throw new Error('Current user not found.');
+    }
   }
 
 
@@ -32,11 +37,16 @@ export class UserHealthDataService {
     } else {
         throw new Error('Current user not found.');
     }
-}
+  }
 
 
-  getSymptomsForUser(userId: number): Observable<Symptom[]> {
-    return this.http.get<Symptom[]>(`${this.baseUrl}/symptom?userId=${userId}`);
+  getSymptomsForUser(): Observable<Symptom[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<Symptom[]>(`${this.baseUrl}/symptom/user/${currentUser.id}`);
+    } else {
+      return throwError(new Error('Current user not found.'));
+    }
   }
 
   registerSymptom(symptom: Symptom): Observable<Symptom> {
@@ -49,7 +59,14 @@ export class UserHealthDataService {
     }
   }
   
-
+  getMedicationsForUser(): Observable<Medication[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<Medication[]>(`${this.baseUrl}/medication/user/${currentUser.id}`);
+    } else {
+      throw new Error('Current user not found.');
+    }
+  }
   getMedicationById(medicationId: number): Observable<Medication> {
     return this.http.get<Medication>(`${this.baseUrl}/medication/${medicationId}`);
   }
@@ -60,10 +77,6 @@ export class UserHealthDataService {
 
   deleteMedication(medicationId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/medication/${medicationId}`);
-  }
-
-  getMedicationsForUser(userId: number): Observable<Medication[]> {
-    return this.http.get<Medication[]>(`${this.baseUrl}/medication?userId=${userId}`);
   }
 
   registerMedication(medication: Medication): Observable<Medication> {
@@ -77,9 +90,14 @@ export class UserHealthDataService {
 }
 
 
-  getExercisesForUser(userId: number): Observable<Exercise[]> {
-    return this.http.get<Exercise[]>(`${this.baseUrl}/exercise?userId=${userId}`);
+getExercisesForUser(): Observable<Exercise[]> {
+  const currentUser = this.authenticationService.getCurrentUser();
+  if (currentUser && currentUser.id) {
+    return this.http.get<Exercise[]>(`${this.baseUrl}/exercise/user/${currentUser.id}`);
+  } else {
+    throw new Error('Current user not found.');
   }
+}
 
   registerExercise(exercise: Exercise): Observable<any> {
     const currentUser = this.authenticationService.getCurrentUser();
@@ -92,10 +110,14 @@ export class UserHealthDataService {
   }
   
 
-  getFoodDiaryEntriesForUser(userId: number): Observable<FoodDiaryEntry[]> {
-    return this.http.get<FoodDiaryEntry[]>(`${this.baseUrl}/food-diary-entry?userId=${userId}`);
+  getFoodDiaryEntriesForUser(): Observable<FoodDiaryEntry[]> {
+    const currentUser = this.authenticationService.getCurrentUser();
+    if (currentUser && currentUser.id) {
+      return this.http.get<FoodDiaryEntry[]>(`${this.baseUrl}/food-diary-entry/user/${currentUser.id}`);
+    } else {
+      throw new Error('Current user not found.');
+    }
   }
-  
 
   registerFoodDiaryEntry(entry: FoodDiaryEntry): Observable<any> {
     const currentUser = this.authenticationService.getCurrentUser();
@@ -111,7 +133,7 @@ export class UserHealthDataService {
   getSleepTrackerEntriesForUser(): Observable<SleepTrackerEntry[]> {
     const currentUser = this.authenticationService.getCurrentUser();
     if (currentUser && currentUser.id) {
-      return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker?userId=${currentUser.id}`);
+      return this.http.get<SleepTrackerEntry[]>(`${this.baseUrl}/sleepTracker/user/${currentUser.id}`);
     } else {
       throw new Error('Current user not found.');
     }

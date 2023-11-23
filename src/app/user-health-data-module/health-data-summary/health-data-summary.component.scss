@@ -32,10 +32,46 @@
     background: linear-gradient(to right, #56B4D3, #348F50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
   }
+  .bg-personal2 {
+    background: #fc4a1a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
   .btn-personal {
     border: none;
     background: #fc4a1a;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+  }
+
+  .card-equal-height {
+    display: flex; /* Flex para manter a altura igual */
+    flex-direction: column; /* Orientação da coluna para os itens flex */
+    height: 100%; /* Define a altura para 100% dentro de seu container flex */
+  }
+  
+  .card-body {
+    flex: 1; /* Faz com que o corpo do card ocupe todo o espaço disponível */
+    display: flex; /* Habilita o display flex no corpo do card */
+   
+  }  
+    
+  @media (max-width: 940px) {
+    main {
+      margin-top: 90px//; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 518px) {
+    main {
+      margin-top: 120px; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 438px) {
+    main {
+      margin-top: 180px; // Ajustar com um valor que compense a expansão da navbar
+    }
   }

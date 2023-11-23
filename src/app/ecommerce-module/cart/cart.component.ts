@@ -23,18 +23,23 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.cartItems.subscribe((cartItems: CartItem[]) => {
       this.items = cartItems;
-      
+  
+      // Se o carrinho estiver vazio, atualize o estado de carregamento e retorne
+      if (this.items.length === 0) {
+        this.loading = false;
+        return;
+      }
+  
       // Buscando detalhes dos produtos
       const productObservables = cartItems.map(item => this.ecommerceService.getProductDetails(item.productId));
       forkJoin(productObservables).subscribe(products => {
         this.products = products;
         this.calculateTotal();
-        setTimeout(() => {
-          this.loading = false;
-        }, 300);
+        this.loading = false; // Atualiza o estado de carregamento após carregar os produtos
       });
     });
   }
+  
 
   removeFromCart(item: CartItem) {
     this.cartService.removeItem(item);

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
@@ -18,7 +19,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     RegisterComponent,
     ForgotPasswordComponent,
     PrivacySettingsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

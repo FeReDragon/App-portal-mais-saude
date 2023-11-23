@@ -28,17 +28,14 @@ export class ExerciseLogComponent implements OnInit {
   }
 
   loadExercises(): void {
-    const currentUser = this.authenticationService.getCurrentUser();
-    if (currentUser && currentUser.id) {
-      this.userHealthDataService.getExercisesForUser(currentUser.id).subscribe({
-        next: (exercises: Exercise[]) => {
-          this.exercises = exercises;
-        },
-        error: (error) => {
-          console.error('Error fetching exercises:', error);
-        },
-      });
-    }
+    this.userHealthDataService.getExercisesForUser().subscribe({
+      next: (exercises: Exercise[]) => {
+        this.exercises = exercises;
+      },
+      error: (error) => {
+        console.error('Error fetching exercises:', error);
+      },
+    });
   }
 
   registerExercise(): void {

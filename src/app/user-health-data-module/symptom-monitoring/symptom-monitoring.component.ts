@@ -29,19 +29,19 @@ export class SymptomMonitoringComponent implements OnInit {
   }
 
   getSymptoms(): void {
-    const currentUser = this.authenticationService.getCurrentUser();
-    if (currentUser && currentUser.id) {
-      this.userHealthDataService.getSymptomsForUser(currentUser.id).subscribe((symptoms: Symptom[]) => {
+    this.userHealthDataService.getSymptomsForUser().subscribe(
+      (symptoms: Symptom[]) => {
         if (symptoms && symptoms.length > 0) {
           this.symptoms = symptoms;
         } else {
-          console.log('No symptoms data returned for user id', currentUser.id);
+          console.log('No symptoms data returned for the current user');
         }
       }, error => {
-        console.error('Error fetching symptoms for user id', currentUser.id, error);
-      });
-    }
+        console.error('Error fetching symptoms for the current user', error);
+      }
+    );
   }
+  
   checkIfSummaryView(): void {
     if (this.router.url.includes('summary')) {
       this.isSummaryView = true;

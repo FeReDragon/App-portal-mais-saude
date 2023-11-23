@@ -1,4 +1,4 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VitalSigns } from '../../interfaces/IHealt';
 import { AuthenticationService } from '../../services/authentication.service';
@@ -41,18 +41,17 @@ export class VitalSignsComponent implements OnInit {
   }
 
   getVitalSigns(): void {
-    const currentUser = this.authenticationService.getCurrentUser();
-    if (currentUser && currentUser.id) {
-      this.userHealthDataService.getVitalSignsForUser(currentUser.id).subscribe((vitalSigns: VitalSigns[]) => {
+    this.userHealthDataService.getVitalSignsForUser().subscribe(
+      (vitalSigns: VitalSigns[]) => {
         if (vitalSigns && vitalSigns.length > 0) {
           this.vitalSigns = vitalSigns;
         } else {
-          console.log('No vital signs data returned for user id', currentUser.id);
+          console.log('No vital signs data returned for the current user');
         }
       }, error => {
-        console.error('Error fetching vital signs for user id', currentUser.id, error);
-      });
-    }
+        console.error('Error fetching vital signs for the current user', error);
+      }
+    );
   }
 
   register(): void {
@@ -64,19 +63,24 @@ export class VitalSignsComponent implements OnInit {
     );
 
     if (atLeastOneFieldValid) {
-      const newVitalSigns: VitalSigns = {
-        userId: 0,
-        bloodPressure: this.vitalSignsForm.value.bloodPressure,
-        heartRate: this.vitalSignsForm.value.heartRate,
-        bodyTemperature: this.vitalSignsForm.value.bodyTemperature,
-        bloodGlucose: this.vitalSignsForm.value.bloodGlucose,
-        timestamp: new Date()
-      };
+      const currentUser = this.authenticationService.getCurrentUser();
+      if (currentUser && currentUser.id) {
+        const newVitalSigns: VitalSigns = {
+          userId: currentUser.id,
+          bloodPressure: this.vitalSignsForm.value.bloodPressure,
+          heartRate: this.vitalSignsForm.value.heartRate,
+          bodyTemperature: this.vitalSignsForm.value.bodyTemperature,
+          bloodGlucose: this.vitalSignsForm.value.bloodGlucose,
+          timestamp: new Date()
+        };
 
-      this.userHealthDataService.registerVitalSigns(newVitalSigns).subscribe(() => {
-        this.getVitalSigns();
-        this.resetForm();
-      });
+        this.userHealthDataService.registerVitalSigns(newVitalSigns).subscribe(() => {
+          this.getVitalSigns();
+          this.resetForm();
+        }, error => {
+          console.error('Error registering vital signs', error);
+        });
+      }
     }
   }
 

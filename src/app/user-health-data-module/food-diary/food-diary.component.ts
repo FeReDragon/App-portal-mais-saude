@@ -23,14 +23,14 @@ export class FoodDiaryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const currentUser = this.authenticationService.getCurrentUser();
-    if (currentUser && currentUser.id) {
-      this.userHealthDataService.getFoodDiaryEntriesForUser(currentUser.id).subscribe((entries: FoodDiaryEntry[]) => {
+    this.userHealthDataService.getFoodDiaryEntriesForUser().subscribe(
+      (entries: FoodDiaryEntry[]) => {
         this.foodDiaryEntries = entries;
-      }, (error: any) => {
-        console.log(error);
-      });
-    }
+      }, 
+      (error: any) => {
+        console.error('Error fetching food diary entries:', error);
+      }
+    );
   }
     checkIfSummaryView(): void {
     if (this.router.url.includes('summary')) {

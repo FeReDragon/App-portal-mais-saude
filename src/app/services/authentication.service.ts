@@ -17,7 +17,7 @@ export class AuthenticationService {
     const currentUserString = localStorage.getItem('currentUser');
     if (currentUserString !== null) {
       this.currentUserSubject.next(JSON.parse(currentUserString));
-      console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
+      // console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
     }
     this.currentUser = this.getCurrentUser();
   }
@@ -26,7 +26,7 @@ export class AuthenticationService {
     return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
       map(response => {
         console.log("Resposta HTTP para login:", response);
-
+  
         if (response && response.token) {
           this.currentUser = {
             id: response.id,
@@ -36,9 +36,12 @@ export class AuthenticationService {
             email: response.email,
             birthday: new Date(response.birthday)
           };
-
-          console.log("currentUser após login:", this.currentUser);
-
+  
+          // console.log("currentUser após login:", this.currentUser);
+  
+          // Atualiza o currentUserSubject com o novo estado do usuário
+          this.currentUserSubject.next(this.currentUser);
+  
           localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
           localStorage.setItem('token', response.token);
           return true;
@@ -50,6 +53,10 @@ export class AuthenticationService {
       })
     );
   }
+  public getCurrentUserObservable(): Observable<User | null> {
+  return this.currentUserSubject.asObservable();
+}
+
 
   public register(userData: Omit<User, 'id'>): Observable<boolean> {
     return this.http.post<any>(`${this.apiUrl}/register`, userData)
@@ -68,7 +75,7 @@ export class AuthenticationService {
             console.log('Usuário transformado ao registrar:', user);
             this.currentUserSubject.next(user);
             localStorage.setItem('currentUser', JSON.stringify(user));
-            console.log('Usuário armazenado no local storage ao registrar:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+            // console.log('Usuário armazenado no local storage ao registrar:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
             localStorage.setItem('token', response.token);
             return true;
           }
@@ -81,9 +88,24 @@ export class AuthenticationService {
       );
   }
 
+  public forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgotpassword`, { email }, { responseType: 'text' })
+      .pipe(
+        catchError(error => throwError(error))
+      );
+  }
+  
+
+  public resetPassword(token: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/resetpassword`, { token, newPassword }, { responseType: 'text' })
+      .pipe(
+        catchError(error => throwError(error))
+      );
+  }  
+
   public getCurrentUser(): User | null {
     const currentUser = this.currentUserSubject.getValue();
-    console.log('Obtendo usuário atual:', currentUser);
+    // console.log('Obtendo usuário atual:', currentUser);
     return currentUser;
   }
 

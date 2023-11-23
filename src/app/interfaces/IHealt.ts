@@ -10,7 +10,7 @@ export interface Symptom {
 
 export interface VitalSigns {
   userId: number;
-  bloodPressure: number;
+  bloodPressure: string;
   heartRate: number;
   bodyTemperature: number;
   bloodGlucose: number;

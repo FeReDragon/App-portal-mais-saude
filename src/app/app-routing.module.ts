@@ -23,6 +23,10 @@ import { ProductCategoriesComponent } from './ecommerce-module/product-categorie
 import { AuthGuard } from './auth.guard';
 import { ProductCategoryDetailsComponent } from './ecommerce-module/product-category-details/product-category-details.component';
 import { CartComponent } from './ecommerce-module/cart/cart.component';
+import { ResetPasswordComponent } from './authentication-module/reset-password/reset-password.component';
+import { TermoUsoComponent } from './shared-module/termo-uso/termo-uso.component';
+import { NotFoundComponent } from './shared-module/not-found/not-found.component';
+import { SobreComponent } from './shared-module/sobre/sobre.component';
 
 const routes: Routes = [
   // Rotas públicas
@@ -36,6 +40,11 @@ const routes: Routes = [
   { path: 'product-category/:category', component: ProductCategoryDetailsComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'news/:id', component: NewsDetailComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'termos-de-uso', component: TermoUsoComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: 'sobre', component: SobreComponent },
+
 
   // Rotas restritas
   { path: 'privacy-settings', component: PrivacySettingsComponent, canActivate: [AuthGuard] },
@@ -51,6 +60,8 @@ const routes: Routes = [
   { path: 'monitor-saude', component: HealthDataSummaryComponent, canActivate: [AuthGuard] },
   { path: 'carrinho', component: CartComponent, canActivate: [AuthGuard] },
   // ... Outras rotas restritas
+
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({

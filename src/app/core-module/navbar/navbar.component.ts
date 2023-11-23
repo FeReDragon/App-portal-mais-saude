@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthenticationService, User } from '../../services/authentication.service';
 import { ThemeService } from '../../services/theme.service';
 import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +10,16 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./navbar.component.scss'],
   providers: [ThemeService]
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
   username: string = '';
   password: string = '';
   isDarkTheme = false;
   errorMessage: string = '';
   totalItemsInCart: number = 0;
   currentUser: User | null = null;
+  private currentUserSubscription: Subscription = new Subscription();
+
+
 
   constructor(
     public themeService: ThemeService,
@@ -24,8 +28,20 @@ export class NavbarComponent {
   ) {
     this.cartService.cartItems.subscribe(items => {
       this.totalItemsInCart = items.reduce((total, item) => total + item.quantity, 0);
-      this.currentUser = this.authService.getCurrentUser();
     });
+  }
+
+  ngOnInit(): void {
+    this.currentUserSubscription = this.authService.getCurrentUserObservable().subscribe(user => {
+      this.currentUser = user;
+    });
+  }
+  
+
+  ngOnDestroy(): void {
+    if (this.currentUserSubscription) {
+      this.currentUserSubscription.unsubscribe();
+    }
   }
 
   isAuthenticated(): boolean {
