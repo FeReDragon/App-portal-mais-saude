@@ -1,15 +1,4 @@
 
-.main {
-    width: 80%;
-    padding-top: 70px;
-}
-
-
-.card-img-top {
-    width: 200px;
-    height: 200px;   /* ajuste este valor como necessário */
-    object-fit: cover;  /* manter a proporção da imagem */
-}
 .small-text {
     font-size: 0.7rem; /* Ajuste esse valor de acordo com o tamanho desejado para o texto dentro dos botões */
   }
@@ -59,7 +48,7 @@
   }
   
   .custom-width {
-    width: 100%;
+    width: 80%;
     margin-left: 10%;
     
   }
@@ -84,4 +73,21 @@
 
   }
 
-  
+
+  @media (max-width: 940px) {
+    main {
+      margin-top: 90px//; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 518px) {
+    main {
+      margin-top: 120px; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
+
+  @media (max-width: 438px) {
+    main {
+      margin-top: 180px; // Ajustar com um valor que compense a expansão da navbar
+    }
+  }
