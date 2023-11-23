@@ -17,7 +17,7 @@ export class AuthenticationService {
     const currentUserString = localStorage.getItem('currentUser');
     if (currentUserString !== null) {
       this.currentUserSubject.next(JSON.parse(currentUserString));
-      console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
+      // console.log('Usuário encontrado no local storage:', JSON.parse(currentUserString));
     }
     this.currentUser = this.getCurrentUser();
   }
@@ -37,7 +37,7 @@ export class AuthenticationService {
             birthday: new Date(response.birthday)
           };
   
-          console.log("currentUser após login:", this.currentUser);
+          // console.log("currentUser após login:", this.currentUser);
   
           // Atualiza o currentUserSubject com o novo estado do usuário
           this.currentUserSubject.next(this.currentUser);
@@ -75,7 +75,7 @@ export class AuthenticationService {
             console.log('Usuário transformado ao registrar:', user);
             this.currentUserSubject.next(user);
             localStorage.setItem('currentUser', JSON.stringify(user));
-            console.log('Usuário armazenado no local storage ao registrar:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
+            // console.log('Usuário armazenado no local storage ao registrar:', JSON.parse(localStorage.getItem('currentUser') || '{}'));
             localStorage.setItem('token', response.token);
             return true;
           }
@@ -105,7 +105,7 @@ export class AuthenticationService {
 
   public getCurrentUser(): User | null {
     const currentUser = this.currentUserSubject.getValue();
-    console.log('Obtendo usuário atual:', currentUser);
+    // console.log('Obtendo usuário atual:', currentUser);
     return currentUser;
   }
 
