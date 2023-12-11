@@ -8,7 +8,7 @@ import { CartItem } from '../services/cart.service';
   providedIn: 'root'
 })
 export class EcommerceService {
-  private baseUrl = 'http://localhost:5215/api/Ecommerce'
+  private baseUrl = 'https://webapi-hms.azurewebsites.net/api/Ecommerce';
 
   constructor(private http: HttpClient) {}
 

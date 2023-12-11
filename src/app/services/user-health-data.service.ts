@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
   providedIn: 'root'
 })
 export class UserHealthDataService {
-  private baseUrl = 'http://localhost:5215/api/userhealthdata';
+  private baseUrl = 'https://webapi-hms.azurewebsites.net/api/userhealthdata';
 
   constructor(
     private http: HttpClient,

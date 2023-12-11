@@ -10,7 +10,7 @@ import { EcommerceService } from './ecommerce.service';
 })
 export class CartService {
   private _cartItems = new BehaviorSubject<CartItem[]>([]);
-  private baseUrl = 'http://localhost:5215/api/Ecommerce'; 
+  private baseUrl = 'https://webapi-hms.azurewebsites.net/api/Ecommerce';
   private currentUser: User | null = null; // Adicionado para armazenar o usuário atual
 
   constructor(private http: HttpClient, private ecommerceService: EcommerceService) {

@@ -8,7 +8,7 @@ import { User } from '../interfaces/IUsuario';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:5215/auth';
+  private apiUrl = 'https://webapi-hms.azurewebsites.net/api/auth';
   private currentUserSubject: BehaviorSubject<User | null>;
   currentUser: User | null;
 

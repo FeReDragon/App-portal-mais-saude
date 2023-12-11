@@ -8,7 +8,7 @@ import { News, UserComment } from '../interfaces/INews';
 })
 export class NewsService {
 
-  private baseUrl = 'http://localhost:5215/api'; // Atualizado para o servidor ASP.NET Core
+  private baseUrl = 'https://webapi-hms.azurewebsites.net/api'; // Atualizado para o servidor ASP.NET Core
 
   constructor(private http: HttpClient) { }
 
