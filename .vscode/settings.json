@@ -4,5 +4,6 @@
         ".vscode{,/**}"
     ],
     "appService.defaultWebAppToDeploy": "/subscriptions/a436735e-4c3e-4ae8-ba92-70c696b730d7/resourceGroups/backend-hms/providers/Microsoft.Web/sites/deploy-angular-hms",
-    "appService.deploySubpath": "dist"
+    "appService.deploySubpath": "dist",
+    "appService.showBuildDuringDeployPrompt": false
 }
