@@ -3,29 +3,61 @@
 <h2>Sinais Vitais</h2>
 <form *ngIf="vitalSignsForm" [formGroup]="vitalSignsForm" (ngSubmit)="register()" class="mb-3">
   <div class="form-group justify-content-center mb-2">
-    <input type="text" formControlName="bloodPressure" placeholder="Pressão arterial" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bloodPressure')?.invalid && vitalSignsForm.get('bloodPressure')?.touched}">
+    <input type="text" 
+           formControlName="bloodPressure" 
+           placeholder="Pressão arterial" 
+           class="form-control" 
+           [ngClass]="{'is-invalid': vitalSignsForm.get('bloodPressure')?.invalid && vitalSignsForm.get('bloodPressure')?.touched}"
+           title="Pressão arterial é a medida da força do sangue contra as paredes das artérias. É expressa em dois números, como 120/80 mmHg, representando pressão sistólica (durante a contração do coração) e diastólica (entre batimentos). Valores normais são essenciais para a boa saúde cardiovascular" 
+           data-bs-toggle="tooltip" 
+           data-bs-placement="right">
     <div *ngIf="vitalSignsForm.get('bloodPressure')?.hasError('pattern')" class="invalid-feedback">
       Formato inválido. Use 000/00, 000/000 ou 00/00.
     </div>
   </div>
+
   <div class="form-group mb-2">
-    <input type="number" formControlName="heartRate" placeholder="Frequência cardíaca" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('heartRate')?.invalid && vitalSignsForm.get('heartRate')?.touched}">
+    <input type="number" 
+           formControlName="heartRate" 
+           placeholder="Frequência cardíaca" 
+           class="form-control" 
+           [ngClass]="{'is-invalid': vitalSignsForm.get('heartRate')?.invalid && vitalSignsForm.get('heartRate')?.touched}"
+           title="Frequência cardíaca refere-se ao número de batimentos cardíacos por minuto. Valores normais variam de 60 a 100 bpm em repouso. Frequências fora desse intervalo podem indicar condições médicas." 
+           data-bs-toggle="tooltip" 
+           data-bs-placement="right">
     <div *ngIf="vitalSignsForm.get('heartRate')?.hasError('min') || vitalSignsForm.get('heartRate')?.hasError('max')" class="invalid-feedback">
       Frequência cardíaca deve estar entre 40 e 200 batimentos por minuto.
     </div>
   </div>
+
   <div class="form-group mb-2">
-    <input type="number" formControlName="bodyTemperature" placeholder="Temperatura corporal" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bodyTemperature')?.invalid && vitalSignsForm.get('bodyTemperature')?.touched}">
+    <input type="number" 
+           formControlName="bodyTemperature" 
+           placeholder="Temperatura corporal" 
+           class="form-control" 
+           [ngClass]="{'is-invalid': vitalSignsForm.get('bodyTemperature')?.invalid && vitalSignsForm.get('bodyTemperature')?.touched}"
+           title="A temperatura corporal normal varia de 36.5 a 37.5 graus Celsius. Variações podem indicar condições como febre ou hipotermia." 
+           data-bs-toggle="tooltip" 
+           data-bs-placement="right">
     <div *ngIf="vitalSignsForm.get('bodyTemperature')?.hasError('min') || vitalSignsForm.get('bodyTemperature')?.hasError('max')" class="invalid-feedback">
       A temperatura corporal deve estar entre 34.0 e 42.0 graus Celsius.
     </div>
   </div>
+
   <div class="form-group mb-2">
-    <input type="number" formControlName="bloodGlucose" placeholder="Níveis de glicose no Sangue" class="form-control" [ngClass]="{'is-invalid': vitalSignsForm.get('bloodGlucose')?.invalid && vitalSignsForm.get('bloodGlucose')?.touched}">
+    <input type="number" 
+           formControlName="bloodGlucose" 
+           placeholder="Níveis de glicose no Sangue" 
+           class="form-control" 
+           [ngClass]="{'is-invalid': vitalSignsForm.get('bloodGlucose')?.invalid && vitalSignsForm.get('bloodGlucose')?.touched}"
+           title="Níveis de glicose normais variam entre 70 e 140 mg/dL. Valores fora desta faixa podem indicar hipoglicemia ou hiperglicemia." 
+           data-bs-toggle="tooltip" 
+           data-bs-placement="right">
     <div *ngIf="vitalSignsForm.get('bloodGlucose')?.hasError('min') || vitalSignsForm.get('bloodGlucose')?.hasError('max')" class="invalid-feedback">
       A glicose deve estar entre 20 e 800 mg/dL.
     </div>
   </div>
+
   <button type="submit"  class="btn btn-personal text-white mb-2">Registrar</button>
 </form>
 <div class="table-responsive shadow rounded">

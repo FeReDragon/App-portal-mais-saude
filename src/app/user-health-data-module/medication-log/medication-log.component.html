@@ -3,16 +3,20 @@
     <h2>Medicamentos</h2>
     <form (submit)="registerMedication()" id="medications-form" class="mb-3">
       <div class="form-group mb-2">
-        <input [(ngModel)]="medicationName" name="medicationName" type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control">
+        <input [(ngModel)]="medicationName" name="medicationName" type="text" id="medicationName" placeholder="Nome do medicamento" class="form-control"
+               title="Digite o nome do medicamento" data-bs-toggle="tooltip" data-bs-placement="right">
       </div>
       <div class="form-group mb-2">
-        <input [(ngModel)]="dosage" name="dosage" type="text" id="dosage" placeholder="Dosagem" class="form-control">
+        <input [(ngModel)]="dosage" name="dosage" type="text" id="dosage" placeholder="Dosagem" class="form-control"
+               title="Informe a dosagem do medicamento " data-bs-toggle="tooltip" data-bs-placement="right">
       </div>
       <div class="form-group mb-2">
-        <input [(ngModel)]="time" name="time" type="text" id="time" placeholder="Horário" class="form-control">
+        <input [(ngModel)]="time" name="time" type="text" id="time" placeholder="Horário" class="form-control"
+               title="Especifique o horário de administração do medicamento." data-bs-toggle="tooltip" data-bs-placement="right">
       </div>
-      <button type="submit" class="btn btn-personal  text-white mb-2">Registrar</button>
+      <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
     </form>
+    
     <div class="table-responsive shadow rounded">
       <table id="medications-table" class="table table-hover">
         <thead>

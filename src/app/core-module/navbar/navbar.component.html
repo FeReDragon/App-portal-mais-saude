@@ -13,17 +13,17 @@
         <a class="navbar-brand me-2 text-light" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">Health Mais Saúde</a>
         <!-- Aqui estão os botões -->
         <div class="d-flex">
-          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/home"><i class="fas fa-newspaper"></i> Noticias</button>
-          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/lista-produtos"><i class="fas fa-store"></i> Loja</button>
-          <button type="button" class="btn btn-sm mx-1 text-light position-relative" routerLink="/carrinho">
+          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/home" title="Aqui, você tem acesso a informações confiáveis e atualizadas sobre saúde." data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-newspaper"></i> Noticias</button>
+          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/lista-produtos" title="Aqui, promovemos saúde e bem-estar com uma variedade de produtos naturais, suplementos e equipamentos de ginástica e aparelhos médicos." data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-store"></i> Loja</button>
+          <button type="button" class="btn btn-sm mx-1 text-light position-relative" routerLink="/carrinho" title="Carrinho de Compras" data-bs-toggle="tooltip" data-bs-placement="bottom">
             <i class="fas fa-shopping-cart"></i> Carrinho
-            <!-- Adicione este span para mostrar um badge se houver itens no carrinho -->
             <span *ngIf="totalItemsInCart > 0" class="position-absolute top-0 start-100 translate-middle badge bg-warning">
               {{ totalItemsInCart }}
             </span>
           </button>
-          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/monitor-saude"><i class="fas fa-heartbeat"></i> Dados de Saude</button>
+          <button type="button" class="btn btn-sm mx-1 text-light" routerLink="/monitor-saude" title="Aqui, você encontra ferramentas intuitivas para acompanhar sua Saúde e seu bem-estar" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-heartbeat"></i> Dados de Saude</button>
         </div>
+        
       <!-- <button class="btn btn-mode-toggle ms-3" (click)="themeService.toggleTheme()">
         <i class="fas fa-moon text-dark" *ngIf="!themeService.isDarkTheme()"></i>
         <i class="fas fa-sun text-warning" *ngIf="themeService.isDarkTheme()"></i>
@@ -42,22 +42,29 @@
     <!-- Links de navegação -->
     <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
       <li class="nav-item">
-        <a class="nav-link text-light" routerLink="/home"><i class="fas fa-home"></i> Home/News</a>
+        <a class="nav-link text-light" routerLink="/home" title="Aqui, você tem acesso a informações confiáveis e atualizadas sobre saúde." data-bs-toggle="tooltip" data-bs-placement="bottom">
+          <i class="fas fa-home"></i> Home/News
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" routerLink="/lista-produtos"><i class="fas fa-store"></i> Loja</a>
+        <a class="nav-link text-light" routerLink="/lista-produtos" title="Aqui, promovemos saúde e bem-estar com uma variedade de produtos naturais, suplementos e equipamentos de ginástica e aparelhos médicos." data-bs-toggle="tooltip" data-bs-placement="bottom">
+          <i class="fas fa-store"></i> Loja
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light position-relative" routerLink="/carrinho">
+        <a class="nav-link text-light position-relative" routerLink="/carrinho" title="Carrinho de Compras" data-bs-toggle="tooltip" data-bs-placement="bottom">
           <i class="fas fa-shopping-cart"></i> Carrinho
-          <span *ngIf="totalItemsInCart >0" class="position-absolute top-50 translate-middle-y badge bg-warning" style="left: calc(100% - 25px);">
+          <span *ngIf="totalItemsInCart > 0" class="position-absolute top-50 translate-middle-y badge bg-warning" style="left: calc(100% - 25px);">
               {{ totalItemsInCart }}
           </span>
-      </a>      
+        </a>      
       </li>
       <li class="nav-item">
-        <a class="nav-link text-light" routerLink="/monitor-saude"><i class="fas fa-heartbeat"></i> Dados de Saúde</a>
+        <a class="nav-link text-light" routerLink="/monitor-saude" title="Aqui, você encontra ferramentas intuitivas para acompanhar sua Saúde e seu bem-estar." data-bs-toggle="tooltip" data-bs-placement="bottom">
+          <i class="fas fa-heartbeat"></i> Dados de Saúde
+        </a>
       </li>
+      
       <!-- <li class="nav-item" *ngIf="authService.isAuthenticated()">
         <a class="nav-link text-light" routerLink="/profile"><i class="fas fa-user-circle"></i> Conta</a>
       </li> -->

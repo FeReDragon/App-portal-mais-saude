@@ -6,46 +6,42 @@
     </div>
 </section>
 
+<div class="container mt-5">
   <!-- Primeira Linha -->
-  <div class="container mt-5">
-    <!-- Primeira Linha -->
-    <div class="container">
-      <!-- Primeira Linha -->
-      <div class="row justify-content-center">
-        <div *ngFor="let card of cards.slice(0, 4);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
+  <div class="row justify-content-center">
+      <div *ngFor="let card of cards.slice(0, 4);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
           <a [routerLink]="getRouterLink(card)" class="text-decoration-none">
-            <div class="card h-100 border-0 shadow bg-transparent">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-center mb-2">
-                  <i class="{{ getCardIconClass(card) }} me-2"></i>
-                  <h5 class="card-title mb-0">{{ card.text }}</h5>
-                </div>
-                <p class="card-text">{{ card.desc }}</p>
+              <div class="card h-100 border-0 shadow bg-transparent" title="{{ card.tool }}" data-bs-toggle="tooltip" data-bs-placement="top">
+                  <div class="card-body d-flex flex-column">
+                      <div class="d-flex align-items-center mb-2">
+                          <i class="{{ getCardIconClass(card) }} me-2"></i>
+                          <h5 class="card-title mb-0">{{ card.text }}</h5>
+                      </div>
+                      <p class="card-text">{{ card.desc }}</p>
+                  </div>
               </div>
-            </div>
           </a>
-        </div>
       </div>
-    
-      <!-- Segunda Linha -->
-      <div class="row justify-content-center mt-2">
-        <div *ngFor="let card of cards.slice(4, 8);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
-          <a [routerLink]="getRouterLink(card)" class="text-decoration-none">
-            <div class="card h-100 border-0 shadow bg-transparent">
-              <div class="card-body d-flex flex-column">
-                <div class="d-flex align-items-center mb-2">
-                  <i class="{{ getCardIconClass(card) }} me-2"></i>
-                  <h5 class="card-title mb-0">{{ card.text }}</h5>
-                </div>
-                <p class="card-text">{{ card.desc }}</p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
   </div>
-  
+
+  <!-- Segunda Linha -->
+  <div class="row justify-content-center mt-2">
+      <div *ngFor="let card of cards.slice(4, 8);" class="col-lg-3 col-md-6 col-sm-12 mb-4">
+          <a [routerLink]="getRouterLink(card)" class="text-decoration-none">
+              <div class="card h-100 border-0 shadow bg-transparent" title="{{ card.tool }}" data-bs-toggle="tooltip" data-bs-placement="top">
+                  <div class="card-body d-flex flex-column">
+                      <div class="d-flex align-items-center mb-2">
+                          <i class="{{ getCardIconClass(card) }} me-2"></i>
+                          <h5 class="card-title mb-0">{{ card.text }}</h5>
+                      </div>
+                      <p class="card-text">{{ card.desc }}</p>
+                  </div>
+              </div>
+          </a>
+      </div>
+  </div>
+</div>
+
 
 
       

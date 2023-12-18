@@ -1,26 +1,31 @@
 <main [ngClass]="{'component-padding': !isSummaryView}">
   <div class="container">
-<h2>Exercícios</h2>
-<form (submit)="registerExercise()" id="exercise-form" class="mb-3">
-  <div class="form-group mb-2">
-    <input [(ngModel)]="exerciseType" name="exerciseType" type="text" id="exerciseType" placeholder="Tipo de exercício" class="form-control">
-  </div>
-  <div class="form-group mb-2">
-    <input [(ngModel)]="duration" name="duration" type="text" id="duration" placeholder="Duração" class="form-control">
-  </div>
-  <div class="form-group mb-2">
-    <select class="form-control" [(ngModel)]="intensity" name="intensity">
-      <option [ngValue]="null" disabled selected>Intensidade</option>
-      <option [ngValue]="0">Leve</option>
-      <option [ngValue]="1">Moderada</option>
-      <option [ngValue]="2">Intenso</option>
-    </select>
-  </div>
-  <div class="form-group mb-2">
-    <input [(ngModel)]="caloriesBurned" name="caloriesBurned" type="number" id="caloriesBurned" placeholder="Calorias queimadas" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
-</form>
+    <h2>Exercícios</h2>
+    <form (submit)="registerExercise()" id="exercise-form" class="mb-3">
+      <div class="form-group mb-2">
+        <input [(ngModel)]="exerciseType" name="exerciseType" type="text" id="exerciseType" placeholder="Tipo de exercício" class="form-control"
+               title="Descreva o tipo de exercício realizado (ex: corrida, natação)" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <input [(ngModel)]="duration" name="duration" type="text" id="duration" placeholder="Duração" class="form-control"
+               title="Informe a duração do exercício (ex: 30 minutos)" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <select class="form-control" [(ngModel)]="intensity" name="intensity"
+                title="Selecione a intensidade do exercício" data-bs-toggle="tooltip" data-bs-placement="right">
+          <option [ngValue]="null" disabled selected>Intensidade</option>
+          <option [ngValue]="0">Leve</option>
+          <option [ngValue]="1">Moderada</option>
+          <option [ngValue]="2">Intenso</option>
+        </select>
+      </div>
+      <div class="form-group mb-2">
+        <input [(ngModel)]="caloriesBurned" name="caloriesBurned" type="number" id="caloriesBurned" placeholder="Calorias queimadas" class="form-control"
+               title="Estime o número de calorias queimadas durante o exercício" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
+    </form>
+    
 <div class="table-responsive shadow rounded">
   <table id="exercise-table" class="table table-hover">
     <thead>

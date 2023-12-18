@@ -1,18 +1,22 @@
 <main [ngClass]="{'component-padding': !isSummaryView}">
   <div class="container">
-<h2>Diário Alimentar</h2>
-<form (submit)="registerFoodDiaryEntry()" id="food-diary-form" class="mb-3">
-  <div class="form-group mb-2">
-    <input [(ngModel)]="food" name="food" type="text" id="meal" placeholder="Refeição" class="form-control">
-  </div>
-  <div class="form-group mb-2">
-    <input [(ngModel)]="calories" name="calories" type="number" id="calories" placeholder="Calorias" class="form-control">
-  </div>
-  <div class="form-group mb-2">
-    <textarea [(ngModel)]="notes" name="notes" type="text" id="Notas" placeholder="Notas Adicionais" class="form-control"></textarea>
-  </div>
-  <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
-</form>
+    <h2>Diário Alimentar</h2>
+    <form (submit)="registerFoodDiaryEntry()" id="food-diary-form" class="mb-3">
+      <div class="form-group mb-2">
+        <input [(ngModel)]="food" name="food" type="text" id="meal" placeholder="Refeição" class="form-control"
+               title="Digite o nome da refeição ou alimento consumido" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <input [(ngModel)]="calories" name="calories" type="number" id="calories" placeholder="Calorias" class="form-control"
+               title="Informe o número estimado de calorias consumidas" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <textarea [(ngModel)]="notes" name="notes" type="text" id="Notas" placeholder="Notas Adicionais" class="form-control"
+                  title="Adicione quaisquer notas adicionais sobre a refeição, como ingredientes ou como se sentiu após comer" data-bs-toggle="tooltip" data-bs-placement="right"></textarea>
+      </div>
+      <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
+    </form>
+    
 <div class="table-responsive shadow rounded">
   <table id="food-diary-table" class="table table-hover">
     <thead>

@@ -1,32 +1,38 @@
 <main [ngClass]="{'component-padding': !isSummaryView}">
   <div class="container">
-<h2>Sintomas</h2>
-<form id="symptoms-form" class="mb-3" (ngSubmit)="register()">
-  <div class="form-group mb-2">
-    <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptomName" name="symptom">
-  </div>
-
-  <div class="form-group mb-2">
-    <select class="form-control" [(ngModel)]="intensity" name="intensity" required>
-      <option [ngValue]="null" disabled >Intensidade</option>
-      <option [ngValue]="0">Muito Leve</option>
-      <option [ngValue]="1">Leve</option>
-      <option [ngValue]="2">Moderada</option>
-      <option [ngValue]="3">Forte</option>
-      <option [ngValue]="4">Muito Forte</option>
-    </select>
-  </div>
-  <div class="form-group mb-2">
-    <input type="text" id="frequency" placeholder="Frequência" class="form-control" [(ngModel)]="frequency" name="frequency">
-  </div>
-  <div class="form-group mb-2">
-    <input type="text" id="duration" placeholder="Duração" class="form-control" [(ngModel)]="duration" name="duration">
-  </div>
-  <div class="form-group mb-2">
-    <textarea id="notes" placeholder="Notas adicionais" class="form-control" [(ngModel)]="notes" name="notes"></textarea>
-  </div>
-  <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
-</form>
+    <h2>Sintomas</h2>
+    <form id="symptoms-form" class="mb-3" (ngSubmit)="register()">
+      <div class="form-group mb-2">
+        <input type="text" id="symptom" placeholder="Sintoma" class="form-control" [(ngModel)]="symptomName" name="symptom" 
+               title="Descreva o sintoma que está sentindo" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+    
+      <div class="form-group mb-2">
+        <select class="form-control" [(ngModel)]="intensity" name="intensity" required 
+                title="Selecione a intensidade do sintoma" data-bs-toggle="tooltip" data-bs-placement="right">
+          <option [ngValue]="null" disabled>Intensidade</option>
+          <option [ngValue]="0">Muito Leve</option>
+          <option [ngValue]="1">Leve</option>
+          <option [ngValue]="2">Moderada</option>
+          <option [ngValue]="3">Forte</option>
+          <option [ngValue]="4">Muito Forte</option>
+        </select>
+      </div>
+      <div class="form-group mb-2">
+        <input type="text" id="frequency" placeholder="Frequência" class="form-control" [(ngModel)]="frequency" name="frequency" 
+               title="Informe com que frequência você está experimentando o sintoma" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <input type="text" id="duration" placeholder="Duração" class="form-control" [(ngModel)]="duration" name="duration" 
+               title="Indique a duração do sintoma" data-bs-toggle="tooltip" data-bs-placement="right">
+      </div>
+      <div class="form-group mb-2">
+        <textarea id="notes" placeholder="Notas adicionais" class="form-control" [(ngModel)]="notes" name="notes" 
+                  title="Adicione quaisquer notas adicionais que possam ser relevantes" data-bs-toggle="tooltip" data-bs-placement="right"></textarea>
+      </div>
+      <button type="submit" class="btn btn-personal text-white mb-2">Registrar</button>
+    </form>
+    
 
 <div class="table-responsive shadow rounded">
   <table id="symptoms-table" class="table table-hover">
